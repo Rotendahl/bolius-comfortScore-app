@@ -1,0 +1,31 @@
+.housePicture {
+    background-color: #EBEBEB;
+    height: 20%;
+}
+
+.housePicture img {
+    object-fit: cover;
+    width: 100%;
+    height: 90%;
+}
+
+.komforScore {
+    background: #94CB9C;
+
+}
+
+.scoreContainer {
+    padding-top: 50%;
+}
+
+.score {
+    font-size: 11vw;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.foot {
+    background-color: #FAF8F7;
+    border-top: 2px solid black;
+    width: 100%;
+}

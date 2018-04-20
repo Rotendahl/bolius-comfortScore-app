@@ -1,9 +1,14 @@
 import React, {
   Component
 } from 'react';
+
+
 import '../styles/overview.css'
 
 import Slider from '../components/slider.js'
+import Footer from '../components/Footer.js'
+import TextRow from '../components/TextRow.js'
+import Title from '../components/Title.js'
 
 class Overview extends Component {
   constructor(props) {
@@ -27,43 +32,52 @@ class Overview extends Component {
     }))
   }
   render() {
-    var adresse = "Ulkjærvej 3, 6771 Gredstedbro"
+    var adresse = "Lerholmvej 15, 2750 Ballerup"
     var img =
-      "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" +
-      adresse;
-    var sliders = ["Træk", "Temperatur", "Fugt", "Støj", "Dagslys", "Lugt"];
+      "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
+      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + adresse;
+    var sliders = [
+      "Træk",
+      "Temperatur",
+      "Fugt",
+      "Støj",
+      "Dagslys",
+      "Lugt"
+    ];
 
-    return (
+    return(
       <div className="container">
-        <div className="row"><h3 >Din komfortscore</h3></div>
-          <div className="row">
-            <div className="col-sm-8 col-xs-12 housePicture text-center">
-              <img className="rounded img-fluid" alt="house" src={img}/>
-              <p>{adresse}</p>
-            </div>
-            <div className="col-sm-4 komforScore col-xs-12 d-flex justify-content-center align-items-center">
-              <div className={this.state.animation}>
-                <p className="score">{Math.floor(this.state.score)}%</p>
-                <p>Din nuværende komfortscore</p>
-              </div>
-            </div>
+        <Title title={'Din komfortscore'}/>
+        <div className="row">
+          <div className="col-sm-8 col-xs-12 housePicture text-center">
+            <img className="rounded img-fluid" alt="house" src={img}/>
+            <p>{adresse}</p>
           </div>
-        <div className = "row">
-          <div className="col-10 offset-1">
-            Andre der bor i et hus, der minder om dette, har vurderet
-            komforten på de nedenstående parametre sådan her -
-            juster på parametrene, hvis du ikke er enig i komfortvurderingerne
+          <div className="col-sm-4 komforScore col-xs-12 d-flex align-items-center">
+            <div>
+              <p className="score">{Math.floor(this.state.score)}%</p>
+              <p>Din nuværende komfortscore</p>
+            </div>
           </div>
         </div>
-        {sliders.map((name) => <Slider key={name} updateScore={this.updateScore} init={this.init} parameter={name} value={1}/>)}
-        <div className="row foot">
-          <div className="col-8">
-            <h4>Se hvad du kan gøre ved dit hus for at forbedre din komfortscore</h4>
-          </div>
-          <div className="col-4">
-            <button className="btn"><h4>Ja, inspirer mig nu</h4></button>
-          </div>
-        </div>
+        <TextRow text = {'Andre der bor i et hus, der minder om dette, har \
+          vurderet komforten på de nedenstående parametre sådan her - juster på\
+          parametrene, hvis du ikke er enig i komfortvurderingerne'}
+        />
+        {sliders.map(
+          (name) =>
+          <Slider
+            key={name}
+            updateScore={this.updateScore}
+            init={this.init}
+            parameter={name}
+            value={1}/>
+        )}
+        <Footer
+          text={'Se hvad du kan gøre ved dit hus for at forbedre din komfortscore'}
+          linkText={'Ja, inspirer mig nu'}
+          link={'improvements'}
+        />
       </div>
     )
   }

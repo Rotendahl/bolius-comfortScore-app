@@ -1,0 +1,6 @@
+Score status
+    * Shows the current score and the potential one.
+
+* Card Slider
+
+    

@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 import '../styles/slider.css'
 import '../styles/sliderImages.css'
-import '../styles/updateAnimation.css'
 
 class Slider extends Component {
   constructor(props) {
@@ -33,7 +32,7 @@ class Slider extends Component {
 
   render() {
     const paramLogo = 'assets/param-icons/' + this.props.parameter + '.png';
-    return (
+    return(
       <div className="row ">
         <div className="col-2 param">
           <img className="rounded" alt="param" src={paramLogo}/>

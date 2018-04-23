@@ -7,19 +7,14 @@ import Card from '../components/Card.js'
 import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
 import Title from '../components/Title.js'
-import {
-  Redirect
-} from 'react-router-dom'
+
 import '../styles/improvements.css'
 
-class Improvements extends Component {
+class Result extends Component {
   constructor(props) {
     super(props);
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
-    this.done = this.done.bind(this);
-    this.willDo = this.willDo.bind(this);
-    this.clear = this.clear.bind(this);
 
     this.state = {
       potentialScore: 10,
@@ -29,8 +24,7 @@ class Improvements extends Component {
           title: "Udskiftning af vinduer med 3 lags termoruder",
           done: false,
           willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen.",
-          factor: 3
+          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
         },
         {
           title: "Sol celler",
@@ -64,34 +58,6 @@ class Improvements extends Component {
       ]
     };
   }
-
-  done() {
-    var cards = this.state.cards
-    cards[this.state.activeSlide].done = true
-    cards[this.state.activeSlide].willDo = false
-    this.setState({
-      cards: cards
-    })
-  }
-
-  willDo() {
-    var cards = this.state.cards
-    cards[this.state.activeSlide].done = false
-    cards[this.state.activeSlide].willDo = true
-    this.setState({
-      cards: cards
-    })
-  }
-
-  clear() {
-    var cards = this.state.cards
-    cards[this.state.activeSlide].done = false
-    cards[this.state.activeSlide].willDo = false
-    this.setState({
-      cards: cards
-    })
-  }
-
   next() {
     this.slider.slickNext();
   }
@@ -99,34 +65,35 @@ class Improvements extends Component {
     this.slider.slickPrev();
   }
 
+
+
   render() {
     var settings = {
-      centerMode: true,
-      slidesToShow: 1,
-      speed: 500,
       dots: true,
+      slidesToShow: 2,
+      slidesToScroll: 1,
+      vertical: true,
+      verticalSwiping: true,
       className: "center",
+      arrows: false,
       beforeChange: (current, next) => this.setState({
         activeSlide: next
       })
-    };
 
-    if(this.props.location.state === undefined) {
-      return <Redirect to='/'  />
-    }
+    };
 
     return(
       <div className="container">
-        <Title title={'Forslag til forbedring'}/>
+        <Title title={'Dit Resultat'}/>
         <ScoreStatus current="10" potential="1"/>
-        <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
-          hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
-        />
-        <div className="row" style={{margin: "4% 0%"}}>
-          <button  onClick={this.previous} className="nav-btn offset-2 col-3 btn btn-dark">←</button>
-          <button  onClick={this.next} className="nav-btn offset-2 col-3 btn btn-dark">→</button>
-        </div >
-        <div>
+        <TextRow text={'Du har valgt følgende tiltag, som kan forbedre komforten i dit hus'}/>
+
+        <div className="row" style={{margin: "8% 0%"}}>
+          <div className="col-1">
+            <button  onClick={this.previous} className="nav-btn-v btn btn-dark">↑</button>
+            <button  onClick={this.next} className="nav-btn-v btn btn-dark">↓</button>
+          </div>
+        <div className="col-11">
           <Slider ref={c => (this.slider = c)} {...settings}>
             {this.state.cards.map((card, index) =>
               <Card title={card.title} description={card.description}
@@ -135,23 +102,28 @@ class Improvements extends Component {
             }
           </Slider>
         </div>
+        </div >
+        <div className="resultBox">
+          <h1 className="text-center">Vil du gemme dit resultat?</h1>
+          <p>
+            Du kan vælge at sende resultaten til din e-mail som PDF eller
+            gemme den i Mit Bolius. Du får desuden relevante links til videre
+            læsning om de tiltag du har udvist interesse.
+          </p>
+            <div className="d-flex justify-content-between w-80">
+              <button className="btn text-left">Send mig en PDF</button>
+              <button className="btn text-right">Gem i Mit Bolius</button>
+            </div>
+          </div>
+          <Footer text = {
+            "Vil du have mere inspiration og rådgivning om komfort, indeklima og renovering se mere her"}
+            link={'somewhere'}
+            linkText={'Læs Mere'}
 
-      <div className="row" style={{margin: "5% 0%"}}>
-          <button onClick={this.done} className="offset-2 col-2 btn btn-light">HAR GJORT</button>
-          <button onClick={this.willDo} className="offset-1 col-2 col btn btn-light">VIL GØRE</button>
-          <button onClick={this.clear} className="offset-1 col-2 btn btn-light">VIL IKKE</button>
-      </div>
-
-      <Footer link = "result"
-      text = {
-        "Se din liste med forbedringstiltag og hvordan du kan gemme den til senere"
-      }
-      linkText = {
-        "Ja, vis resultat"
-      }
-      /> </div >
+        />
+        </div>
     )
   }
 }
 
-export default Improvements;
+export default Result;

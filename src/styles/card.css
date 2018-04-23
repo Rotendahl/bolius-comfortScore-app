@@ -2,10 +2,11 @@
     background-color: #ECF0F1;
     border-radius: 10px;
     padding: 10px;
-    margin: 4% 0%;
-    width: 100%;
+    margin: auto;
+    width: 90%;
 }
 
 .slick-active {
-    margin: 0 10px;
+    margin: 0 0px;
+    width: 110%;
 }

@@ -1,3 +1,26 @@
 .nav-btn {
     font-size: 24px;
 }
+
+.nav-btn-v {
+    font-size: 24px;
+    text-align: left;
+    display: block;
+    width: 90%;
+    margin: auto;
+    height: 50%;
+}
+
+.resultBox {
+    border: 1px solid black;
+    text-align: center;
+    padding: 20px;
+}
+
+.resultBox button {
+    margin: auto;
+}
+
+.resultBox button:hover {
+    background-color: #98C99D;
+}

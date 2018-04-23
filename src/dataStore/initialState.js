@@ -26,5 +26,5 @@ export const initialState = {
     "Description": "Skiftning af viduer",
     "targets": ["Støj", "Temperatur"],
     "status": "Done"
-    }]
+    }],
 }

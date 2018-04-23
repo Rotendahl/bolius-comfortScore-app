@@ -8,6 +8,7 @@ import {
 
 import Overview from './views/Overview.js'
 import Improvements from './views/Improvements.js'
+import Result from './views/Result.js'
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
       <Switch>
         <Route exact path='/' component={Overview}/>
         <Route path='/improvements' component={Improvements}/>
+        <Route path='/result' component={Result}/>
       </Switch>
     );
   }

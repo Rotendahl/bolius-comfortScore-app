@@ -15,7 +15,7 @@ class Footer extends Component {
             {this.props.text}
           </div>
           <div className="col-4">
-            <Link to={this.props.link}>
+            <Link to={{pathname: this.props.link, state: this.props.passedState}}>
               <button className="btn" style={{backgroundColor: "#8CCB9B"}}>
                 {this.props.linkText}
               </button>

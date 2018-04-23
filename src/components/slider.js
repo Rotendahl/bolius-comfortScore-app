@@ -7,33 +7,26 @@ import '../styles/sliderImages.css'
 class Slider extends Component {
   constructor(props) {
     super(props);
-    var num = Math.floor(Math.random() * 100);
     this.state = {
-      val: num,
-      min: 1,
-      max: 100,
-      imgClass: 'slider image-' + (Math.floor(num / 20) % 5)
+      val: this.props.value,
+      imgClass: 'slider image-' + (Math.floor(this.props.value / 20) % 5)
     };
     this.handleChange = this.handleChange.bind(this);
-    this.props.init(num)
   }
 
   handleChange(event) {
-    this.props.updateScore(this.state.val / 600 * -100)
+    var val = event.target.value
+    this.props.updateScore(val, this.props.index)
     this.setState({
-      val: event.target.value,
-      imgClass: 'slider image-' + (Math.floor((event.target
-            .value - 1) /
-          20) %
-        5)
+      val: val,
+      imgClass: 'slider image-' + (Math.floor((val - 1) / 20) % 5)
     });
-    this.props.updateScore(event.target.value / 600 * 100)
   }
 
   render() {
     const paramLogo = 'assets/param-icons/' + this.props.parameter + '.png';
     return(
-      <div className="row ">
+      <div className="row">
         <div className="col-2 param">
           <img className="rounded" alt="param" src={paramLogo}/>
           <p>{this.props.parameter}</p>
@@ -44,9 +37,8 @@ class Slider extends Component {
               value={this.state.val} className={this.state.imgClass}
             />
           </div>
-          <p  className=" col-4">Utilfreds</p>
-          <p className=" col-4 text-center">{this.state.val}</p>
-          <p className="col-4 text-right">Tilfreds</p>
+          <p className="float-left">Utilfreds</p>
+          <p className="float-right">Tilfreds</p>
         </div>
       </div>
     )

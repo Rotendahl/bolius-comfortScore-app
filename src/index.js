@@ -6,22 +6,11 @@ import registerServiceWorker from './registerServiceWorker';
 import {
   BrowserRouter as Router
 } from 'react-router-dom'
-import {
-  Provider
-} from 'react-redux'
-import {
-  createStore
-} from 'redux'
 
-import komfortStore from './dataStore/reducers.js'
-
-const store = createStore(komfortStore)
 
 ReactDOM.render((
-  <Provider store={store}>
-    <Router>
-      <App />
-    </Router>
-  </Provider>
+  <Router>
+    <App />
+  </Router>
 ), document.getElementById('root'));
 registerServiceWorker();

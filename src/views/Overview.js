@@ -4,7 +4,6 @@ import React, {
 
 
 import '../styles/overview.css'
-
 import Slider from '../components/slider.js'
 import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
@@ -14,36 +13,54 @@ class Overview extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      score: 0
+      score: 0,
+      sliders: [
+        {
+          name: "Træk",
+          value: Math.floor(Math.random() * 100)
+        },
+        {
+          name: "Temperatur",
+          value: Math.floor(Math.random() * 100)
+        },
+        {
+          name: "Fugt",
+          value: Math.floor(Math.random() * 100)
+        },
+        {
+          name: "Støj",
+          value: Math.floor(Math.random() * 100)
+        },
+        {
+          name: "Dagslys",
+          value: Math.floor(Math.random() * 100)
+        },
+        {
+          name: "Lugt",
+          value: Math.floor(Math.random() * 100)
+        }
+          ]
     }
+    this.state.sliders.map((slider => this.state.score += slider.value / 600 *
+      100))
     this.updateScore = this.updateScore.bind(this)
-    this.init = this.init.bind(this)
   }
 
-  init(val) {
+  updateScore(newVal, key) {
+    var sliders = this.state.sliders;
+    var oldVal = sliders[parseInt(key)].value / 600 * 100
+    sliders[parseInt(key)].value = newVal;
     this.setState((state) => ({
-      score: state.score + (val / 600 * 100)
+      score: state.score + (newVal / 600 * 100) - oldVal,
+      sliders: sliders
     }))
   }
 
-  updateScore(newVal) {
-    this.setState((state) => ({
-      score: state.score + newVal
-    }))
-  }
   render() {
     var adresse = "Lerholmvej 15, 2750 Ballerup"
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + adresse;
-    var sliders = [
-      "Træk",
-      "Temperatur",
-      "Fugt",
-      "Støj",
-      "Dagslys",
-      "Lugt"
-    ];
 
     return(
       <div className="container">
@@ -64,19 +81,20 @@ class Overview extends Component {
           vurderet komforten på de nedenstående parametre sådan her - juster på\
           parametrene, hvis du ikke er enig i komfortvurderingerne'}
         />
-        {sliders.map(
-          (name) =>
+        {this.state.sliders.map(
+          (slider, index) =>
           <Slider
-            key={name}
+            key={index}
+            index={index}
             updateScore={this.updateScore}
-            init={this.init}
-            parameter={name}
-            value={1}/>
+            parameter={slider.name}
+            value={this.state.sliders[index].value}/>
         )}
         <Footer
           text={'Se hvad du kan gøre ved dit hus for at forbedre din komfortscore'}
           linkText={'Ja, inspirer mig nu'}
           link={'improvements'}
+          passedState={this.state}
         />
       </div>
     )

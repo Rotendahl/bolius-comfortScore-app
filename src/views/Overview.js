@@ -8,59 +8,35 @@ import Slider from '../components/slider.js'
 import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
 import Title from '../components/Title.js'
+import {
+  MockJSON
+} from '../components/MockJSON.js'
 
 class Overview extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      score: 0,
-      sliders: [
-        {
-          name: "Træk",
-          value: Math.floor(Math.random() * 100)
-        },
-        {
-          name: "Temperatur",
-          value: Math.floor(Math.random() * 100)
-        },
-        {
-          name: "Fugt",
-          value: Math.floor(Math.random() * 100)
-        },
-        {
-          name: "Støj",
-          value: Math.floor(Math.random() * 100)
-        },
-        {
-          name: "Dagslys",
-          value: Math.floor(Math.random() * 100)
-        },
-        {
-          name: "Lugt",
-          value: Math.floor(Math.random() * 100)
-        }
-          ]
-    }
-    this.state.sliders.map((slider => this.state.score += slider.value / 600 *
+    var state = MockJSON
+    state.sliders.map((slider => state.currentScore += slider.value / 600 *
       100))
+    this.state = state
     this.updateScore = this.updateScore.bind(this)
   }
 
   updateScore(newVal, key) {
     var sliders = this.state.sliders;
-    var oldVal = sliders[parseInt(key)].value / 600 * 100
-    sliders[parseInt(key)].value = newVal;
+    var oldVal = sliders[parseInt(key, 10)].value / 600 * 100
+    sliders[parseInt(key, 10)].value = newVal;
     this.setState((state) => ({
-      score: state.score + (newVal / 600 * 100) - oldVal,
+      currentScore: state.currentScore + (newVal / 600 * 100) -
+        oldVal,
       sliders: sliders
     }))
   }
 
   render() {
-    var adresse = "Lerholmvej 15, 2750 Ballerup"
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
-      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + adresse;
+      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
 
     return(
       <div className="container">
@@ -68,11 +44,11 @@ class Overview extends Component {
         <div className="row">
           <div className="col-sm-8 col-xs-12 housePicture text-center">
             <img className="rounded img-fluid" alt="house" src={img}/>
-            <p>{adresse}</p>
+            <p>{this.state.address}</p>
           </div>
           <div className="col-sm-4 komforScore col-xs-12 d-flex align-items-center">
             <div>
-              <p className="score">{Math.floor(this.state.score)}%</p>
+              <p className="score">{Math.floor(this.state.currentScore)}%</p>
               <p>Din nuværende komfortscore</p>
             </div>
           </div>

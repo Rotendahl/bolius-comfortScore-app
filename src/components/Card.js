@@ -29,11 +29,17 @@ class Card extends Component {
 
         </div>
         <div className="row" style={{marginTop: "20px"}}>
-          <div className="col-3">
-            <strong>Afhjælper:</strong>
+          <div className="col-3 text-right">
+            <strong className="">Afhjælper:</strong>
           </div>
           <div className="col-9">
-
+            <div className="row">
+            {this.props.targets.map(target =>
+              <div className="col-3">
+                <img className="img-fluid rounded" alt="param" src={'./assets/param-icons/' + target + '.png'}/>
+              </div>
+            )}
+          </div>
           </div>
         </div>
       </div>

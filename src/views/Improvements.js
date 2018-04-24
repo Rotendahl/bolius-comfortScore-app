@@ -15,88 +15,76 @@ import '../styles/improvements.css'
 class Improvements extends Component {
   constructor(props) {
     super(props);
+
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.done = this.done.bind(this);
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
 
-    this.state = {
-      potentialScore: 10,
-      activeSlide: 0,
-      cards: [
-        {
-          title: "Udskiftning af vinduer med 3 lags termoruder",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen.",
-          factor: 3
-        },
-        {
-          title: "Sol celler",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-        },
-        {
-          title: "Renovation af loft",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-        }, {
-          title: "Udskiftning af vinduer med 3 lags termoruder",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-        },
-        {
-          title: "Sol celler",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-        },
-        {
-          title: "Renovation af loft",
-          done: false,
-          willDo: false,
-          description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-        }
-      ]
-    };
-  }
+    if(this.props.location.state.potentialScore === -1) {
+      this.props.location.state.potentialScore = this.props.location.state.currentScore
+      this.props.location.state.animate = false
+    }
+    var improwMass = 100 - this.props.location.state.potentialScore
+    var unit = improwMass / this.props.location.state.cards.length
+    this.props.location.state.unit = unit
+    this.state = this.props.location.state
+  };
+
 
   done() {
     var cards = this.state.cards
+    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
+      return
+    }
     cards[this.state.activeSlide].done = true
     cards[this.state.activeSlide].willDo = false
     this.setState({
-      cards: cards
+      cards: cards,
+      animate: true,
+      potentialScore: this.state.potentialScore + this.state.unit
     })
   }
 
   willDo() {
     var cards = this.state.cards
+    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
+      return
+    }
     cards[this.state.activeSlide].done = false
     cards[this.state.activeSlide].willDo = true
     this.setState({
-      cards: cards
+      cards: cards,
+      animate: true,
+      potentialScore: this.state.potentialScore + this.state.unit
     })
   }
 
   clear() {
     var cards = this.state.cards
-    cards[this.state.activeSlide].done = false
-    cards[this.state.activeSlide].willDo = false
-    this.setState({
-      cards: cards
-    })
+    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
+      cards[this.state.activeSlide].done = false
+      cards[this.state.activeSlide].willDo = false
+      this.setState({
+        cards: cards,
+        animate: true,
+        potentialScore: this.state.potentialScore - this.state.unit
+      })
+    }
   }
 
   next() {
     this.slider.slickNext();
+    this.setState({
+      animate: false
+    })
   }
   previous() {
     this.slider.slickPrev();
+    this.setState({
+      animate: false
+    })
   }
 
   render() {
@@ -118,7 +106,11 @@ class Improvements extends Component {
     return(
       <div className="container">
         <Title title={'Forslag til forbedring'}/>
-        <ScoreStatus current="10" potential="1"/>
+        <ScoreStatus
+          current={this.state.currentScore}
+          potential={this.state.potentialScore}
+          animate={this.state.animate}
+        />
         <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
           hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
         />
@@ -129,8 +121,8 @@ class Improvements extends Component {
         <div>
           <Slider ref={c => (this.slider = c)} {...settings}>
             {this.state.cards.map((card, index) =>
-              <Card title={card.title} description={card.description}
-                key={index} done={card.done} willDo={card.willDo}
+              <Card title={card.title} description={card.description} key={index}
+              done={card.done} willDo={card.willDo} targets={card.targets}
               />)
             }
           </Slider>
@@ -149,7 +141,9 @@ class Improvements extends Component {
       linkText = {
         "Ja, vis resultat"
       }
-      /> </div >
+      passedState={this.state}
+      />
+    </div >
     )
   }
 }

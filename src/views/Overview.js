@@ -15,11 +15,10 @@ import {
 class Overview extends Component {
   constructor(props) {
     super(props)
-    var state = MockJSON
-    state.sliders.map((slider => state.currentScore += slider.value / 600 *
-      100))
+    var state = this.props.history.location.state
     this.state = state
     this.updateScore = this.updateScore.bind(this)
+    console.log(state)
   }
 
   updateScore(newVal, key) {

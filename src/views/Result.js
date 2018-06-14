@@ -59,15 +59,16 @@ class Result extends Component {
         <TextRow text={'Du har valgt følgende tiltag, som kan forbedre komforten i dit hus'}/>
 
         <div className="row" style={{margin: "8% 0%"}}>
-          <div className="col-1">
+          <div className="col-1" >
             <button  onClick={this.previous} className="nav-btn-v btn btn-dark">↑</button>
             <button  onClick={this.next} className="nav-btn-v btn btn-dark">↓</button>
           </div>
-          <div className="col-11">
+          <div className="col-11" style={{height: "500px"}}>
             <Slider ref={c => (this.slider = c)} {...settings}>
               {this.state.cards.map((card, index) =>
                 <Card title={card.title} description={card.description}
                   key={index} done={card.done} willDo={card.willDo}
+                  targets={card.targets}
                 />)
               }
             </Slider>

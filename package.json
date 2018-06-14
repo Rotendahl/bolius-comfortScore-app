@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "animated": "^0.2.2",
+    "axios": "^0.18.0",
+    "dawa-autocomplete2": "^0.13.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",

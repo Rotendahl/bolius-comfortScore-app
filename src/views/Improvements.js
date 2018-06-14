@@ -11,6 +11,10 @@ import {
   Redirect
 } from 'react-router-dom'
 import '../styles/improvements.css'
+import {
+  MockJSON
+} from '../components/MockJSON.js'
+
 
 class Improvements extends Component {
   constructor(props) {

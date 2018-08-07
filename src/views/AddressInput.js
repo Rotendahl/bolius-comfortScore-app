@@ -5,6 +5,7 @@ import {
   Link
 } from 'react-router'
 import '../styles/improvements.css'
+import '../styles/dawa.css'
 import {
   MockJSON
 } from '../components/MockJSON.js'
@@ -21,8 +22,16 @@ class AddressInput extends Component {
   }
 
   handleChange(event) {
+    var target = event.target.value
+    var dawaAutocomplete2 = require('dawa-autocomplete2');
+    var inputElm = document.getElementById('dawa-autocomplete-input')
+    var component = dawaAutocomplete2.dawaAutocomplete(inputElm, {
+      select: function (selected) {
+        target = selected
+      }
+    });
     this.setState({
-      address: event.target.value
+      address: target
     });
   }
 
@@ -68,7 +77,8 @@ class AddressInput extends Component {
         goNext('/Overview', newState)
       }
     };
-    xhttp.open("GET", 'https://ai01.boliusaws.dk/address/' + encodeURI(this.state
+    xhttp.open("GET", 'https://ai01.boliusaws.dk/predictParams/' + encodeURI(
+        this.state
         .address),
       true);
     xhttp.send();
@@ -83,8 +93,8 @@ class AddressInput extends Component {
           <p>Se vores prognose af komfortniveauet hjemme hos dig og få forslag
             til, hvordan du kan forbedre dit hus.</p>
           <img className="img-fluid" alt="familytime" src="./assets/banner.png"/>
-          <div className="form-group autocomplete-container">
-            <input type="text" className="form-control dawa-autocomplete-input" id="dawa-autocomplete-input"
+          <div className="autocomplete-container">
+            <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
             value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
           </div>
         </div>

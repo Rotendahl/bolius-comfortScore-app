@@ -6,6 +6,8 @@ import '../styles/card.css'
 
 class Card extends Component {
   render() {
+    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
+
     return(
       <div className="card" >
         <h4>{this.props.title}</h4>
@@ -15,13 +17,13 @@ class Card extends Component {
           </div>
             {this.props.done && !this.props.willDo ?
               <div className="col-2">
-              <img alt="medal" src={'./assets/medal.png'} />
+              <img alt="medal" src={rootDir + '/assets/medal.png'} />
               </div>
               : <p></p>
             }
           <div className="col-2">
             {this.props.willDo && !this.props.Done ?
-              <img className="img-fluid" alt="checkmark" src={'./assets/checkmark.png'} />
+              <img className="img-fluid" alt="checkmark" src={rootDir + '/assets/checkmark.png'} />
             : <p></p>
             }
           </div>
@@ -36,7 +38,7 @@ class Card extends Component {
             <div className="row">
             {this.props.targets.map(target =>
               <div className="col-3">
-                <img className="img-fluid rounded" alt="param" src={'./assets/param-icons/' + target + '.png'}/>
+                <img className="img-fluid rounded" alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
               </div>
             )}
           </div>

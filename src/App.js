@@ -15,7 +15,7 @@ class App extends Component {
   render() {
     return(
       <Switch>
-        <Route exact path='/' component={AddressInput}/>
+        <Route path='/' component={AddressInput}/>
         <Route path='/overview' component={Overview}/>
         <Route path='/improvements' component={Improvements}/>
         <Route path='/result' component={Result}/>

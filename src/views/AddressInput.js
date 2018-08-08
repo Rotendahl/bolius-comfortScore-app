@@ -15,7 +15,8 @@ class AddressInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      address: ''
+      address: '',
+      finalAddress: ''
     }
     this.handleChange = this.handleChange.bind(this);
     this.overViewPage = this.overViewPage.bind(this)
@@ -24,22 +25,40 @@ class AddressInput extends Component {
   handleChange(event) {
     var target = event.target.value
     var dawaAutocomplete2 = require('dawa-autocomplete2');
-    var inputElm = document.getElementById('dawa-autocomplete-input')
+    var inputElm = document.getElementById('dawa-autocomplete-input');
+    var that = this;
     var component = dawaAutocomplete2.dawaAutocomplete(inputElm, {
       select: function (selected) {
-        target = selected
+        target = selected;
+
+        // Update selected address somewhere else than for input field value
+        that.updateFinalAddress(selected.tekst);
+
+        // Hide suggestions if still visible
+        var elements = document.getElementsByClassName('dawa-autocomplete-suggestions');
+        for (var i=0; i < elements.length; i++) {
+            elements[i].innerHTML = '';
+        }
       }
     });
-    this.setState({
+
+    this.setState((prevState, props) => ({
       address: target
-    });
+    }));
+  }
+
+  updateFinalAddress(address) {
+      this.setState((prevState, props) => ({
+        finalAddress: address
+      }));
   }
 
   overViewPage() {
     var xhttp = new XMLHttpRequest();
-    var address = this.state.address;
+    var address = this.state.finalAddress;
     var newState = MockJSON
     var goNext = this.props.history.push
+
     xhttp.onreadystatechange = function () {
       if(xhttp.readyState === 4 && xhttp.status === 200) {
 
@@ -74,31 +93,28 @@ class AddressInput extends Component {
         newState.sliders.map((slider => newState.currentScore += slider.value /
           600 *
           100))
-        goNext('/Overview', newState)
+        // goNext('/Overview', newState)
       }
     };
     xhttp.open("GET", 'https://ai01.boliusaws.dk/predictParams/' + encodeURI(
-        this.state
-        .address),
+        this.state.finalAddress),
       true);
     xhttp.send();
 
   }
 
   render() {
+    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
     return(
       <div className="container">
-        <div>
-          <h1>Hvor meget komfort er der i dit hus?</h1>
-          <p>Se vores prognose af komfortniveauet hjemme hos dig og få forslag
-            til, hvordan du kan forbedre dit hus.</p>
-          <img className="img-fluid" alt="familytime" src="./assets/banner.png"/>
+        <div class="comfortscorewidget-container-setup">
+          <h1></h1>
+          <p class="teaser"></p>
           <div className="autocomplete-container">
             <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
             value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
           </div>
         </div>
-
         <div className="btn btn-success" onClick={this.overViewPage}>Gå til oversigt</div>
       </div>
     )

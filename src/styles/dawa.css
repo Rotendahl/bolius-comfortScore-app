@@ -2,13 +2,29 @@
     /* relative position for at de absolut positionerede forslag får korrekt placering.*/
     position: relative;
     width: 100%;
-    max-width: 30em;
+    margin-bottom: 0.5em;
+}
+@media (min-width: 480px) {
+    .autocomplete-container {
+        width: 68%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 900px) {
+    .autocomplete-container {
+        width: 32%;
+    }
 }
 
 .autocomplete-container input {
     /* Både input og forslag får samme bredde som omkringliggende DIV */
     width: 100%;
-    box-sizing: border-box;
+    font-family: 'nationalemedium', sans-serif;
+    font-size: 1em;
+    padding: 0 0.5em;
+    border: none;
+    border-radius: 14.5px;
+    height: 1.8125em;
 }
 
 .dawa-autocomplete-suggestions {
@@ -53,12 +69,17 @@
 }
 
 .btn-success {
-    margin-top: 6px;
-    background-color: green;
-    padding: 8px 20px;
-    display: inline-block;
-    color: white;
-    border-radius: 10px;
-    font-size: 0.9em;
+    margin-left: auto;
+}
 
+@media (min-width: 480px) {
+    .btn-success {
+        width: 30%;
+    }
+}
+
+@media (min-width: 900px) {
+    .btn-success {
+        width: 16%;
+    }
 }

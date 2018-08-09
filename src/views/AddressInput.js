@@ -93,7 +93,7 @@ class AddressInput extends Component {
         newState.sliders.map((slider => newState.currentScore += slider.value /
           600 *
           100))
-        // goNext('/Overview', newState)
+        goNext('/Overview', newState)
       }
     };
     xhttp.open("GET", 'https://ai01.boliusaws.dk/predictParams/' + encodeURI(
@@ -106,16 +106,18 @@ class AddressInput extends Component {
   render() {
     var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
     return(
-      <div className="container">
-        <div class="comfortscorewidget-container-setup">
-          <h1></h1>
-          <p class="teaser"></p>
+      <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <div className="comfortscore-top">
+          <h2><strong>Test</strong>: Kan dit indeklima blive bedre?</h2>
           <div className="autocomplete-container">
             <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
             value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
           </div>
+          <button className="btn btn-success" onClick={this.overViewPage}>Se dit resultat</button>
+        </div>        
+        <div className="comfortscore-content">
+          <p className="teaser"></p>
         </div>
-        <div className="btn btn-success" onClick={this.overViewPage}>Gå til oversigt</div>
       </div>
     )
   }

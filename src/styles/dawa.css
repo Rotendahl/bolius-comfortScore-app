@@ -17,7 +17,7 @@
 }
 
 .autocomplete-container input {
-    /* Både input og forslag får samme bredde som omkringliggende DIV */
+    display: inline-block;
     width: 100%;
     font-family: 'nationalemedium', sans-serif;
     font-size: 1em;
@@ -80,6 +80,6 @@
 
 @media (min-width: 900px) {
     .btn-success {
-        width: 16%;
+        width: 17%;
     }
 }

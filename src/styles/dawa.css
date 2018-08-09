@@ -1,22 +1,22 @@
-.autocomplete-container {
+.comfortscore-container .autocomplete-container {
     /* relative position for at de absolut positionerede forslag får korrekt placering.*/
     position: relative;
     width: 100%;
     margin-bottom: 0.5em;
 }
 @media (min-width: 480px) {
-    .autocomplete-container {
+    .comfortscore-container .autocomplete-container {
         width: 68%;
         margin-bottom: 0;
     }
 }
 @media (min-width: 900px) {
-    .autocomplete-container {
+    .comfortscore-container .autocomplete-container {
         width: 32%;
     }
 }
 
-.autocomplete-container input {
+.comfortscore-container input[type="text"] {
     display: inline-block;
     width: 100%;
     font-family: 'nationalemedium', sans-serif;
@@ -25,61 +25,56 @@
     border: none;
     border-radius: 14.5px;
     height: 1.8125em;
+    position: relative;
+    z-index: 2;
+}
+.comfortscore-container input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.dawa-autocomplete-suggestions {
-    margin: 2.5em 0 0 0;
-    padding: 0;
-    text-align: left;
-    border-radius: 0.3125em;
-    background: #fcfcfc;
-    box-shadow: 0 0.0625em 0.15625em rgba(0,0,0,.15);
+.comfortscore-container .dawa-autocomplete-suggestions {
+    margin: 0;
+    padding: 1.9em 0 0;
+    border-radius: 14.5px;
+    background: white;
     position: absolute;
     left: 0;
     right: 0;
-    z-index: 9999;
+    top: 0;
+    z-index: 1;
     overflow-y: auto;
-    box-sizing: border-box;
+    height: 13.4em;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.dawa-autocomplete-suggestions .dawa-autocomplete-suggestion {
+.comfortscore-container .dawa-autocomplete-suggestion {
     margin: 0;
     list-style: none;
     cursor: pointer;
     padding: 0.4em 0.6em;
-    color: #333;
-    border: 0.0625em solid #ddd;
-    border-bottom-width: 0;
+    color: #02576d;
 }
 
-.dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:first-child {
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
+.comfortscore-container .dawa-autocomplete-suggestion.dawa-selected,
+.comfortscore-container .dawa-autocomplete-suggestion:hover {
+    background: #8fccbe;
+    border-radius: 14.5px;
+    color: black;
 }
 
-.dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:last-child {
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-    border-bottom-width: 0.0625em;
-}
-
-.dawa-autocomplete-suggestions .dawa-autocomplete-suggestion.dawa-selected,
-.dawa-autocomplete-suggestions .dawa-autocomplete-suggestion:hover {
-    background: #f0f0f0;
-}
-
-.btn-success {
+.comfortscore-container .btn-success {
     margin-left: auto;
 }
 
 @media (min-width: 480px) {
-    .btn-success {
+    .comfortscore-container .btn-success {
         width: 30%;
     }
 }
 
 @media (min-width: 900px) {
-    .btn-success {
+    .comfortscore-container .btn-success {
         width: 17%;
     }
 }

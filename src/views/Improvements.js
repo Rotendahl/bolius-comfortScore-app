@@ -29,19 +29,19 @@ class Improvements extends Component {
     var state = this.props.state;
     state.sliders = this.props.state.improveState.sliders;
     state.cards = this.props.state.improveState.cards;
+    state.potentialScore = this.props.state.improveState.potentialScore;
     state.currentView = 'Improvements';
 
-    console.log('State => ', state);
-
-    if(this.props.state.potentialScore === -1) {
-      this.props.state.potentialScore = this.props.location.state.currentScore
-      this.props.state.animate = false
+    if(state.potentialScore === -1) {
+      state.potentialScore = state.currentScore
+      state.animate = false
     }
 
-    var improwMass = 100 - this.props.state.potentialScore
-    var unit = improwMass / this.props.state.cards.length
-    this.props.state.unit = unit
-    this.state = this.props.state
+    var improwMass = 100 - state.potentialScore
+    var unit = improwMass / state.cards.length
+    state.unit = unit
+
+    this.state = state;
   };
 
   getInitialScore() {
@@ -124,7 +124,7 @@ class Improvements extends Component {
       })
     };
 
-    if(this.props.state === undefined) {
+    if(this.state === undefined) {
       return <Redirect to='/'  />
     }
 

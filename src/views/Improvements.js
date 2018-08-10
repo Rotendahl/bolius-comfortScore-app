@@ -26,16 +26,37 @@ class Improvements extends Component {
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
 
-    if(this.props.location.state.potentialScore === -1) {
-      this.props.location.state.potentialScore = this.props.location.state.currentScore
-      this.props.location.state.animate = false
+    var state = this.props.state;
+    state.sliders = this.props.state.improveState.sliders;
+    state.cards = this.props.state.improveState.cards;
+    state.currentView = 'Improvements';
+
+    console.log('State => ', state);
+
+    if(this.props.state.potentialScore === -1) {
+      this.props.state.potentialScore = this.props.location.state.currentScore
+      this.props.state.animate = false
     }
-    var improwMass = 100 - this.props.location.state.potentialScore
-    var unit = improwMass / this.props.location.state.cards.length
-    this.props.location.state.unit = unit
-    this.state = this.props.location.state
+
+    var improwMass = 100 - this.props.state.potentialScore
+    var unit = improwMass / this.props.state.cards.length
+    this.props.state.unit = unit
+    this.state = this.props.state
   };
 
+  getInitialScore() {
+      var sliders = this.state.sliders,
+            total = 0,
+            count = 0,
+            score = 0;
+      sliders.forEach(function(item) {
+          total += item.value;
+          count++;
+      });
+
+      score = parseInt( total / count );
+      return score;
+  }
 
   done() {
     var cards = this.state.cards
@@ -103,7 +124,7 @@ class Improvements extends Component {
       })
     };
 
-    if(this.props.location.state === undefined) {
+    if(this.props.state === undefined) {
       return <Redirect to='/'  />
     }
 

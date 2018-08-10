@@ -2,7 +2,6 @@ import React, {
   Component
 } from 'react';
 
-
 import '../styles/overview.css'
 import Slider from '../components/slider.js'
 import Footer from '../components/Footer.js'
@@ -12,13 +11,37 @@ import {
   MockJSON
 } from '../components/MockJSON.js'
 
+import Improvements from './Improvements.js'
+
 class Overview extends Component {
   constructor(props) {
     super(props)
-    var state = this.props.history.location.state
-    this.state = state
-    this.updateScore = this.updateScore.bind(this)
-    console.log(state)
+    var state = this.props.state;
+
+    // Initialize state
+    state.currentScore = 0;
+    state.currentView = 'Overview';
+    this.state = state;
+
+    // Get initial score based on sliders
+    this.state.currentScore = this.getInitialScore();
+
+    this.updateScore = this.updateScore.bind(this);
+    this.improvementsPage = this.improvementsPage.bind(this);
+  }
+
+  getInitialScore() {
+      var sliders = this.state.sliders,
+            total = 0,
+            count = 0,
+            score = 0;
+      sliders.forEach(function(item) {
+          total += item.value;
+          count++;
+      });
+
+      score = parseInt( total / count );
+      return score;
   }
 
   updateScore(newVal, key) {
@@ -29,50 +52,76 @@ class Overview extends Component {
       currentScore: state.currentScore + (newVal / 600 * 100) -
         oldVal,
       sliders: sliders
-    }))
+    }), function() {
+
+    })
+  }
+
+  improvementsPage() {
+      var improveState = MockJSON;
+      improveState.currentView = 'Improvements';
+      improveState.currentScore = 0;
+      improveState.potentialScore = 0;
+
+      this.setState((prevState, props) => ({
+          improveState: improveState,
+          currentView: 'Improvements'
+      }));
   }
 
   render() {
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
-      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
+      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.finalAddress,
+      currentView = this.state.currentView;
 
-    return(
-      <div className="container">
-        <Title title={'Din komfortscore'}/>
-        <div className="row">
-          <div className="col-sm-8 col-xs-12 housePicture text-center">
-            <img className="rounded img-fluid" alt="house" src={img}/>
-            <p>{this.state.address}</p>
-          </div>
-          <div className="col-sm-4 komforScore col-xs-12 d-flex align-items-center">
-            <div>
-              <p className="score">{Math.floor(this.state.currentScore)}%</p>
-              <p>Din nuværende komfortscore</p>
+    console.log('Sliders => ', this.state.sliders);
+
+    if (currentView == 'Overview') {
+        console.log('Running overview');
+
+        return(
+          <div className="container">
+            <Title title={'Din komfortscore'}/>
+            <div className="row">
+              <div className="col-sm-8 col-xs-12 housePicture text-center">
+                <img className="rounded img-fluid" alt="house" src={img}/>
+                <p>{this.state.finalAddress}</p>
+              </div>
+              <div className="col-sm-4 komforScore col-xs-12 d-flex align-items-center">
+                <div>
+                  <p className="score">{Math.floor(this.state.currentScore)}%</p>
+                  <p>Din nuværende komfortscore</p>
+                </div>
+              </div>
             </div>
+            <TextRow text = {'Andre der bor i et hus, der minder om dette, har \
+              vurderet komforten på de nedenstående parametre sådan her - juster på\
+              parametrene, hvis du ikke er enig i komfortvurderingerne'}
+            />
+            {this.state.sliders.map(
+              (slider, index) =>
+              <Slider
+                key={index}
+                index={index}
+                updateScore={this.updateScore}
+                parameter={slider.name}
+                value={this.state.sliders[index].value}/>
+            )}
+
+            <div>Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</div>
+            <div className="btn btn-success" onClick={this.improvementsPage}>Ja, inspirer mig nu</div>
+
           </div>
-        </div>
-        <TextRow text = {'Andre der bor i et hus, der minder om dette, har \
-          vurderet komforten på de nedenstående parametre sådan her - juster på\
-          parametrene, hvis du ikke er enig i komfortvurderingerne'}
-        />
-        {this.state.sliders.map(
-          (slider, index) =>
-          <Slider
-            key={index}
-            index={index}
-            updateScore={this.updateScore}
-            parameter={slider.name}
-            value={this.state.sliders[index].value}/>
-        )}
-        <Footer
-          text={'Se hvad du kan gøre ved dit hus for at forbedre din komfortscore'}
-          linkText={'Ja, inspirer mig nu'}
-          link={'improvements'}
-          passedState={this.state}
-        />
-      </div>
-    )
+        )
+    }
+    else {
+        console.log('Running improvements');
+        return (
+            <Improvements {...this.props} state={this.state} />
+        )
+    }
+
   }
 }
 

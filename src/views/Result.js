@@ -82,8 +82,8 @@ class Result extends Component {
             læsning om de tiltag du har udvist interesse.
           </p>
             <div className="d-flex justify-content-between w-80">
-              <button className="btn text-left">Send mig en PDF</button>
-              <button className="btn text-right">Gem i Mit Bolius</button>
+              <button className="btn text-left" id="comfortscorewidget-send-btn">Send mig en PDF</button>
+              <button className="btn text-right" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
             </div>
           </div>
           <Footer text = {

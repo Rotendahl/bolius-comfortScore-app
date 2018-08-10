@@ -3,7 +3,8 @@ import React, {
 } from 'react'
 import {
   Switch,
-  Route
+  Route,
+  HashRouter
 } from 'react-router-dom'
 
 import Overview from './views/Overview.js'
@@ -15,10 +16,10 @@ class App extends Component {
   render() {
     return(
       <Switch>
-        <Route path='/' component={AddressInput}/>
-        <Route path='/overview' component={Overview}/>
-        <Route path='/improvements' component={Improvements}/>
-        <Route path='/result' component={Result}/>
+        <Route exact path='/' component={AddressInput}/>
+        <Route exact path='/Overview' component={Overview}/>
+        <Route exact path='/Improvements' component={Improvements}/>
+        <Route exact path='/Result' component={Result}/>
       </Switch>
     );
   }

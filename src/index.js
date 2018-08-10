@@ -4,15 +4,16 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import {
-  BrowserRouter as Router
+  BrowserRouter as Router,
+  HashRouter
 } from 'react-router-dom'
 
 var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY,
     widgetId = process.env.REACT_APP_COMFORTSCORE_WIDGET_ID;
 
 ReactDOM.render((
-  <Router basename={rootDir} path="/">
+  <HashRouter hashType="noslash">
     <App />
-  </Router>
+  </HashRouter>
 ), document.getElementById(widgetId));
 registerServiceWorker();

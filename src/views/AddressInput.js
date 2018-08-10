@@ -65,8 +65,6 @@ class AddressInput extends Component {
         newState.finalAddress = finalAddress
         var resp = JSON.parse(xhttp.responseText);
 
-        console.log('resp => ', resp);
-
         newState.sliders = [
           {
             "name": "Træk",

@@ -61,7 +61,7 @@ class Overview extends Component {
       var improveState = MockJSON;
       improveState.currentView = 'Improvements';
       improveState.currentScore = 0;
-      improveState.potentialScore = 0;
+      improveState.potentialScore = -1;
 
       this.setState((prevState, props) => ({
           improveState: improveState,
@@ -75,10 +75,7 @@ class Overview extends Component {
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.finalAddress,
       currentView = this.state.currentView;
 
-    console.log('Sliders => ', this.state.sliders);
-
     if (currentView == 'Overview') {
-        console.log('Running overview');
 
         return(
           <div className="container">
@@ -116,7 +113,6 @@ class Overview extends Component {
         )
     }
     else {
-        console.log('Running improvements');
         return (
             <Improvements {...this.props} state={this.state} />
         )

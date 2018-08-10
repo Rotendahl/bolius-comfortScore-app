@@ -24,7 +24,9 @@ class Slider extends Component {
   }
 
   render() {
-    const paramLogo = 'assets/param-icons/' + this.props.parameter + '.png';
+    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
+
+    const paramLogo = rootDir + '/assets/param-icons/' + this.props.parameter + '.png';
     return(
       <div className="row">
         <div className="col-2 param">

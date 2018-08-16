@@ -1,5 +1,74 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.comfortscore-container {
+    max-width: 940px;
+}
+
+.comfortscore-container .btn {
+    display: inline-block;
+    padding: 0 0.75em;
+    background: #02576d;
+    color: white;
+    font-weight: normal;
+    font-size: 15px;
+    font-family: 'nationalemedium', sans-serif;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 14.5px;
+    height: 1.9333em;
+}
+
+.comfortscore-top {
+    background: #8fccbe;    
+    padding: 1em;
+    border: 3px solid white;
+    border-radius: 38.5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comfortscore-top h2 {
+    margin: 0 0 0.5em;
+    font-weight: normal;
+    font-family: 'nationaleregular', sans-serif;
+    font-size: 22px;
+    width: 100%;
+}
+
+@media (min-width: 900px) {
+    .comfortscore-top h2 {
+        width: 50%;
+        margin-bottom: 0;
+    }
+}
+
+.comfortscore-top h2 strong {
+    font-family: 'nationalebold', sans-serif;
+    text-transform: uppercase;
+}
+
+.comfortscore-top h2::before {
+    content: "";
+    width: 46px;
+    height: 34px;
+    display: inline-block;
+    vertical-align: -0.4em;
+    background: url('assets/heart_icon.png') no-repeat 50%;
+    background-size: 100% auto;
+    margin-right: 0.4em;
+}
+
+// TODO remove from markup instead
+.comfortscore-content .teaser:empty {
+    display: none;
 }

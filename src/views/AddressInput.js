@@ -122,25 +122,24 @@ class AddressInput extends Component {
     }
     else {
         return (
-            <div className="container">
-              <div id="comfortscorewidget-container-setup">
-                <h1></h1>
-                <p className="teaser"></p>
-                <div className="autocomplete-container">
-                  <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
-                  value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
-                </div>
+          <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+            <div className="comfortscore-top">
+              <h2><strong>Test</strong>: Kan dit indeklima blive bedre?</h2>
+              <div className="autocomplete-container">
+                <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
+                value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
               </div>
-              <div className="btn btn-success" onClick={this.overViewPage}>Gå til oversigt</div>
-
-              <button className="btn text-left" id="comfortscorewidget-send-btn">Send mig en PDF</button>
-              <button className="btn text-right" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
+              <button className="btn btn-success" onClick={this.overViewPage}>Se dit resultat</button>
+            </div>        
+            <div className="comfortscore-content">
+              <p className="teaser"></p>
             </div>
+          </div>              
+          <button className="btn text-left" id="comfortscorewidget-send-btn">Send mig en PDF</button>
+          <button className="btn text-right" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
         )
     }
-
-
-}
+  }
 }
 
 export default AddressInput;

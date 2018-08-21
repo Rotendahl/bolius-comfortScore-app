@@ -95,8 +95,6 @@ class AddressInput extends Component {
         that.props.store.address = finalAddress;
         that.props.store.currentState = newState;
 
-        console.log('State after AddressInput: ', that.props.store);
-
         goNext('/Overview');
       }
     };

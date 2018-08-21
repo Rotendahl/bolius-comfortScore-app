@@ -19,26 +19,9 @@ class Overview extends Component {
     var state = this.props.store.currentState;
     this.state = state;
 
-    // state.currentScore = this.getInitialScore();
-    // this.getInitialScore = this.getInitialScore.bind(this);
-
     this.updateScore = this.updateScore.bind(this);
     this.improvementsPage = this.improvementsPage.bind(this);
   }
-
-  /*getInitialScore() {
-      var sliders = this.state.sliders,
-            total = 0,
-            count = 0,
-            score = 0;
-      sliders.forEach(function(item) {
-          total += item.value;
-          count++;
-      });
-
-      score = parseInt( total / count );
-      return score;
-  }*/
 
   updateScore(newVal, key) {
     var sliders = this.state.sliders;
@@ -66,8 +49,6 @@ class Overview extends Component {
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
-
-    console.log('Check: ', this.state.address);
 
     return(
       <div className="container">

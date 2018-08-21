@@ -20,8 +20,6 @@ class Improvements extends Component {
   constructor(props) {
     super(props);
 
-    console.log('Imp props = ', this.props);
-
     var state = this.props.store.currentState;
 
     if(state.potentialScore === -1) {
@@ -41,7 +39,7 @@ class Improvements extends Component {
     this.done = this.done.bind(this);
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
-  };  
+  };
 
   done() {
     var cards = this.state.cards

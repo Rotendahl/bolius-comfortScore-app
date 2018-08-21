@@ -7,7 +7,10 @@
     "animated": "^0.2.2",
     "axios": "^0.18.0",
     "dawa-autocomplete2": "^0.13.1",
+    "mobx": "^5.0.4",
+    "mobx-react": "^5.2.5",
     "react": "^16.2.0",
+    "react-app-rewire-mobx": "^1.0.8",
     "react-dom": "^16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -15,9 +18,12 @@
     "react-slick": "^0.23.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test --env=jsdom"
+  },
+  "devDependencies": {
+    "babel-preset-mobx": "^1.0.2",
+    "react-app-rewired": "^1.5.2"
   }
 }

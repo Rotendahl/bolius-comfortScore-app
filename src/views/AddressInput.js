@@ -1,20 +1,16 @@
 import React, { Component} from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import '../styles/improvements.css'
 import '../styles/dawa.css'
 import { MockJSON } from '../components/MockJSON.js'
 
-import Overview from './Overview.js'
-
 class AddressInput extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       address: '',
-      finalAddress: '',
-      currentView: 'AddressInput',
-      overviewParams: {},
-      sliders: []
+      finalAddress: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -55,14 +51,13 @@ class AddressInput extends Component {
   overViewPage() {
     var xhttp = new XMLHttpRequest();
     var finalAddress = this.state.finalAddress;
-    var newState = MockJSON
-    var goNext = this.props.history.push
+    var newState = MockJSON;
     var that = this;
+    var goNext = that.props.history.push;
 
     xhttp.onreadystatechange = function () {
       if(xhttp.readyState === 4 && xhttp.status === 200) {
 
-        newState.finalAddress = finalAddress
         var resp = JSON.parse(xhttp.responseText);
 
         newState.sliders = [
@@ -96,14 +91,16 @@ class AddressInput extends Component {
           600 *
           100))
 
-        that.setState({
-            currentView: 'Overview',
-            sliders: newState.sliders
-        });
+        // Save new state in store
+        that.props.store.address = finalAddress;
+        that.props.store.currentState = newState;
 
-        // goNext('/Overview', newState);
+        console.log('State after AddressInput: ', that.props.store);
+
+        goNext('/Overview');
       }
     };
+
     xhttp.open("GET", 'https://ai01.boliusaws.dk/predictParams/' + encodeURI(
         this.state.finalAddress),
       true);
@@ -112,33 +109,24 @@ class AddressInput extends Component {
   }
 
   render() {
-    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY,
-        currentView = this.state.currentView;
+    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
 
-    if (currentView == 'Overview') {
-        return (
-            <Overview {...this.props} state={this.state} />
-        )
-    }
-    else {
-        return (
-          <div id="comfortscorewidget-container-setup" className="comfortscore-container">
-            <div className="comfortscore-top">
-              <h2><strong>Test</strong>: Kan dit indeklima blive bedre?</h2>
-              <div className="autocomplete-container">
-                <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
-                value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
-              </div>
-              <button className="btn btn-success" onClick={this.overViewPage}>Se dit resultat</button>
-            </div>        
-            <div className="comfortscore-content">
-              <p className="teaser"></p>
-            </div>
-          </div>              
-          <button className="btn text-left" id="comfortscorewidget-send-btn">Send mig en PDF</button>
-          <button className="btn text-right" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
-        )
-    }
+    return (
+      <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <div className="comfortscore-top">
+          <h2><strong>Test</strong>: Kan dit indeklima blive bedre?</h2>
+          <div className="autocomplete-container">
+            <input type="text" className="dawa-autocomplete-input" id="dawa-autocomplete-input"
+            value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
+          </div>
+          <button className="btn btn-success" onClick={this.overViewPage}>Se dit resultat</button>
+
+        </div>
+        <div className="comfortscore-content">
+          <p className="teaser"></p>
+        </div>
+      </div>
+    )
   }
 }
 

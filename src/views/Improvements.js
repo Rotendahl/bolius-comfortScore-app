@@ -20,43 +20,28 @@ class Improvements extends Component {
   constructor(props) {
     super(props);
 
+    console.log('Imp props = ', this.props);
+
+    var state = this.props.store.currentState;
+
+    if(state.potentialScore === -1) {
+      state.potentialScore = state.currentScore;
+      state.animate = false;
+    }
+
+    var improwMass = 100 - state.potentialScore;
+    var unit = improwMass / state.cards.length;
+    state.unit = unit;
+
+    this.state = state;
+
+    // Bind methods
     this.next = this.next.bind(this);
     this.previous = this.previous.bind(this);
     this.done = this.done.bind(this);
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
-
-    var state = this.props.state;
-    state.sliders = this.props.state.improveState.sliders;
-    state.cards = this.props.state.improveState.cards;
-    state.potentialScore = this.props.state.improveState.potentialScore;
-    state.currentView = 'Improvements';
-
-    if(state.potentialScore === -1) {
-      state.potentialScore = state.currentScore
-      state.animate = false
-    }
-
-    var improwMass = 100 - state.potentialScore
-    var unit = improwMass / state.cards.length
-    state.unit = unit
-
-    this.state = state;
-  };
-
-  getInitialScore() {
-      var sliders = this.state.sliders,
-            total = 0,
-            count = 0,
-            score = 0;
-      sliders.forEach(function(item) {
-          total += item.value;
-          count++;
-      });
-
-      score = parseInt( total / count );
-      return score;
-  }
+  };  
 
   done() {
     var cards = this.state.cards
@@ -73,7 +58,7 @@ class Improvements extends Component {
   }
 
   willDo() {
-    var cards = this.state.cards
+    var cards = this.state.cards;
     if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
       return
     }

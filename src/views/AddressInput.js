@@ -60,6 +60,9 @@ class AddressInput extends Component {
 
         var resp = JSON.parse(xhttp.responseText);
 
+        // Clear currentScore before proceeding
+        newState.currentScore = 0;
+
         newState.sliders = [
           {
             "name": "Træk",
@@ -86,7 +89,7 @@ class AddressInput extends Component {
         newState.sliders.map((slider => newState.currentScore += slider.value /
           600 *
           100))
-        
+
         // Save new state in store
         newState.address = finalAddress;
         that.props.store.address = finalAddress;

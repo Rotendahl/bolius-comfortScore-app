@@ -27,6 +27,7 @@ export const MockJSON = {
     ],
   cards: [
     {
+      key: 10000,
       title: "Udskiftning af vinduer med 3 lags termoruder",
       done: false,
       willDo: false,
@@ -34,6 +35,7 @@ export const MockJSON = {
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen.",
       },
     {
+      key: 10001,
       title: "Sol celler",
       done: false,
       willDo: false,
@@ -41,12 +43,15 @@ export const MockJSON = {
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
+      key: 10002,
       title: "Renovation af loft",
       done: false,
       willDo: false,
       targets: ["Temperatur"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
-      }, {
+      },
+    {
+      key: 10003,
       title: "Udskiftning af vinduer med 3 lags termoruder",
       done: false,
       willDo: false,
@@ -54,6 +59,7 @@ export const MockJSON = {
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
+      key: 10004,
       title: "Sol celler",
       done: false,
       willDo: false,
@@ -61,6 +67,7 @@ export const MockJSON = {
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
+      key: 10005,
       title: "Renovation af loft",
       done: false,
       willDo: false,

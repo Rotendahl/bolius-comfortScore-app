@@ -12,6 +12,7 @@ import '../styles/improvements.css'
 class Result extends Component {
   constructor(props) {
     super(props);
+    this.state = this.props.store.currentState;
 
     if (this.state.address === '') {
         this.next = this.next.bind(this);
@@ -27,6 +28,8 @@ class Result extends Component {
         this.props.location.state.cards = willDos
         this.state = this.props.location.state
     }
+
+    this.goBack = this.goBack.bind(this);
   }
   next() {
     this.slider.slickNext();
@@ -35,7 +38,9 @@ class Result extends Component {
     this.slider.slickPrev();
   }
 
-
+  goBack() {
+      this.props.history.goBack();
+  }
 
   render() {
     var settings = {

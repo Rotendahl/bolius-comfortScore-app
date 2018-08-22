@@ -19,16 +19,13 @@ class Improvements extends Component {
 
     var state = this.props.store.currentState;
 
-    if (state.address === '') {
-        if(state.potentialScore === -1) {
-          state.potentialScore = state.currentScore;
-          state.animate = false;
-        }
+    if (state.address !== undefined && state.address !== '') {
+      state.potentialScore = state.currentScore;
+      state.animate = false;
 
-        var improwMass = 100 - state.potentialScore;
-        var unit = improwMass / state.cards.length;
-        state.unit = unit;
-
+      var improwMass = 100 - state.potentialScore;
+      var unit = improwMass / state.cards.length;
+      state.unit = unit;
     }
 
     this.state = state;
@@ -39,6 +36,7 @@ class Improvements extends Component {
     this.done = this.done.bind(this);
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
+    this.goBack = this.goBack.bind(this);
   };
 
   done() {
@@ -49,10 +47,12 @@ class Improvements extends Component {
     cards[this.state.activeSlide].done = true
     cards[this.state.activeSlide].willDo = false
     cards[this.state.activeSlide].clear = false
-    this.setState({
+    this.setState((prevState, props) => ({
       cards: cards,
       animate: true,
       potentialScore: this.state.potentialScore + this.state.unit
+    }), function() {
+        this.next();
     })
   }
 
@@ -61,10 +61,12 @@ class Improvements extends Component {
     cards[this.state.activeSlide].done = false
     cards[this.state.activeSlide].willDo = true
     cards[this.state.activeSlide].clear = false
-    this.setState({
+    this.setState((prevState, props) => ({
       cards: cards,
       animate: true,
       potentialScore: this.state.potentialScore + this.state.unit
+    }), function() {
+        this.next();
     })
   }
 
@@ -74,10 +76,12 @@ class Improvements extends Component {
       cards[this.state.activeSlide].done = false
       cards[this.state.activeSlide].willDo = false
       cards[this.state.activeSlide].clear = true
-      this.setState({
+      this.setState((prevState, props) => ({
         cards: cards,
         animate: true,
         potentialScore: this.state.potentialScore - this.state.unit
+      }), function() {
+          this.next();
       })
     //}
   }
@@ -85,7 +89,7 @@ class Improvements extends Component {
   next() {
     this.slider.slickNext();
     this.setState({
-      animate: false
+      animate: true
     })
   }
   previous() {
@@ -93,6 +97,19 @@ class Improvements extends Component {
     this.setState({
       animate: false
     })
+  }
+
+  goBack() {
+      this.props.history.goBack();
+  }
+
+  resultPage() {
+     var goNext = this.props.history.push,
+       newState = this.state;
+
+     this.props.store.currentState = newState;
+
+     goNext('/Result');
   }
 
   render() {
@@ -118,10 +135,10 @@ class Improvements extends Component {
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top activated">
           <h2><strong>Forslag</strong> for {this.state.address}</h2>
-        </div>        
+        </div>
         <div className="comfortscore-content">
           <div className="twocol">
-            <div className="col">              
+            <div className="col">
               <ScoreStatus
                 current={this.state.currentScore}
                 potential={this.state.potentialScore}
@@ -131,32 +148,28 @@ class Improvements extends Component {
                 <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
                   hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
                 />
-              </div>             
+              </div>
             </div>
-            <div className="col">           
+            <div className="col">
               <div className="swiper">
                 <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
-                    <Card title={card.title} description={card.description} key={index}
-                    done={card.done} willDo={card.willDo} targets={card.targets}
+                    <Card title={card.title} description={card.description} key={card.key}
+                    done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets}
+                    setDone={this.done} setWillDo={this.willDo} setClear={this.clear}
                     />)
                   }
                 </Slider>
-                <div className="swiper-actions">
-                    <button onClick={this.done} className="btn btn-light">HAR GJORT</button>
-                    <button onClick={this.willDo} className="btn btn-light">VIL GØRE</button>
-                    <button onClick={this.clear} className="btn btn-light">VIL IKKE</button>
-                </div>
               </div>
             </div>
           </div>
         </div>
         <div className="comfortscore-action">
           {/* TODO Add onClick action */}
-          <button className="btn btn-back">Tilbage</button>
+          <button className="btn btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
           {/* TODO Add correct onClick action */}
-          <button className="btn btn-success" onClick={this.state}>Ja, vis resultat</button>
+          <button className="btn btn-success" onClick={this.resultPage}>Ja, vis resultat</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

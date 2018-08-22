@@ -59,8 +59,8 @@ class Overview extends Component {
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top activated">
-          <h2><strong>Test</strong>: {this.state.address}</h2>
-        </div>
+          <h2><strong>Overblik</strong> for {this.state.address}</h2>
+        </div>        
         <div className="comfortscore-content">
           <div className="twocol">
             <div className="col">
@@ -90,6 +90,8 @@ class Overview extends Component {
           </div>
         </div>
         <div className="comfortscore-action">
+          {/* TODO Add onClick action */}
+          <button className="btn btn-back">Tilbage</button>
           <p className="label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
           <button className="btn btn-success" onClick={this.improvementsPage}>Ja, inspirer mig</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}

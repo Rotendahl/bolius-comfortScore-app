@@ -1,3 +1,21 @@
+.comfortscore-container .potential {
+    background: #02576d;
+    z-index: 1;
+    margin: 2em 0 0 -1.2em;
+    font-size: 1.2em;
+}
+
+.comfortscore-container .potential .score,
+.comfortscore-container .potential .label {
+    color: white;
+}
+
+.comfortscore-container .finalscore {
+    position: static;
+    justify-content: center;
+    margin-top: 1em;
+}
+
 .nav-btn {
     font-size: 24px;
 }

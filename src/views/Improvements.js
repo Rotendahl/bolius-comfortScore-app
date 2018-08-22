@@ -43,11 +43,12 @@ class Improvements extends Component {
 
   done() {
     var cards = this.state.cards
-    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
-      return
-    }
+    //if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
+    //  return
+    //}
     cards[this.state.activeSlide].done = true
     cards[this.state.activeSlide].willDo = false
+    cards[this.state.activeSlide].clear = false
     this.setState({
       cards: cards,
       animate: true,
@@ -57,11 +58,9 @@ class Improvements extends Component {
 
   willDo() {
     var cards = this.state.cards;
-    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
-      return
-    }
     cards[this.state.activeSlide].done = false
     cards[this.state.activeSlide].willDo = true
+    cards[this.state.activeSlide].clear = false
     this.setState({
       cards: cards,
       animate: true,
@@ -71,15 +70,16 @@ class Improvements extends Component {
 
   clear() {
     var cards = this.state.cards
-    if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
+    //if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
       cards[this.state.activeSlide].done = false
       cards[this.state.activeSlide].willDo = false
+      cards[this.state.activeSlide].clear = true
       this.setState({
         cards: cards,
         animate: true,
         potentialScore: this.state.potentialScore - this.state.unit
       })
-    }
+    //}
   }
 
   next() {
@@ -100,7 +100,8 @@ class Improvements extends Component {
       centerMode: true,
       slidesToShow: 1,
       speed: 500,
-      dots: true,
+      dots: false,
+      arrows: false,
       className: "center",
       beforeChange: (current, next) => this.setState({
         activeSlide: next
@@ -114,46 +115,52 @@ class Improvements extends Component {
     }
 
     return(
-      <div className="container">
-        <Title title={'Forslag til forbedring'}/>
-        <ScoreStatus
-          current={this.state.currentScore}
-          potential={this.state.potentialScore}
-          animate={this.state.animate}
-        />
-        <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
-          hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
-        />
-        <div className="row" style={{margin: "4% 0%"}}>
-          <button  onClick={this.previous} className="nav-btn offset-2 col-3 btn btn-dark">←</button>
-          <button  onClick={this.next} className="nav-btn offset-2 col-3 btn btn-dark">→</button>
-        </div >
-        <div>
-          <Slider ref={c => (this.slider = c)} {...settings}>
-            {this.state.cards.map((card, index) =>
-              <Card title={card.title} description={card.description} key={index}
-              done={card.done} willDo={card.willDo} targets={card.targets}
-              />)
-            }
-          </Slider>
+      <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <div className="comfortscore-top activated">
+          <h2><strong>Forslag</strong> for {this.state.address}</h2>
+        </div>        
+        <div className="comfortscore-content">
+          <div className="twocol">
+            <div className="col">              
+              <ScoreStatus
+                current={this.state.currentScore}
+                potential={this.state.potentialScore}
+                animate={this.state.animate}
+              />
+              <div className="text">
+                <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
+                  hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
+                />
+              </div>             
+            </div>
+            <div className="col">           
+              <div className="swiper">
+                <Slider ref={c => (this.slider = c)} {...settings}>
+                  {this.state.cards.map((card, index) =>
+                    <Card title={card.title} description={card.description} key={index}
+                    done={card.done} willDo={card.willDo} targets={card.targets}
+                    />)
+                  }
+                </Slider>
+                <div className="swiper-actions">
+                    <button onClick={this.done} className="btn btn-light">HAR GJORT</button>
+                    <button onClick={this.willDo} className="btn btn-light">VIL GØRE</button>
+                    <button onClick={this.clear} className="btn btn-light">VIL IKKE</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-      <div className="row" style={{margin: "5% 0%"}}>
-          <button onClick={this.done} className="offset-2 col-2 btn btn-light">HAR GJORT</button>
-          <button onClick={this.willDo} className="offset-1 col-2 col btn btn-light">VIL GØRE</button>
-          <button onClick={this.clear} className="offset-1 col-2 btn btn-light">VIL IKKE</button>
+        <div className="comfortscore-action">
+          {/* TODO Add onClick action */}
+          <button className="btn btn-back">Tilbage</button>
+          <p className="label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
+          {/* TODO Add correct onClick action */}
+          <button className="btn btn-success" onClick={this.state}>Ja, vis resultat</button>
+          {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
+          <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
+        </div>
       </div>
-
-      <Footer link = "result"
-      text = {
-        "Se din liste med forbedringstiltag og hvordan du kan gemme den til senere"
-      }
-      linkText = {
-        "Ja, vis resultat"
-      }
-      passedState={this.state}
-      />
-    </div >
     )
 
   }

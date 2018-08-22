@@ -14,11 +14,6 @@
     height: 48px;
 }
 
-.comfortscore-content .label {
-    font-size: 12px;
-    margin: 0;
-}
-
 .comfortscore-content .param .label {
     text-transform: uppercase;
 }

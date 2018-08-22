@@ -10,40 +10,20 @@ class Card extends Component {
 
     return(
       <div className="card" >
-        <h4>{this.props.title}</h4>
-        <div className="row">
-          <div className="col-10">
-            {this.props.description}
-          </div>
-            {this.props.done && !this.props.willDo ?
-              <div className="col-2">
-              <img alt="medal" src={rootDir + '/assets/medal.png'} />
-              </div>
-              : <p></p>
-            }
-          <div className="col-2">
-            {this.props.willDo && !this.props.Done ?
-              <img className="img-fluid" alt="checkmark" src={rootDir + '/assets/checkmark.png'} />
-            : <p></p>
-            }
-          </div>
-
-
+        <h3>{this.props.title}</h3>
+        {this.props.done && <span className="status done">Done</span> }
+        {this.props.willDo && <span className="status will">Will do</span> }
+        {this.props.clear && <span className="status never">Never</span> }
+        
+        <div class="param-icons">
+          {this.props.targets.map(target =>
+            <div className="param">
+              <img alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
+              <p className="label">{target}</p>
+            </div>
+          )}
         </div>
-        <div className="row" style={{marginTop: "20px"}}>
-          <div className="col-3 text-right">
-            <strong className="">Afhjælper:</strong>
-          </div>
-          <div className="col-9">
-            <div className="row">
-            {this.props.targets.map(target =>
-              <div className="col-3">
-                <img className="img-fluid rounded" alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
-              </div>
-            )}
-          </div>
-          </div>
-        </div>
+        <p>{this.props.description}</p>
       </div>
     )
   }

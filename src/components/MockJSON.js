@@ -23,10 +23,6 @@ export const MockJSON = {
     {
       "name": "Dagslys",
       "value": Math.floor(Math.random() * 100)
-      },
-    {
-      "name": "Lugt",
-      "value": Math.floor(Math.random() * 100)
       }
     ],
   cards: [
@@ -34,14 +30,14 @@ export const MockJSON = {
       title: "Udskiftning af vinduer med 3 lags termoruder",
       done: false,
       willDo: false,
-      targets: ["Støj", "Lugt"],
+      targets: ["Støj"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen.",
       },
     {
       title: "Sol celler",
       done: false,
       willDo: false,
-      targets: ["Temperatur", "Lugt", 'Dagslys'],
+      targets: ["Temperatur", "Dagslys"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
@@ -54,21 +50,21 @@ export const MockJSON = {
       title: "Udskiftning af vinduer med 3 lags termoruder",
       done: false,
       willDo: false,
-      targets: ["Temperatur", "Lugt", 'Dagslys', 'Støj'],
+      targets: ["Temperatur", "Dagslys", "Støj"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
       title: "Sol celler",
       done: false,
       willDo: false,
-      targets: ['Dagslys', 'Støj'],
+      targets: ["Dagslys", "Støj"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
       title: "Renovation af loft",
       done: false,
       willDo: false,
-      targets: ["Temperatur", "Lugt"],
+      targets: ["Temperatur"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       }
     ]

@@ -1,109 +1,91 @@
-.image-0::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/0.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background-size: 46px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: background 0.1s linear;
+    transform: translateY(-23px);
 }
 
-.image-0::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/0.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background-size: 46px;
+    border-radius: 50%;
     cursor: pointer;
+    transition: background 0.1s linear;
+}
+
+.slider::-ms-thumb {
+    appearance: none;
+    width: 56px;
+    height: 56px;
+    border: none;
+    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background-size: 46px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.1s linear;
+    transform: translateY(0%);
+}
+
+.slider::-ms-tooltip { 
+    display: none 
 }
 
 .image-1::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/1.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/1.png');
 }
 
 .image-1::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/1.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/1.png');
+}
+
+.image-1::-ms-thumb {
+    background-image: url('/assets/faces/1.png');
 }
 
 .image-2::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/2.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/2.png');
 }
 
 .image-2::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/2.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/2.png');
+}
+
+.image-2::-ms-thumb {
+    background-image: url('/assets/faces/2.png');
 }
 
 .image-3::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/3.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/3.png');
 }
 
 .image-3::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/3.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/3.png');
+}
+
+.image-3::-ms-thumb {
+    background-image: url('/assets/faces/3.png');
 }
 
 .image-4::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/4.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/4.png');
 }
 
 .image-4::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border: 0;
-    background: url('/assets/faces/4.png');
-    background-color: #94CB9C;
-    border-radius: 25px;
-    cursor: pointer;
+    background-image: url('/assets/faces/4.png');
+}
+
+.image-4::-ms-thumb {
+    background-image: url('/assets/faces/4.png');
 }

@@ -1,11 +1,11 @@
-body {
-    margin: 0;
-    padding: 0;
+.comfortscore-container * {
+    box-sizing: border-box;
     font-family: sans-serif;
 }
 
-* {
-    box-sizing: border-box;
+.comfortscore-container img {
+    width: 100%;
+    height: auto;
 }
 
 .comfortscore-container {
@@ -21,9 +21,16 @@ body {
     font-size: 15px;
     font-family: 'nationalemedium', sans-serif;
     text-transform: uppercase;
-    border: none;
+    border: 2px solid #02576d;
     border-radius: 14.5px;
     height: 1.9333em;
+    line-height: 1;
+}
+
+.comfortscore-container .btn:focus {
+    outline: none;
+    background: #bde1da;
+    color: #02576d;
 }
 
 .comfortscore-top {
@@ -35,20 +42,22 @@ body {
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 2;
 }
 
 .comfortscore-top h2 {
-    margin: 0 0 0.5em;
+    margin: 0;
     font-weight: normal;
     font-family: 'nationaleregular', sans-serif;
     font-size: 22px;
     width: 100%;
+    transition: all 0.2s ease-out;
 }
 
 @media (min-width: 900px) {
     .comfortscore-top h2 {
         width: 50%;
-        margin-bottom: 0;
     }
 }
 
@@ -68,7 +77,115 @@ body {
     margin-right: 0.4em;
 }
 
-// TODO remove from markup instead
-.comfortscore-content .teaser:empty {
-    display: none;
+.activated h2 {
+    width: 100%;
+}
+
+.comfortscore-content {
+    background: #ebf6f6;
+    border: 3px solid white;
+    position: relative;
+    z-index: 1;
+    margin-top: -38.5px;
+    padding: 54.5px 1em 38.5px;
+}
+
+.comfortscore-action {
+    background: #ebf6f6;
+    border: 3px solid white;
+    margin-top: -38.5px;
+    border-radius: 38.5px;
+    padding: 1em;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+
+.comfortscore-container .label-btn {
+    margin: 0;
+    font-family: 'nationaleregular', sans-serif;
+    font-size: 1em;
+}
+
+@media (min-width: 900px) {
+    .comfortscore-container .label-btn {
+        font-size: 1.125em;
+    }
+}
+
+.comfortscore-container .btn-success {
+    margin-left: auto;
+    margin-top: 0.5em;
+    cursor: pointer;
+}
+
+@media (min-width: 480px) {
+    .comfortscore-container .btn-success {
+        width: 30%;
+    }
+}
+
+
+@media (min-width: 900px) {
+    .comfortscore-container .btn-success {
+        width: 18%;
+        margin-top: 0;
+    }
+}
+
+.comfortscore-action .btn-success {
+    margin-left: 1em;
+}
+
+.comfortscore-container .bubble {
+    position: absolute;
+    background: white;
+    border-radius: .4em;
+    box-shadow: 1px 1px 10px rgba(0,0,0,0.2);
+    padding: 0.7em;
+    font-size: 13px;
+    width: 14em;
+    right: 1em;
+    bottom: 83%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);    
+}
+
+.comfortscore-container .bubble::before {
+    right: 12px;
+    content: "";
+    position: absolute;
+    bottom: -23px;
+    width: 0;
+    height: 0;
+    border: 22px solid transparent;
+    border-top-color: #d1dada;
+    border-bottom: 0;
+    border-left: 0;
+}
+
+.comfortscore-container .bubble::after {
+    right: 1em;
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-top-color: white;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-top: -20px
+}
+
+.comfortscore-container .bubble.animate {
+    transform: scale(1);
+    transform-origin: 100% 50%;
+    opacity: 1;
 }

@@ -1,25 +1,112 @@
-.housePicture {
-    background-color: #EBEBEB;
-    height: 20%;
+.comfortscore-container .twocol {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-direction: row-reverse;
 }
 
-.housePicture img {
-    object-fit: cover;
+@media (min-width: 480px) {
+    .comfortscore-container .twocol {
+        flex-direction: row-reverse;
+    }
+}
+
+.comfortscore-container .twocol .col {
     width: 100%;
-    height: 90%;
+    position: relative;
 }
 
-.komforScore {
-    background: #94CB9C;
-
+@media (min-width: 480px) {
+    .comfortscore-container .twocol .col {
+        width: 47.78%;
+    }
 }
 
-.scoreContainer {
-    padding-top: 50%;
+.comfortscore-container .map {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 61.6%;
+    overflow: hidden;
+    background: #4A848A;
 }
 
-.score {
-    font-size: 11vw;
+.comfortscore-container .map img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.comfortscore-container .komforscore {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    z-index: 2;
+}
+
+.comfortscore-container .current {
+    width: 8em;
+    height: 8em;
+    margin: 0;    
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255,255,255,0.8);
+    border: 4px solid #02576d;
+    border-radius: 50%;
     text-align: center;
-    vertical-align: middle;
 }
+
+.comfortscore-container .score {
+    font-size: 2.875em;
+    font-family: 'nationaleregular', sans-serif;
+    color: #02576d;
+    opacity: 0;
+    -webkit-animation: zoomIn 0.75s ease-out forwards;
+    animation: zoomIn 0.75s ease-out forwards;
+}
+
+.comfortscore-container p {
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+@-webkit-keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    -webkit-transform: scale3d(0.3, 0.3, 0.3);
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+    -webkit-transform: scale3d(1.1, 1.1, 1.1);
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+

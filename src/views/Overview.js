@@ -53,7 +53,7 @@ class Overview extends Component {
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top activated">
-          <h2><strong>Test</strong>: {this.state.finalAddress}</h2>
+          <h2><strong>Test</strong>: {this.state.address}</h2>
         </div>        
         <div className="comfortscore-content">
           <div className="twocol">

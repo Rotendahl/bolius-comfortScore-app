@@ -1,15 +1,12 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
 import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
 import Title from '../components/Title.js'
-import {
-  Redirect
-} from 'react-router-dom'
+
 import '../styles/improvements.css'
 import {
   MockJSON
@@ -22,14 +19,17 @@ class Improvements extends Component {
 
     var state = this.props.store.currentState;
 
-    if(state.potentialScore === -1) {
-      state.potentialScore = state.currentScore;
-      state.animate = false;
-    }
+    if (state.address === '') {
+        if(state.potentialScore === -1) {
+          state.potentialScore = state.currentScore;
+          state.animate = false;
+        }
 
-    var improwMass = 100 - state.potentialScore;
-    var unit = improwMass / state.cards.length;
-    state.unit = unit;
+        var improwMass = 100 - state.potentialScore;
+        var unit = improwMass / state.cards.length;
+        state.unit = unit;
+
+    }
 
     this.state = state;
 
@@ -107,8 +107,10 @@ class Improvements extends Component {
       })
     };
 
-    if(this.state === undefined) {
-      return <Redirect to='/'  />
+    if (this.state.address === undefined || this.state.address === '') {
+        return (
+            <Redirect to='/'  />
+        )
     }
 
     return(
@@ -153,6 +155,7 @@ class Improvements extends Component {
       />
     </div >
     )
+
   }
 }
 

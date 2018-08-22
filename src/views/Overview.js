@@ -1,6 +1,5 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 
 import '../styles/overview.css'
 import Slider from '../components/slider.js'
@@ -15,7 +14,8 @@ import Improvements from './Improvements.js'
 
 class Overview extends Component {
   constructor(props) {
-    super(props)
+    super(props);
+
     var state = this.props.store.currentState;
     this.state = state;
 
@@ -50,11 +50,17 @@ class Overview extends Component {
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
 
+    if (this.state.address === undefined || this.state.address === '') {
+        return (
+            <Redirect to='/'  />
+        )
+    }
+
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top activated">
           <h2><strong>Test</strong>: {this.state.address}</h2>
-        </div>        
+        </div>
         <div className="comfortscore-content">
           <div className="twocol">
             <div className="col">

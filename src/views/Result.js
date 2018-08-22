@@ -1,6 +1,5 @@
-import React, {
-  Component
-} from 'react';
+import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
@@ -13,17 +12,21 @@ import '../styles/improvements.css'
 class Result extends Component {
   constructor(props) {
     super(props);
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-    var willDos = [];
-    var cards = this.props.location.state.cards
-    for(var i = 0; i < cards.length; i++) {
-      if(cards[i].willDo) {
-        willDos.push(cards[i])
-      }
+
+    if (this.state.address === '') {
+        this.next = this.next.bind(this);
+        this.previous = this.previous.bind(this);
+
+        var willDos = [];
+        var cards = this.props.location.state.cards
+        for(var i = 0; i < cards.length; i++) {
+          if(cards[i].willDo) {
+            willDos.push(cards[i])
+          }
+        }
+        this.props.location.state.cards = willDos
+        this.state = this.props.location.state
     }
-    this.props.location.state.cards = willDos
-    this.state = this.props.location.state
   }
   next() {
     this.slider.slickNext();
@@ -48,6 +51,12 @@ class Result extends Component {
       })
 
     };
+
+    if (this.state.address === undefined || this.state.address === '') {
+        return (
+            <Redirect to='/'  />
+        )
+    }
 
     return(
       <div className="container">

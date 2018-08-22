@@ -47,40 +47,48 @@ class Overview extends Component {
 
   render() {
     var img =
-      "https://maps.googleapis.com/maps/api/streetview?parameters&size=1350x1350&key=" +
+      "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
 
     return(
-      <div className="container">
-        <Title title={'Din komfortscore'}/>
-        <div className="row">
-          <div className="col-sm-8 col-xs-12 housePicture text-center">
-            <img className="rounded img-fluid" alt="house" src={img}/>
-            <p>{this.state.address}</p>
-          </div>
-          <div className="col-sm-4 komforScore col-xs-12 d-flex align-items-center">
-            <div>
-              <p className="score">{Math.floor(this.state.currentScore)}%</p>
-              <p>Din nuværende komfortscore</p>
+      <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <div className="comfortscore-top activated">
+          <h2><strong>Test</strong>: {this.state.finalAddress}</h2>
+        </div>        
+        <div className="comfortscore-content">
+          <div className="twocol">
+            <div className="col">
+              <div className="komforscore">
+                <p className="current">
+                  <span className="score">{Math.floor(this.state.currentScore)}%</span>
+                  <span className="label">Din nuværende komfortscore</span></p>
+              </div>
+              <div className="map"><img alt="house" src={img}/></div>
+              <div className="text"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
+              vurderet komforten på de nedenstående parametre sådan her - juster på\
+              parametrene, hvis du ikke er enig i komfortvurderingerne'}/></div>
+            </div>
+            <div className="col sliders">
+              {this.state.sliders.map(
+                (slider, index) =>
+                <Slider
+                  key={index}
+                  index={index}
+                  updateScore={this.updateScore}
+                  parameter={slider.name}
+                  value={this.state.sliders[index].value}/>
+              )}
+            {/* TODO Add class animate to show bubble and remove it after 2s */}
+              <p className="bubble">Træk i ansigter indtil de afspejler hvordan du oplever komfort i dit hjem.</p>
             </div>
           </div>
         </div>
-        <TextRow text = {'Andre der bor i et hus, der minder om dette, har \
-          vurderet komforten på de nedenstående parametre sådan her - juster på\
-          parametrene, hvis du ikke er enig i komfortvurderingerne'}
-        />
-        {this.state.sliders.map(
-          (slider, index) =>
-          <Slider
-            key={index}
-            index={index}
-            updateScore={this.updateScore}
-            parameter={slider.name}
-            value={this.state.sliders[index].value}/>
-        )}
-
-        <div>Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</div>
-        <div className="btn btn-success" onClick={this.improvementsPage}>Ja, inspirer mig nu</div>
+        <div className="comfortscore-action">
+          <p className="label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
+          <button className="btn btn-success" onClick={this.improvementsPage}>Ja, inspirer mig</button>
+          {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
+          <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
+        </div>
       </div>
     )
   }

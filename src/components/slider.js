@@ -27,20 +27,20 @@ class Slider extends Component {
     var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
 
     const paramLogo = rootDir + '/assets/param-icons/' + this.props.parameter + '.png';
-    return(
+    return(      
       <div className="row">
-        <div className="col-2 param">
-          <img className="rounded" alt="param" src={paramLogo}/>
-          <p>{this.props.parameter}</p>
+        <div className="param">
+          <img alt="param" src={paramLogo}/>
+          <p className="label">{this.props.parameter}</p>
         </div>
-        <div className="col-10 sliderCol align-self-center">
-          <div className="slidecontainer">
-            <input type='range' onChange={this.handleChange} min="1" max="100"
+        <div className="slider-col">
+          <div className="slide-container">
+            <input type="range" onChange={this.handleChange} min="1" max="100"
               value={this.state.val} className={this.state.imgClass}
             />
           </div>
-          <p className="float-left">Utilfreds</p>
-          <p className="float-right">Tilfreds</p>
+          <p className="label">Utilfreds</p>
+          <p className="label">Tilfreds</p>
         </div>
       </div>
     )

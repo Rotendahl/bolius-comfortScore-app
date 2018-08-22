@@ -80,10 +80,6 @@ class AddressInput extends Component {
           {
             "name": "Dagslys",
             "value": resp.light * 10
-            },
-          {
-            "name": "Lugt",
-            "value": resp.smell * 10
             }
           ]
 
@@ -100,7 +96,7 @@ class AddressInput extends Component {
     };
 
     xhttp.open("GET", 'https://ai01.boliusaws.dk/predictParams/' + encodeURI(
-        this.state.finalAddress),
+      this.state.finalAddress),
       true);
     xhttp.send();
 

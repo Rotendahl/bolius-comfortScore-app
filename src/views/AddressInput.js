@@ -90,8 +90,9 @@ class AddressInput extends Component {
         newState.sliders.map((slider => newState.currentScore += slider.value /
           600 *
           100))
-
+        
         // Save new state in store
+        newState.address = finalAddress;
         that.props.store.address = finalAddress;
         that.props.store.currentState = newState;
 

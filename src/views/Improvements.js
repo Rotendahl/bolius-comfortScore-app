@@ -37,6 +37,7 @@ class Improvements extends Component {
     this.willDo = this.willDo.bind(this);
     this.clear = this.clear.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.resultPage = this.resultPage.bind(this);
   };
 
   done() {

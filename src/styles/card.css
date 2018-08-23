@@ -1,12 +1,91 @@
-.card {
-    background-color: #ECF0F1;
-    border-radius: 10px;
-    padding: 10px;
-    margin: auto;
-    width: 90%;
+.comfortscore-content .card {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    padding: 1em;
+    margin: 0 0.5em 0.5em;
+    position: relative;
 }
 
-.slick-active {
-    margin: 0 0px;
-    width: 110%;
+.comfortscore-content .card h3 {
+	margin-top: 0;
+	font-family: 'nationaleregular', sans-serif;
+}
+
+.comfortscore-content .param-icons {
+	display: flex;
+	border-top: 2px solid #f3f5f6;
+	border-bottom: 2px solid #f3f5f6;
+	padding: 0.5em 0;
+}
+
+.comfortscore-content .param-icons img {
+	display: inline-block;
+	height: 28px;
+	opacity: 0.5;
+}
+
+.comfortscore-content .param-icons .label {
+	font-size: 0.6875em;
+	opacity: 0.6;
+}
+
+.comfortscore-content .swiper-actions {
+	display: flex;
+	justify-content: space-between;
+	margin: 0.75em auto 1em;
+	width: 80%;
+}
+
+.comfortscore-content .btn-light {
+	background: white;
+	border-color: white;
+	font-size: 13px;
+	height: 2.23em;
+}
+.comfortscore-content .btn-light:focus {
+	color: white;
+	border-color: white;
+}
+
+.comfortscore-content .btn-red {
+	color: #ee2835;
+}
+.comfortscore-content .btn-red:focus {
+	background: #ee2835;
+}
+
+.comfortscore-content .btn-yellow {
+	color: #faa71a;
+}
+.comfortscore-content .btn-yellow:focus {
+	background: #faa71a;
+}
+
+.comfortscore-content .btn-green {
+	color: #006c5c;
+}
+.comfortscore-content .btn-green:focus {
+	background: #006c5c;
+}
+
+.comfortscore-content .status {
+	position: absolute;
+	top: 0.2em;
+	right: 0.05em;
+	width: 48px;
+	height: 48px;
+	color: transparent;
+	background: url('../assets/card-icons/done-icon.svg') no-repeat 50%;
+	background-size: 48px;
+	opacity: 0;
+	-webkit-animation: zoomIn 0.75s ease-out forwards;
+    animation: zoomIn 0.75s ease-out forwards;
+}
+
+.comfortscore-content .will {
+	background-image: url('../assets/card-icons/todo-icon.svg');
+}
+
+.comfortscore-content .never {
+	background-image: url('../assets/card-icons/not-icon.svg');
 }

@@ -25,9 +25,9 @@ class Card extends Component {
         </div>
         <p>{this.props.description}</p>
         <div className="swiper-actions">
-            <button onClick={this.props.setDone} className="btn btn-light">HAR GJORT</button>
-            <button onClick={this.props.setWillDo} className="btn btn-light">VIL GØRE</button>
-            <button onClick={this.props.setClear} className="btn btn-light">VIL IKKE</button>
+            <button onClick={this.props.setDone} className="btn btn-light btn-yellow">Har gjort</button>
+            <button onClick={this.props.setWillDo} className="btn btn-light btn-green">Vil gøre</button>
+            <button onClick={this.props.setClear} className="btn btn-light btn-red">Nej, tak</button>
         </div>
       </div>
 

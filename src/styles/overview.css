@@ -68,6 +68,9 @@
     font-size: 2.875em;
     font-family: 'nationaleregular', sans-serif;
     color: #02576d;
+}
+
+.comfortscore-container .current .score {
     opacity: 0;
     -webkit-animation: zoomIn 0.75s ease-out forwards;
     animation: zoomIn 0.75s ease-out forwards;

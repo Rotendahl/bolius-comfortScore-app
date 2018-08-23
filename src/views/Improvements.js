@@ -42,9 +42,6 @@ class Improvements extends Component {
 
   done() {
     var cards = this.state.cards
-    //if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
-    //  return
-    //}
     cards[this.state.activeSlide].done = true
     cards[this.state.activeSlide].willDo = false
     cards[this.state.activeSlide].clear = false
@@ -73,18 +70,16 @@ class Improvements extends Component {
 
   clear() {
     var cards = this.state.cards
-    //if(cards[this.state.activeSlide].done || cards[this.state.activeSlide].willDo) {
-      cards[this.state.activeSlide].done = false
-      cards[this.state.activeSlide].willDo = false
-      cards[this.state.activeSlide].clear = true
-      this.setState((prevState, props) => ({
-        cards: cards,
-        animate: true,
-        potentialScore: this.state.potentialScore - this.state.unit
-      }), function() {
-          this.next();
-      })
-    //}
+    cards[this.state.activeSlide].done = false
+    cards[this.state.activeSlide].willDo = false
+    cards[this.state.activeSlide].clear = true
+    this.setState((prevState, props) => ({
+      cards: cards,
+      animate: true,
+      potentialScore: this.state.potentialScore - this.state.unit
+    }), function() {
+        this.next();
+    })
   }
 
   next() {
@@ -115,18 +110,18 @@ class Improvements extends Component {
 
   render() {
     var settings = {
-      centerMode: true,
       slidesToShow: 1,
+      infinite: false,
       speed: 500,
       dots: false,
       arrows: false,
-      className: "center",
+      className: "slider",
       beforeChange: (current, next) => this.setState({
         activeSlide: next
       })
     };
 
-    if (this.state.address === undefined || this.state.address === '') {
+    if (this.state.address === undefined || this.state.address === '') {
         return (
             <Redirect to='/'  />
         )
@@ -166,17 +161,14 @@ class Improvements extends Component {
           </div>
         </div>
         <div className="comfortscore-action">
-          {/* TODO Add onClick action */}
           <button className="btn btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          {/* TODO Add correct onClick action */}
           <button className="btn btn-success" onClick={this.resultPage}>Ja, vis resultat</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>
       </div>
     )
-
   }
 }
 

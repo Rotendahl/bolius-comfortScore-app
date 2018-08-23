@@ -4,7 +4,7 @@
     width: 56px;
     height: 56px;
     border: none;
-    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
     background-size: 46px;
     border-radius: 50%;
     cursor: pointer;
@@ -18,7 +18,7 @@
     width: 56px;
     height: 56px;
     border: none;
-    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
     background-size: 46px;
     border-radius: 50%;
     cursor: pointer;
@@ -30,7 +30,7 @@
     width: 56px;
     height: 56px;
     border: none;
-    background: #ebf6f6 url('/assets/faces/0.png') no-repeat 50%;
+    background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
     background-size: 46px;
     border-radius: 50%;
     cursor: pointer;
@@ -43,49 +43,49 @@
 }
 
 .image-1::-webkit-slider-thumb {
-    background-image: url('/assets/faces/1.png');
+    background-image: url('../assets/faces/1.png');
 }
 
 .image-1::-moz-range-thumb {
-    background-image: url('/assets/faces/1.png');
+    background-image: url('../assets/faces/1.png');
 }
 
 .image-1::-ms-thumb {
-    background-image: url('/assets/faces/1.png');
+    background-image: url('../assets/faces/1.png');
 }
 
 .image-2::-webkit-slider-thumb {
-    background-image: url('/assets/faces/2.png');
+    background-image: url('../assets/faces/2.png');
 }
 
 .image-2::-moz-range-thumb {
-    background-image: url('/assets/faces/2.png');
+    background-image: url('../assets/faces/2.png');
 }
 
 .image-2::-ms-thumb {
-    background-image: url('/assets/faces/2.png');
+    background-image: url('../assets/faces/2.png');
 }
 
 .image-3::-webkit-slider-thumb {
-    background-image: url('/assets/faces/3.png');
+    background-image: url('../assets/faces/3.png');
 }
 
 .image-3::-moz-range-thumb {
-    background-image: url('/assets/faces/3.png');
+    background-image: url('../assets/faces/3.png');
 }
 
 .image-3::-ms-thumb {
-    background-image: url('/assets/faces/3.png');
+    background-image: url('../assets/faces/3.png');
 }
 
 .image-4::-webkit-slider-thumb {
-    background-image: url('/assets/faces/4.png');
+    background-image: url('../assets/faces/4.png');
 }
 
 .image-4::-moz-range-thumb {
-    background-image: url('/assets/faces/4.png');
+    background-image: url('../assets/faces/4.png');
 }
 
 .image-4::-ms-thumb {
-    background-image: url('/assets/faces/4.png');
+    background-image: url('../assets/faces/4.png');
 }

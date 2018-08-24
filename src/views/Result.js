@@ -112,18 +112,11 @@ class Result extends Component {
             </div>
             <div className="comfortscore-col comfortscore-box">
               <h3>Vil du få tilsendt dit resultat på mail?</h3>
-              <div className="comfortscore-text">
-                <p>Send resultaten til din e-mail som PDF. Du får desuden relevante links til videre
-                læsning om de tiltag du har udvist interesse.</p>
-              </div>
               <div className="comfortscore-field-wrap">
                 <input type="email" className="comfortscore-email-field" placeholder="Indtast din e-mailadresse"/>
               </div>
-              <div className="comfortscore-field-wrap">
-                <input type="checkbox" className="comfortscore-check-field"/>
-                <label className="comfortscore-check-label">
-                  Jeg vil gerne modtage relevante links om energirenovering
-                </label>
+              <div className="comfortscore-notice">
+                <p>Når du modtager resultatet på mail, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
               </div>
               <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
             </div>

@@ -68,8 +68,6 @@ class Result extends Component {
         )
     }
 
-
-
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
@@ -113,12 +111,12 @@ class Result extends Component {
                 Jeg vil gerne modtage relevante links om energirenovering
               </label>
             </div>
-            <button className="comfortscore-btn" id="comfortscorewidget-send-btn">Send mig en PDF</button>
+            <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
           </div>
           <div className="comfortscore-box">
             <h3>Vil du gemme dit resultat på Mit Bolius</h3>
             <p>Du bliver bedt om at logge på aller oprette profil for at gemme resultatet</p>
-            <button className="comfortscore-btn" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
+            <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
           </div>
         </div>
       </div>

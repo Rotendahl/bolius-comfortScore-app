@@ -14,19 +14,19 @@ class Result extends Component {
     super(props);
     this.state = this.props.store.currentState;
 
-    if (this.state.address === '') {
+    if (this.state.address !== undefined && this.state.address !== '') {
         this.next = this.next.bind(this);
         this.previous = this.previous.bind(this);
+        this.btnClick = this.btnClick.bind(this);
 
         var willDos = [];
-        var cards = this.props.location.state.cards
+        var cards = this.state.cards;
         for(var i = 0; i < cards.length; i++) {
           if(cards[i].willDo) {
             willDos.push(cards[i])
           }
         }
-        this.props.location.state.cards = willDos
-        this.state = this.props.location.state
+        this.state.cards = willDos;
     }
 
     this.goBack = this.goBack.bind(this);
@@ -42,6 +42,11 @@ class Result extends Component {
       this.props.history.goBack();
   }
 
+  btnClick() {
+      var value = JSON.stringify(this.state);
+      document.getElementById('comfortscorewidget-app-data').value = value;
+  }
+
   render() {
     var settings = {
       dots: true,
@@ -54,7 +59,6 @@ class Result extends Component {
       beforeChange: (current, next) => this.setState({
         activeSlide: next
       })
-
     };
 
     if (this.state.address === undefined || this.state.address === '') {
@@ -63,8 +67,11 @@ class Result extends Component {
         )
     }
 
+    // Everything os okay, let's put data somewhere we can grab it
+
     return(
-      <div className="container">
+        <div className="container">
+        <input type="hidden" id="comfortscorewidget-app-data" value="" />
         <Title title={'Dit Resultat'}/>
         <ScoreStatus
           current={this.state.currentScore}
@@ -96,16 +103,15 @@ class Result extends Component {
             læsning om de tiltag du har udvist interesse.
           </p>
             <div className="d-flex justify-content-between w-80">
-              <button className="btn text-left" id="comfortscorewidget-send-btn">Send mig en PDF</button>
-              <button className="btn text-right" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
+              <button className="btn text-left" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
+              <button className="btn text-right" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
             </div>
           </div>
           <Footer text = {
             "Vil du have mere inspiration og rådgivning om komfort, indeklima og renovering se mere her"}
             link={'somewhere'}
             linkText={'Læs Mere'}
-
-        />
+            />
         </div>
     )
   }

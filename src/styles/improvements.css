@@ -9,7 +9,7 @@
 		margin: 2em 0 0 -1.2em;
 	}
 }
-@media (min-width: 980px) {
+@media (min-width: 600px) {
 	.comfortscore-potential {
 		font-size: 1.5em;
 		margin-left: -1.5em;
@@ -32,19 +32,69 @@
 }
 
 .comfortscore-swiper {
-	margin-top: 1em;
-}
-
-.comfortscore-box {
-	width: 100%;
-	margin-bottom: 1em;
-}
-@media (min-width: 480px) {
-	.comfortscore-box {
-		width: 47.78%;
-	}
+	margin: 1em -0.5em 0;
 }
 
 .comfortscore-field-wrap {
 	margin: 1em 0;
+}
+
+.comfortscore-resume-score .comfortscore-potential {
+	font-size: 1.2em;
+	margin: 1.2em 0 0 -1em;
+}
+
+.comfortscore-box h3 {
+	font-size: 20px;
+	font-family: 'nationalemedium', sans-serif;
+	font-weight: normal;
+	line-height: 1.1;
+	margin-top: 0;
+}
+
+.comfortscore-box {
+    background: white;
+    padding: 1em;
+    box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+
+.comfortscore-box .comfortscore-email-field {
+	border: 2px solid #FBA71A;
+}
+
+.comfortscore-check-field {
+	font-size: 1em;
+}
+
+.comfortscore-check-label {
+	font-size: 15px;
+}
+
+.comfortscore-box .comfortscore-btn {
+    background: #faa71a;
+    border-color: #faa71a;
+    margin: 0.5em 0 0;
+    float: right;
+}
+
+.comfortscore-list {
+	margin: 2em 0 3em;
+}
+
+.comfortscore-card-list .comfortscore-card {
+	margin: 0 0 0.5em;
+}
+
+.comfortscore-card-list .comfortscore-param {
+	width: auto;
+	margin: 0 0.5em;
+}
+
+.comfortscore-title-centered {
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 22px;
+	font-weight: normal;
+    font-family: 'nationaleregular', sans-serif;
+    margin-top: 0;
 }

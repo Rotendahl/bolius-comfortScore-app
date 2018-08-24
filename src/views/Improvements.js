@@ -147,15 +147,15 @@ class Improvements extends Component {
               <ScoreStatus
                 current={this.state.currentScore}
                 potential={this.state.potentialScore}
-                animate={this.state.animate}
-              />
-              <div className="comfortscore-text">
+                animate={this.state.animate} onTop={false}
+              />              
+            </div>
+            <div className="comfortscore-col">
+              <div className="comfortscore-instruction">
                 <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
                   hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
                 />
               </div>
-            </div>
-            <div className="comfortscore-col">
               <div className="comfortscore-swiper">
                 <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
@@ -172,7 +172,7 @@ class Improvements extends Component {
         <div className="comfortscore-action">
           <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.resultPage}>Ja, vis resultat</button>
+          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.resultPage}>Ja, vis resume</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

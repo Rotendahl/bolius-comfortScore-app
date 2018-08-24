@@ -14,11 +14,13 @@
 .comfortscore-col {
     width: 100%;
     position: relative;
+    margin-bottom: 1em;
 }
 
 @media (min-width: 480px) {
     .comfortscore-col {
         width: 47.78%;
+        margin-bottom: 0;
     }
 }
 

@@ -76,49 +76,57 @@ class Result extends Component {
           <h2><strong>Resume</strong> for {this.state.address}</h2>
         </div>
         <div className="comfortscore-content">
-          <div className="comfortscore-twocol">
+          <div className="comfortscore-twocol">            
             <div className="comfortscore-col">
               <ScoreStatus
                 current={this.state.currentScore}
-                potential={this.state.potentialScore}
+                potential={this.state.potentialScore} onTop={true}
               />
+              <div className="comfortscore-map"><img alt="house" src={img}/></div>
             </div>
             <div className="comfortscore-col">
-              <div className="comfortscore-map"><img alt="house" src={img}/></div>
+              <div className="comfortscore-abstract">
+                <TextRow text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}/>
+              </div>
             </div>
           </div>
           <div className="comfortscore-list">
-            <div className="comfortscore-text">
-              <TextRow text={'Du har valgt følgende tiltag, som kan forbedre komforten i dit hus'}/>
+            <h2 className="comfortscore-title-centered">Dine tiltag</h2>
+            <div className="comfortscore-card-list">
+              {this.state.cards.map((card, index) =>
+                <Card title={card.title} description={card.description}
+                  key={index} done={card.done} willDo={card.willDo}
+                  targets={card.targets} showButtons={false}
+                />)
+              }
             </div>
-            {this.state.cards.map((card, index) =>
-              <Card title={card.title} description={card.description}
-                key={index} done={card.done} willDo={card.willDo}
-                targets={card.targets} showButtons={false}
-              />)
-            }
           </div>
-        </div>
-        <div className="comfortscore-action">
-          <div className="comfortscore-box">
-            <h3>Vil du få tilsendt dit resultat på mail?</h3>
-            <p>Send resultaten til din e-mail som PDF. Du får desuden relevante links til videre
-              læsning om de tiltag du har udvist interesse.</p>
-            <div className="comfortscore-field-wrap">
-              <input type="email" className="comfortscore-email-field" placeholder="Indtast din e-mailadresse"/>
+          <h2 className="comfortscore-title-centered">Gem dit resultat</h2>
+          <div className="comfortscore-twocol">            
+            <div className="comfortscore-col comfortscore-box">
+              <h3>Vil du gemme dit resultat på Mit Bolius</h3>
+              <div className="comfortscore-text">
+                <p>Du bliver bedt om at logge på aller oprette profil for at gemme resultatet</p>
+              </div>
+              <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
             </div>
-            <div className="comfortscore-field-wrap">
-              <input type="checkbox" className="comfortscore-check-field"/>
-              <label className="comfortscore-check-label">
-                Jeg vil gerne modtage relevante links om energirenovering
-              </label>
+            <div className="comfortscore-col comfortscore-box">
+              <h3>Vil du få tilsendt dit resultat på mail?</h3>
+              <div className="comfortscore-text">
+                <p>Send resultaten til din e-mail som PDF. Du får desuden relevante links til videre
+                læsning om de tiltag du har udvist interesse.</p>
+              </div>
+              <div className="comfortscore-field-wrap">
+                <input type="email" className="comfortscore-email-field" placeholder="Indtast din e-mailadresse"/>
+              </div>
+              <div className="comfortscore-field-wrap">
+                <input type="checkbox" className="comfortscore-check-field"/>
+                <label className="comfortscore-check-label">
+                  Jeg vil gerne modtage relevante links om energirenovering
+                </label>
+              </div>
+              <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
             </div>
-            <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
-          </div>
-          <div className="comfortscore-box">
-            <h3>Vil du gemme dit resultat på Mit Bolius</h3>
-            <p>Du bliver bedt om at logge på aller oprette profil for at gemme resultatet</p>
-            <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
           </div>
         </div>
       </div>

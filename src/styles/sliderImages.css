@@ -1,25 +1,25 @@
 .comfortscore-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     border: none;
     background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
-    background-size: 46px;
+    background-size: 40px;
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.1s linear;
-    transform: translateY(-23px);
+    transform: translateY(-20px);
 }
 
 .comfortscore-slider::-moz-range-thumb {
     -webkit-appearance: none;
     appearance: none;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     border: none;
     background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
-    background-size: 46px;
+    background-size: 40px;
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.1s linear;
@@ -27,11 +27,11 @@
 
 .comfortscore-slider::-ms-thumb {
     appearance: none;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     border: none;
     background: #ebf6f6 url('../assets/faces/0.png') no-repeat 50%;
-    background-size: 46px;
+    background-size: 40px;
     border-radius: 50%;
     cursor: pointer;
     transition: background 0.1s linear;

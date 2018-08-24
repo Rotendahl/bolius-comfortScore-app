@@ -2,22 +2,18 @@
     display: flex;
     justify-content: space-between;
     margin: 0 0 1em;
+    align-items: center;
 }
 
 .comfortscore-param {
-    width: 20.4545%;
+    width: 18%;
     text-align: center;
     overflow: hidden;
 }
 
 .comfortscore-param img {
     width: auto;
-    height: 42px;
-}
-@media (min-width: 480px) {
-    .comfortscore-param img {
-        height: 48px;
-    }
+    height: 32px;
 }
 
 .comfortscore-param .comfortscore-label {
@@ -25,7 +21,7 @@
 }
 
 .comfortscore-slider-col {
-    width: 75%;
+    width: 78%;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -37,12 +33,7 @@
 
 .comfortscore-slider-col .comfortscore-label {
     color: #8da8a3;
-    margin-top: -14px;
-}
-@media (min-width: 480px) {
-    .comfortscore-slider-col .comfortscore-label {
-        margin-top: -10px;
-    }
+    margin-top: -15px;
 }
 
 .comfortscore-slider {
@@ -50,7 +41,7 @@
     appearance: none;
     width: 100%;
     font-size: 1em;
-    height: 56px;
+    height: 48px;
     margin: 0;
     padding: 0;
     background: transparent;

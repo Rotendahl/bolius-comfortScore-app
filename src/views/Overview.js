@@ -68,7 +68,7 @@ class Overview extends Component {
                   <span className="comfortscore-label">Din nuværende komfortscore</span></p>
               </div>
               <div className="comfortscore-map"><img alt="house" src={img}/></div>
-              <div className="comfortscore-text"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
+              <div className="comfortscore-instruction"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
               vurderet komforten på de nedenstående parametre sådan her - juster på\
               parametrene, hvis du ikke er enig i komfortvurderingerne'}/></div>
             </div>

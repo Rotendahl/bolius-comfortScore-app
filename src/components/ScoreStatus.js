@@ -3,10 +3,18 @@ import React, {
 } from 'react';
 import '../styles/updateScore.css'
 
+
 class ScoreStatus extends Component {
   render() {
+    var scoreClass;
+    if (this.props.onTop) {
+      scoreClass = 'comfortscore-wrapper comfortscore-resume-score';
+    } else {
+      scoreClass = 'comfortscore-wrapper comfortscore-final-score';
+    }
+
     return(
-      <div className="comfortscore-wrapper comfortscore-final-score">
+      <div className={scoreClass}>
         <p className="comfortscore-current">
           <span className="comfortscore-score">{Math.floor(this.props.current) + 1}%</span>
           <span className="comfortscore-label">Din nuværende komfortscore</span>

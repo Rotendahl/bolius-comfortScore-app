@@ -6,7 +6,19 @@
 }
 @media (min-width: 480px) {
     .comfortscore-autocomplete-container {
-        width: 68%;
+        width: 73%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 600px) {
+    .comfortscore-autocomplete-container {
+        width: 74%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 800px) {
+    .comfortscore-autocomplete-container {
+        width: 78%;
         margin-bottom: 0;
     }
 }
@@ -17,7 +29,8 @@
     }
 }
 
-.comfortscore-dawa-autocomplete-input {
+.comfortscore-dawa-autocomplete-input,
+.comfortscore-email-field {
     display: inline-block;
     width: 100%;
     font-family: 'nationalemedium', sans-serif;
@@ -29,7 +42,8 @@
     position: relative;
     z-index: 2;
 }
-.comfortscore-dawa-autocomplete-input:focus {
+.comfortscore-dawa-autocomplete-input:focus,
+.comfortscore-email-field:focus {
     outline: none;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }

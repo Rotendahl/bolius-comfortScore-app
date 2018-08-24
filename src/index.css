@@ -75,6 +75,7 @@
 .comfortscore-top h2 strong {
     font-family: 'nationalebold', sans-serif;
     text-transform: uppercase;
+    font-weight: normal;
 }
 
 .comfortscore-top h2::before {
@@ -82,10 +83,16 @@
     width: 46px;
     height: 34px;
     display: inline-block;
-    vertical-align: -0.4em;
+    vertical-align: -0.6em;
     background: url('assets/heart_icon.png') no-repeat 50%;
     background-size: 100% auto;
     margin-right: 0.4em;
+}
+
+@media (min-width: 700px) {
+    .comfortscore-top h2::before {
+        vertical-align: -0.4em;
+    }
 }
 
 .comfortscore-activated h2 {
@@ -117,19 +124,12 @@
 }
 
 .comfortscore-label-btn {
-    margin: 0;
+    margin: 0 0 0.3em;
     font-family: 'nationaleregular', sans-serif;
     font-size: 1em;
     width: 100%;
     order: 1;
     text-align: right;
-}
-
-@media (min-width: 700px) {
-    .comfortscore-label-btn {
-        width: 36%;
-        order: 2;
-    }
 }
 
 @media (min-width: 900px) {
@@ -169,12 +169,6 @@
     border-color: white;
     order: 2;
     color: #02576d;
-}
-
-@media (min-width: 700px) {
-    .comfortscore-btn-back {
-        order: 1;
-    }
 }
 
 .comfortscore-bubble {
@@ -234,4 +228,17 @@
 .comfortscore-text p {
     font-size: 15px;
     line-height: 1.2;
+}
+
+.comfortscore-instruction p {
+    font-size: 15px;
+    font-family: 'nationalemedium', sans-serif;
+    line-height: 1.3;
+}
+
+.comfortscore-abstract p {
+    font-size: 17px;
+    font-family: 'nationaleregular', sans-serif;
+    line-height: 1.4;
+    margin-top: 0;
 }

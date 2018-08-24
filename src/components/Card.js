@@ -18,9 +18,31 @@ class Card extends Component {
       statusClass = 'comfortscore-card';
     }
 
-    return(
-      <div className="comfortscore-slide-container" > 
-        <div className={statusClass}>
+    if(this.props.showButtons) {
+      return (
+        <div className="comfortscore-slide-container"> 
+          <div className={statusClass}>
+            <div className="comfortscore-param-icons">
+              {this.props.targets.map(target =>
+                <div className="comfortscore-param">
+                  <img alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
+                  <p className="comfortscore-label">{target}</p>
+                </div>
+              )}
+            </div>
+            <h3>{this.props.title}</h3>          
+            <div className="comfortscore-text"><p>{this.props.description}</p></div>
+          </div>
+          <div className="comfortscore-swiper-actions">
+              <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>
+              <button onClick={this.props.setWillDo} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-green">Vil gøre</button>
+              <button onClick={this.props.setClear} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-red">Nej, tak</button>
+          </div>
+        </div>
+      )
+    } else {
+      return(
+        <div className='comfortscore-card'>
           <div className="comfortscore-param-icons">
             {this.props.targets.map(target =>
               <div className="comfortscore-param">
@@ -32,16 +54,9 @@ class Card extends Component {
           <h3>{this.props.title}</h3>          
           <div className="comfortscore-text"><p>{this.props.description}</p></div>
         </div>
-        {this.props.showButtons &&
-        <div className="comfortscore-swiper-actions">
-            <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>
-            <button onClick={this.props.setWillDo} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-green">Vil gøre</button>
-            <button onClick={this.props.setClear} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-red">Nej, tak</button>
-        </div>
-        }
-      </div>
-
-    )
+      )
+    }
+    
   }
 }
 

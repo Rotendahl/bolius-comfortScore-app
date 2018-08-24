@@ -3,9 +3,7 @@ import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
-import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
-import Title from '../components/Title.js'
 
 import '../styles/improvements.css'
 
@@ -49,17 +47,20 @@ class Result extends Component {
 
   render() {
     var settings = {
-      dots: true,
-      slidesToShow: 2,
-      slidesToScroll: 1,
-      vertical: true,
-      verticalSwiping: true,
-      className: "center",
+      slidesToShow: 1,
+      infinite: false,
+      speed: 500,
+      dots: false,
       arrows: false,
+      className: "slider",
       beforeChange: (current, next) => this.setState({
         activeSlide: next
       })
     };
+
+    var img =
+      "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
+      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
 
     if (this.state.address === undefined || this.state.address === '') {
         return (
@@ -67,52 +68,60 @@ class Result extends Component {
         )
     }
 
-    // Everything os okay, let's put data somewhere we can grab it
+
 
     return(
-        <div className="container">
-        <input type="hidden" id="comfortscorewidget-app-data" value="" />
-        <Title title={'Dit Resultat'}/>
-        <ScoreStatus
-          current={this.state.currentScore}
-          potential={this.state.potentialScore}
-        />
-        <TextRow text={'Du har valgt følgende tiltag, som kan forbedre komforten i dit hus'}/>
-
-        <div className="row" style={{margin: "8% 0%"}}>
-          <div className="col-1" >
-            <button  onClick={this.previous} className="nav-btn-v btn btn-dark">↑</button>
-            <button  onClick={this.next} className="nav-btn-v btn btn-dark">↓</button>
-          </div>
-          <div className="col-11" style={{height: "500px"}}>
-            <Slider ref={c => (this.slider = c)} {...settings}>
-              {this.state.cards.map((card, index) =>
-                <Card title={card.title} description={card.description}
-                  key={index} done={card.done} willDo={card.willDo}
-                  targets={card.targets}
-                />)
-              }
-            </Slider>
-          </div>
-        </div >
-        <div className="resultBox">
-          <h1 className="text-center">Vil du gemme dit resultat?</h1>
-          <p>
-            Du kan vælge at sende resultaten til din e-mail som PDF eller
-            gemme den i Mit Bolius. Du får desuden relevante links til videre
-            læsning om de tiltag du har udvist interesse.
-          </p>
-            <div className="d-flex justify-content-between w-80">
-              <button className="btn text-left" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
-              <button className="btn text-right" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
+      <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <div className="comfortscore-top comfortscore-activated">
+          <h2><strong>Resume</strong> for {this.state.address}</h2>
+        </div>
+        <div className="comfortscore-content">
+          <div className="comfortscore-twocol">
+            <div className="comfortscore-col">
+              <ScoreStatus
+                current={this.state.currentScore}
+                potential={this.state.potentialScore}
+              />
+            </div>
+            <div className="comfortscore-col">
+              <div className="comfortscore-map"><img alt="house" src={img}/></div>
             </div>
           </div>
-          <Footer text = {
-            "Vil du have mere inspiration og rådgivning om komfort, indeklima og renovering se mere her"}
-            link={'somewhere'}
-            linkText={'Læs Mere'}
-            />
+          <div className="comfortscore-list">
+            <div className="comfortscore-text">
+              <TextRow text={'Du har valgt følgende tiltag, som kan forbedre komforten i dit hus'}/>
+            </div>
+            {this.state.cards.map((card, index) =>
+              <Card title={card.title} description={card.description}
+                key={index} done={card.done} willDo={card.willDo}
+                targets={card.targets} showButtons={false}
+              />)
+            }
+          </div>
         </div>
+        <div className="comfortscore-action">
+          <div className="comfortscore-box">
+            <h3>Vil du få tilsendt dit resultat på mail?</h3>
+            <p>Send resultaten til din e-mail som PDF. Du får desuden relevante links til videre
+              læsning om de tiltag du har udvist interesse.</p>
+            <div className="comfortscore-field-wrap">
+              <input type="email" className="comfortscore-email-field" placeholder="Indtast din e-mailadresse"/>
+            </div>
+            <div className="comfortscore-field-wrap">
+              <input type="checkbox" className="comfortscore-check-field"/>
+              <label className="comfortscore-check-label">
+                Jeg vil gerne modtage relevante links om energirenovering
+              </label>
+            </div>
+            <button className="comfortscore-btn" id="comfortscorewidget-send-btn">Send mig en PDF</button>
+          </div>
+          <div className="comfortscore-box">
+            <h3>Vil du gemme dit resultat på Mit Bolius</h3>
+            <p>Du bliver bedt om at logge på aller oprette profil for at gemme resultatet</p>
+            <button className="comfortscore-btn" id="comfortscorewidget-save-btn">Gem i Mit Bolius</button>
+          </div>
+        </div>
+      </div>
     )
   }
 }

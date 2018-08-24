@@ -1,44 +1,50 @@
-.comfortscore-container .potential {
+.comfortscore-potential {
     background: #02576d;
     z-index: 1;
-    margin: 2em 0 0 -1.2em;
-    font-size: 1.2em;
+    margin-left: -1em;
+}
+@media (min-width: 480px) {
+	.comfortscore-potential {
+		font-size: 1.2em;
+		margin: 2em 0 0 -1.2em;
+	}
+}
+@media (min-width: 980px) {
+	.comfortscore-potential {
+		font-size: 1.5em;
+		margin-left: -1.5em;
+	}
 }
 
-.comfortscore-container .potential .score,
-.comfortscore-container .potential .label {
+.comfortscore-potential .comfortscore-score,
+.comfortscore-potential .comfortscore-label {
     color: white;
 }
 
-.comfortscore-container .finalscore {
+.comfortscore-final-score {
     position: static;
-    justify-content: center;
-    margin-top: 1em;
+    justify-content: center;    
+}
+@media (min-width: 480px) {
+	.comfortscore-final-score {
+		margin-top: 1em;
+	}
 }
 
-.nav-btn {
-    font-size: 24px;
+.comfortscore-swiper {
+	margin-top: 1em;
 }
 
-.nav-btn-v {
-    font-size: 24px;
-    text-align: left;
-    display: block;
-    width: 90%;
-    margin: 5%;
-    height: 45%;
+.comfortscore-box {
+	width: 100%;
+	margin-bottom: 1em;
+}
+@media (min-width: 480px) {
+	.comfortscore-box {
+		width: 47.78%;
+	}
 }
 
-.resultBox {
-    border: 1px solid black;
-    text-align: center;
-    padding: 20px;
-}
-
-.resultBox button {
-    margin: auto;
-}
-
-.resultBox button:hover {
-    background-color: #98C99D;
+.comfortscore-field-wrap {
+	margin: 1em 0;
 }

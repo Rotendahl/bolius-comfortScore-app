@@ -1,4 +1,4 @@
-.comfortscore-container .twocol {
+.comfortscore-twocol {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -6,23 +6,33 @@
 }
 
 @media (min-width: 480px) {
-    .comfortscore-container .twocol {
+    .comfortscore-twocol {
         flex-direction: row-reverse;
     }
 }
 
-.comfortscore-container .twocol .col {
+.comfortscore-col {
     width: 100%;
     position: relative;
 }
 
 @media (min-width: 480px) {
-    .comfortscore-container .twocol .col {
+    .comfortscore-col {
         width: 47.78%;
     }
 }
 
-.comfortscore-container .map {
+.comfortscore-sliders {
+    margin: 1em 0;
+}
+
+@media (min-width: 480px) {
+    .comfortscore-sliders {
+        margin-top: 0;
+    } 
+}
+
+.comfortscore-map {
     position: relative;
     width: 100%;
     height: 0;
@@ -31,7 +41,7 @@
     background: #4A848A;
 }
 
-.comfortscore-container .map img {
+.comfortscore-map img {
     position: absolute;
     width: 100%;
     height: auto;
@@ -39,7 +49,7 @@
     transform: translateY(-50%);
 }
 
-.comfortscore-container .komforscore {
+.comfortscore-wrapper {
     position: absolute;
     top: 1em;
     right: 1em;
@@ -47,8 +57,8 @@
     display: flex;
 }
 
-.comfortscore-container .current,
-.comfortscore-container .potential {
+.comfortscore-current,
+.comfortscore-potential {
     width: 8em;
     height: 8em;
     margin: 0;    
@@ -62,20 +72,26 @@
     text-align: center;
     position: relative;
     z-index: 2;
+    font-size: 0.8em;
 }
 
-.comfortscore-container .score {
+@media (min-width: 480px) {
+    .comfortscore-current,
+    .comfortscore-potential {
+        font-size: 1em;
+    }
+}
+
+.comfortscore-score {
     font-size: 2.875em;
     font-family: 'nationaleregular', sans-serif;
     color: #02576d;
+}
+
+.comfortscore-current .comfortscore-score {
     opacity: 0;
     -webkit-animation: zoomIn 0.75s ease-out forwards;
     animation: zoomIn 0.75s ease-out forwards;
-}
-
-.comfortscore-container p {
-    font-size: 15px;
-    line-height: 1.2;
 }
 
 @-webkit-keyframes zoomIn {

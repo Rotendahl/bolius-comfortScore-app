@@ -19,7 +19,7 @@ class Improvements extends Component {
 
     if (state.address !== undefined && state.address !== '') {
       state.potentialScore = state.currentScore;
-      state.animate = false;
+      state.animate = true;
 
       var improwMass = 100 - state.potentialScore;
       var unit = improwMass / state.cards.length;
@@ -81,15 +81,26 @@ class Improvements extends Component {
   }
 
   next() {
-    this.slider.slickNext();
-    this.setState({
-      animate: true
-    })
+    var that = this,
+        elem = null,
+        elements = document.getElementsByClassName('comfortscore-potential');
+    if (elements !== undefined) {
+        elem = elements[0];
+        elem.classList.remove('heartbeat');
+    }
+
+    setTimeout(function() {
+        that.slider.slickNext();
+        that.setState({
+          animate: true
+        });
+        elem.classList.add('heartbeat');
+    }, 500);
   }
   previous() {
     this.slider.slickPrev();
     this.setState({
-      animate: false
+      animate: true
     })
   }
 

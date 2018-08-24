@@ -7,28 +7,38 @@ import '../styles/card.css'
 class Card extends Component {
   render() {
     var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
+    var statusClass;
+    if (this.props.done && this.props.showButtons) {
+      statusClass = 'comfortscore-card comfortscore-done';
+    } else if (this.props.willDo && this.props.showButtons) {
+      statusClass = 'comfortscore-card comfortscore-will';
+    } else if (this.props.clear && this.props.showButtons) {
+      statusClass = 'comfortscore-card comfortscore-never';
+    } else {
+      statusClass = 'comfortscore-card';
+    }
 
     return(
-      <div className="card" >
-        <h3>{this.props.title}</h3>
-        {this.props.done && <span className="status done">Done</span> }
-        {this.props.willDo && <span className="status will">Will do</span> }
-        {this.props.clear && <span className="status never">Never</span> }
-
-        <div className="param-icons">
-          {this.props.targets.map(target =>
-            <div className="param">
-              <img alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
-              <p className="label">{target}</p>
-            </div>
-          )}
+      <div className="comfortscore-slide-container" > 
+        <div className={statusClass}>
+          <div className="comfortscore-param-icons">
+            {this.props.targets.map(target =>
+              <div className="comfortscore-param">
+                <img alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
+                <p className="comfortscore-label">{target}</p>
+              </div>
+            )}
+          </div>
+          <h3>{this.props.title}</h3>          
+          <div className="comfortscore-text"><p>{this.props.description}</p></div>
         </div>
-        <p>{this.props.description}</p>
-        <div className="swiper-actions">
-            <button onClick={this.props.setDone} className="btn btn-light btn-yellow">Har gjort</button>
-            <button onClick={this.props.setWillDo} className="btn btn-light btn-green">Vil gøre</button>
-            <button onClick={this.props.setClear} className="btn btn-light btn-red">Nej, tak</button>
+        {this.props.showButtons &&
+        <div className="comfortscore-swiper-actions">
+            <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>
+            <button onClick={this.props.setWillDo} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-green">Vil gøre</button>
+            <button onClick={this.props.setClear} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-red">Nej, tak</button>
         </div>
+        }
       </div>
 
     )

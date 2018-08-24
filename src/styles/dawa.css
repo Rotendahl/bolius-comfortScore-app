@@ -1,23 +1,23 @@
-.comfortscore-container .autocomplete-container {
+.comfortscore-autocomplete-container {
     /* relative position for at de absolut positionerede forslag får korrekt placering.*/
     position: relative;
     width: 100%;
     margin: 0.5em 0;
 }
 @media (min-width: 480px) {
-    .comfortscore-container .autocomplete-container {
+    .comfortscore-autocomplete-container {
         width: 68%;
         margin-bottom: 0;
     }
 }
 @media (min-width: 900px) {
-    .comfortscore-container .autocomplete-container {
+    .comfortscore-autocomplete-container {
         width: 31%;
         margin-top: 0;
     }
 }
 
-.comfortscore-container input[type="text"] {
+.comfortscore-dawa-autocomplete-input {
     display: inline-block;
     width: 100%;
     font-family: 'nationalemedium', sans-serif;
@@ -29,7 +29,7 @@
     position: relative;
     z-index: 2;
 }
-.comfortscore-container input[type="text"]:focus {
+.comfortscore-dawa-autocomplete-input:focus {
     outline: none;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }

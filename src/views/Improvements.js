@@ -3,9 +3,7 @@ import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
-import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
-import Title from '../components/Title.js'
 
 import '../styles/improvements.css'
 import {
@@ -129,30 +127,30 @@ class Improvements extends Component {
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
-        <div className="comfortscore-top activated">
+        <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Forslag</strong> for {this.state.address}</h2>
         </div>
         <div className="comfortscore-content">
-          <div className="twocol">
-            <div className="col">
+          <div className="comfortscore-twocol">
+            <div className="comfortscore-col">
               <ScoreStatus
                 current={this.state.currentScore}
                 potential={this.state.potentialScore}
                 animate={this.state.animate}
               />
-              <div className="text">
+              <div className="comfortscore-text">
                 <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
                   hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
                 />
               </div>
             </div>
-            <div className="col">
-              <div className="swiper">
+            <div className="comfortscore-col">
+              <div className="comfortscore-swiper">
                 <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
                     <Card title={card.title} description={card.description} key={card.key}
                     done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets}
-                    setDone={this.done} setWillDo={this.willDo} setClear={this.clear}
+                    setDone={this.done} setWillDo={this.willDo} setClear={this.clear} showButtons={true}
                     />)
                   }
                 </Slider>
@@ -161,11 +159,11 @@ class Improvements extends Component {
           </div>
         </div>
         <div className="comfortscore-action">
-          <button className="btn btn-back" onClick={this.goBack}>Tilbage</button>
-          <p className="label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="btn btn-success" onClick={this.resultPage}>Ja, vis resultat</button>
+          <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
+          <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
+          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.resultPage}>Ja, vis resultat</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
-          <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
+          <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>
       </div>
     )

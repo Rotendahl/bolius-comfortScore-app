@@ -9,7 +9,7 @@ class Slider extends Component {
     super(props);
     this.state = {
       val: this.props.value,
-      imgClass: 'slider image-' + (Math.floor(this.props.value / 20) % 5)
+      imgClass: 'comfortscore-slider comfortscore-image-' + (Math.floor(this.props.value / 20) % 5)
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -19,7 +19,7 @@ class Slider extends Component {
     this.props.updateScore(val, this.props.index)
     this.setState({
       val: val,
-      imgClass: 'slider image-' + (Math.floor((val - 1) / 20) % 5)
+      imgClass: 'comfortscore-slider comfortscore-image-' + (Math.floor((val - 1) / 20) % 5)
     });
   }
 
@@ -28,19 +28,19 @@ class Slider extends Component {
 
     const paramLogo = rootDir + '/assets/param-icons/' + this.props.parameter + '.png';
     return(      
-      <div className="row">
-        <div className="param">
+      <div className="comfortscore-row">
+        <div className="comfortscore-param">
           <img alt="param" src={paramLogo}/>
-          <p className="label">{this.props.parameter}</p>
+          <p className="comfortscore-label">{this.props.parameter}</p>
         </div>
-        <div className="slider-col">
-          <div className="slide-container">
+        <div className="comfortscore-slider-col">
+          <div className="comfortscore-slide-container">
             <input type="range" onChange={this.handleChange} min="1" max="100"
               value={this.state.val} className={this.state.imgClass}
             />
           </div>
-          <p className="label">Utilfreds</p>
-          <p className="label">Tilfreds</p>
+          <p className="comfortscore-label">Utilfreds</p>
+          <p className="comfortscore-label">Tilfreds</p>
         </div>
       </div>
     )

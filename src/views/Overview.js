@@ -3,9 +3,7 @@ import { Redirect } from 'react-router';
 
 import '../styles/overview.css'
 import Slider from '../components/slider.js'
-import Footer from '../components/Footer.js'
 import TextRow from '../components/TextRow.js'
-import Title from '../components/Title.js'
 import {
   MockJSON
 } from '../components/MockJSON.js'
@@ -58,23 +56,23 @@ class Overview extends Component {
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
-        <div className="comfortscore-top activated">
-          <h2><strong>Test</strong>: {this.state.address}</h2>
+        <div className="comfortscore-top comfortscore-activated">
+          <h2><strong>Resultat</strong> for {this.state.address}</h2>
         </div>
         <div className="comfortscore-content">
-          <div className="twocol">
-            <div className="col">
-              <div className="komforscore">
-                <p className="current">
-                  <span className="score">{Math.floor(this.state.currentScore)}%</span>
-                  <span className="label">Din nuværende komfortscore</span></p>
+          <div className="comfortscore-twocol">
+            <div className="comfortscore-col">
+              <div className="comfortscore-wrapper">
+                <p className="comfortscore-current">
+                  <span className="comfortscore-score">{Math.floor(this.state.currentScore)}%</span>
+                  <span className="comfortscore-label">Din nuværende komfortscore</span></p>
               </div>
-              <div className="map"><img alt="house" src={img}/></div>
-              <div className="text"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
+              <div className="comfortscore-map"><img alt="house" src={img}/></div>
+              <div className="comfortscore-text"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
               vurderet komforten på de nedenstående parametre sådan her - juster på\
               parametrene, hvis du ikke er enig i komfortvurderingerne'}/></div>
             </div>
-            <div className="col sliders">
+            <div className="comfortscore-col comfortscore-sliders">
               {this.state.sliders.map(
                 (slider, index) =>
                 <Slider
@@ -85,15 +83,15 @@ class Overview extends Component {
                   value={this.state.sliders[index].value}/>
               )}
             {/* TODO Add class animate to show bubble and remove it after 2s */}
-              <p className="bubble">Træk i ansigter indtil de afspejler hvordan du oplever komfort i dit hjem.</p>
+              <p className="comfortscore-bubble">Træk i ansigter indtil de afspejler hvordan du oplever komfort i dit hjem.</p>
             </div>
           </div>
         </div>
         <div className="comfortscore-action">
-          <p className="label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
-          <button className="btn btn-success" onClick={this.improvementsPage}>Ja, inspirer mig</button>
+          <p className="comfortscore-label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
+          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.improvementsPage}>Ja, inspirer mig</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
-          <p className="bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
+          <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>
       </div>
     )

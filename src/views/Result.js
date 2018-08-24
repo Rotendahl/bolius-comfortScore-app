@@ -70,6 +70,8 @@ class Result extends Component {
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
+        <input type="hidden" id="comfortscorewidget-app-data" value="" />
+        
         <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Resume</strong> for {this.state.address}</h2>
         </div>

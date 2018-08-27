@@ -120,7 +120,7 @@ class AddressInput extends Component {
           <button className="comfortscore-btn comfortscore-btn-success" onClick={this.overViewPage}>Se dit resultat</button>
 
         </div>
-        <div className="comfortscore-content">
+        <div className="comfortscore-content comfortscore-hidden">
           <p className="comfortscore-teaser"></p>
         </div>
       </div>

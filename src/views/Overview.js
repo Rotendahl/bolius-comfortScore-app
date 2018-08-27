@@ -58,6 +58,7 @@ class Overview extends Component {
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Resultat</strong> for {this.state.address}</h2>
+          <button className="comfortscore-btn comfortscore-btn-close">Luk</button>
         </div>
         <div className="comfortscore-content">
           <div className="comfortscore-twocol">

@@ -32,13 +32,14 @@
 .comfortscore-dawa-autocomplete-input,
 .comfortscore-email-field {
     display: inline-block;
-    width: 100%;
+    width: 100% !important;
+    float: none !important;
     font-family: 'nationalemedium', sans-serif;
     font-size: 1em;
-    padding: 0 0.5em;
-    border: none;
-    border-radius: 14.5px;
-    height: 1.8125em;
+    padding: 0 0.5em !important;
+    border: none !important;
+    border-radius: 14.5px !important;
+    height: 1.8125em !important;
     position: relative;
     z-index: 2;
 }

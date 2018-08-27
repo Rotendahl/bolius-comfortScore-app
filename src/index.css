@@ -32,7 +32,9 @@
     }
 }
 
-.comfortscore-btn:focus {
+.comfortscore-btn:focus,
+.comfortscore-btn:hover,
+.comfortscore-btn:active {
     outline: none;
     background: #bde1da;
     color: #02576d;
@@ -241,4 +243,32 @@
     font-family: 'nationaleregular', sans-serif;
     line-height: 1.4;
     margin-top: 0;
+}
+
+.comfortscore-hidden {
+    display: none;
+}
+
+.comfortscore-btn-close {
+    color: transparent;
+    background: white url('assets/close_icon.svg') no-repeat 50%;
+    background-size: 22px;
+    padding: 0 !important;
+    opacity: 0.8;
+    width: 2.4em;
+    height: 2.4em;
+    border-radius: 50%;
+    border-color: #AEB5BA;
+    position: absolute;
+    top: -0.4em;
+    right: -0.4em;
+}
+
+.comfortscore-btn-close:hover,
+.comfortscore-btn-close:focus,
+.comfortscore-btn-close:active {
+    color: transparent;
+    background: white url('assets/close_icon.svg') no-repeat 50%;
+    background-size: 22px;
+    opacity: 1;
 }

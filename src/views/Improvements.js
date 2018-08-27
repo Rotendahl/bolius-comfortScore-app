@@ -6,6 +6,7 @@ import Card from '../components/Card.js'
 import TextRow from '../components/TextRow.js'
 
 import '../styles/improvements.css'
+import '../styles/slick.css'
 import {
   MockJSON
 } from '../components/MockJSON.js'

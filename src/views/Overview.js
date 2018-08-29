@@ -4,6 +4,7 @@ import { Redirect } from 'react-router';
 import '../styles/overview.css'
 import Slider from '../components/slider.js'
 import TextRow from '../components/TextRow.js'
+import ButtonClose from '../components/ButtonClose.js'
 import {
   MockJSON
 } from '../components/MockJSON.js'
@@ -58,7 +59,7 @@ class Overview extends Component {
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Resultat</strong> for {this.state.address}</h2>
-          <button className="comfortscore-btn comfortscore-btn-close">Luk</button>
+          <ButtonClose {...this.props} />
         </div>
         <div className="comfortscore-content">
           <div className="comfortscore-twocol">

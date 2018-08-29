@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
 import TextRow from '../components/TextRow.js'
+import ButtonClose from '../components/ButtonClose.js'
 
 import '../styles/improvements.css'
 import '../styles/slick.css'
@@ -159,7 +160,7 @@ class Improvements extends Component {
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Forslag</strong> for {this.state.address}</h2>
-          <button className="comfortscore-btn comfortscore-btn-close">Luk</button>
+          <ButtonClose {...this.props} />
         </div>
         <div className="comfortscore-content">
           <div className="comfortscore-twocol">

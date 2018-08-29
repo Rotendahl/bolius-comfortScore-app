@@ -24,7 +24,7 @@ class Result extends Component {
             willDos.push(cards[i])
           }
         }
-        this.state.cards = willDos;
+        this.state.willDos = willDos;
     }
 
     this.goBack = this.goBack.bind(this);
@@ -71,13 +71,13 @@ class Result extends Component {
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <input type="hidden" id="comfortscorewidget-app-data" value="" />
-        
+
         <div className="comfortscore-top comfortscore-activated">
           <h2><strong>Resume</strong> for {this.state.address}</h2>
           <button className="comfortscore-btn comfortscore-btn-close">Luk</button>
         </div>
         <div className="comfortscore-content">
-          <div className="comfortscore-twocol">            
+          <div className="comfortscore-twocol">
             <div className="comfortscore-col">
               <ScoreStatus
                 current={this.state.currentScore}
@@ -94,7 +94,7 @@ class Result extends Component {
           <div className="comfortscore-list">
             <h2 className="comfortscore-title-centered">Dine tiltag</h2>
             <div className="comfortscore-card-list">
-              {this.state.cards.map((card, index) =>
+              {this.state.willDos.map((card, index) =>
                 <Card title={card.title} description={card.description}
                   key={index} done={card.done} willDo={card.willDo}
                   targets={card.targets} showButtons={false}
@@ -103,7 +103,7 @@ class Result extends Component {
             </div>
           </div>
           <h2 className="comfortscore-title-centered">Gem dit resultat</h2>
-          <div className="comfortscore-twocol">            
+          <div className="comfortscore-twocol">
             <div className="comfortscore-col comfortscore-box">
               <h3>Vil du gemme dit resultat på Mit Bolius</h3>
               <div className="comfortscore-text">

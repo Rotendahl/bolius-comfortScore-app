@@ -78,6 +78,7 @@
     font-family: 'nationalebold', sans-serif;
     text-transform: uppercase;
     font-weight: normal;
+    color: black;
 }
 
 .comfortscore-top h2::before {

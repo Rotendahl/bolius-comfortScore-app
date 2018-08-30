@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 533.33 533.33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8fccbe;
+      }
+
+      .cls-2 {
+        fill: #2c3e50;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: #2c3e50;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 21.33px;
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <title>emojis_ver2_tilweb</title>
+  <g id="_4-utilfreds" data-name="4-utilfreds">
+    <circle class="cls-1" cx="266.67" cy="266.67" r="256"/>
+    <path class="cls-2" d="M266.67,533.33A266.67,266.67,0,0,1,78.1,78.1,266.67,266.67,0,0,1,455.23,455.23,264.9,264.9,0,0,1,266.67,533.33Zm0-512c-135.28,0-245.34,110.06-245.34,245.34S131.39,512,266.67,512,512,401.94,512,266.67,401.94,21.33,266.67,21.33Z"/>
+    <path class="cls-3" d="M123.73,407.47a153.3,153.3,0,0,1,284.8,1.06"/>
+    <circle class="cls-4" cx="362.67" cy="194.13" r="40.53"/>
+    <circle class="cls-4" cx="170.67" cy="194.13" r="40.53"/>
+    <circle class="cls-3" cx="362.67" cy="194.13" r="40.53"/>
+    <circle class="cls-3" cx="170.67" cy="194.13" r="40.53"/>
+  </g>
+</svg>

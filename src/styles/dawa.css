@@ -22,26 +22,22 @@
         margin-bottom: 0;
     }
 }
-@media (min-width: 900px) {
-    .comfortscore-autocomplete-container {
-        width: 31%;
-        margin-top: 0;
-    }
-}
 
-.comfortscore-dawa-autocomplete-input,
-.comfortscore-email-field {
+input.comfortscore-dawa-autocomplete-input,
+input.comfortscore-email-field {
     display: inline-block;
-    width: 100% !important;
-    float: none !important;
+    width: 100%;
+    float: none;
     font-family: 'nationalemedium', sans-serif;
     font-size: 1em;
-    padding: 0 0.5em !important;
-    border: none !important;
-    border-radius: 14.5px !important;
-    height: 1.8125em !important;
+    padding: 0 0.5em;
+    border: none;
+    border-radius: 14.5px;
+    height: 1.8125em;
     position: relative;
     z-index: 2;
+    margin: 0;
+    vertical-align: initial;
 }
 .comfortscore-dawa-autocomplete-input:focus,
 .comfortscore-email-field:focus {

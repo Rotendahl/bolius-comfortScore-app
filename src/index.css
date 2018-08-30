@@ -25,6 +25,9 @@
     border-radius: 14.5px;
     height: 1.9333rem;
     line-height: 1;
+    min-width: 0;
+    margin: 0;
+    vertical-align: initial;
 }
 @media (min-width: 600px) {
     .comfortscore-btn {
@@ -65,12 +68,6 @@
 @media (min-width: 700px) {
     .comfortscore-top h2 {
         font-size: 22px;
-    }
-}
-
-@media (min-width: 900px) {
-    .comfortscore-top h2 {
-        width: 50%;
     }
 }
 
@@ -151,13 +148,6 @@
 @media (min-width: 480px) {
     .comfortscore-btn-success {
         max-width: 31%;
-    }
-}
-
-
-@media (min-width: 900px) {
-    .comfortscore-btn-success {
-        margin-top: 0;
     }
 }
 
@@ -248,28 +238,4 @@
 
 .comfortscore-hidden {
     display: none;
-}
-
-.comfortscore-btn-close {
-    color: transparent;
-    background: white url('assets/close_icon.svg') no-repeat 50%;
-    background-size: 22px;
-    padding: 0 !important;
-    opacity: 0.8;
-    width: 2.4em;
-    height: 2.4em;
-    border-radius: 50%;
-    border-color: #AEB5BA;
-    position: absolute;
-    top: -0.4em;
-    right: -0.4em;
-}
-
-.comfortscore-btn-close:hover,
-.comfortscore-btn-close:focus,
-.comfortscore-btn-close:active {
-    color: transparent;
-    background: white url('assets/close_icon.svg') no-repeat 50%;
-    background-size: 22px;
-    opacity: 1;
 }

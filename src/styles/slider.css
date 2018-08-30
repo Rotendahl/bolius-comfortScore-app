@@ -48,6 +48,7 @@
 }
 .comfortscore-slider:focus {
     outline: none;
+    box-shadow: none;
 }
 .comfortscore-slider::-webkit-slider-runnable-track {
     width: 100%;

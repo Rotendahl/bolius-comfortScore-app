@@ -8,6 +8,7 @@ import Improvements from './views/Improvements.js'
 import Result from './views/Result.js'
 import AddressInput from './views/AddressInput.js'
 
+
 /*
 * INPORTANT!
 * Make sure that props AND store is delivered to components through

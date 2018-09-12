@@ -10,7 +10,7 @@ var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY,
     widgetId = process.env.REACT_APP_COMFORTSCORE_WIDGET_ID;
 
 ReactDOM.render((
-  <Router>
+  <Router hashType="noslash">
     <App store={store} />
   </Router>
 ), document.getElementById(widgetId));

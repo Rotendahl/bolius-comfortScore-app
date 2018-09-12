@@ -6,6 +6,7 @@ import Card from '../components/Card.js'
 import TextRow from '../components/TextRow.js'
 
 import '../styles/improvements.css'
+import { Tracking } from '../components/Tracking.js'
 
 class Result extends Component {
   constructor(props) {
@@ -68,6 +69,9 @@ class Result extends Component {
         )
     }
 
+    // Track load event
+    Tracking.trackEvent('load', 'result', false);
+
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <input type="hidden" id="comfortscorewidget-app-data" value="" />
@@ -113,7 +117,9 @@ class Result extends Component {
             <div className="comfortscore-col comfortscore-box">
               <h3>Vil du få tilsendt dit resultat på mail?</h3>
               <div className="comfortscore-field-wrap">
-                <input type="email" className="comfortscore-email-field" placeholder="Indtast din e-mailadresse"/>
+                <form>
+                    <input type="email" className="comfortscore-email-field" required="required" placeholder="Indtast din e-mailadresse"/>
+                </form>
               </div>
               <div className="comfortscore-notice">
                 <p>Når du modtager resultatet på mail, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>

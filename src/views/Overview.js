@@ -9,6 +9,7 @@ import {
 } from '../components/MockJSON.js'
 
 import Improvements from './Improvements.js'
+import { Tracking } from '../components/Tracking.js'
 
 class Overview extends Component {
   constructor(props) {
@@ -54,6 +55,9 @@ class Overview extends Component {
         )
     }
 
+    // Track load event
+    Tracking.trackEvent('load', 'overview', false);
+
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
@@ -89,7 +93,7 @@ class Overview extends Component {
         </div>
         <div className="comfortscore-action">
           <p className="comfortscore-label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
-          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.improvementsPage}>Ja, inspirer mig</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'overview', noninteractive: false}" onClick={this.improvementsPage}>Ja, inspirer mig</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

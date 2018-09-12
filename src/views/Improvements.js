@@ -10,7 +10,7 @@ import '../styles/slick.css'
 import {
   MockJSON
 } from '../components/MockJSON.js'
-
+import { Tracking } from '../components/Tracking.js'
 
 class Improvements extends Component {
   constructor(props) {
@@ -155,6 +155,9 @@ class Improvements extends Component {
         )
     }
 
+    // Track load event
+    Tracking.trackEvent('load', 'improvements', false);
+
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
@@ -191,7 +194,7 @@ class Improvements extends Component {
         <div className="comfortscore-action">
           <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.resultPage}>Ja, vis resume</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Ja, vis resume</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

@@ -4,6 +4,7 @@ import '../styles/improvements.css'
 import '../styles/dawa.css'
 
 import { MockJSON } from '../components/MockJSON.js'
+import { Tracking } from '../components/Tracking.js'
 
 class AddressInput extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class AddressInput extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
-    this.overViewPage = this.overViewPage.bind(this)
+    this.overViewPage = this.overViewPage.bind(this);
   }
 
   handleChange(event) {
@@ -110,6 +111,8 @@ class AddressInput extends Component {
   render() {
     var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
 
+    Tracking.trackEvent('load', 'initial address', true);
+    
     return (
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top">
@@ -118,7 +121,7 @@ class AddressInput extends Component {
             <input type="text" className="comfortscore-dawa-autocomplete-input" id="dawa-autocomplete-input"
             value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>
           </div>
-          <button className="comfortscore-btn comfortscore-btn-success" onClick={this.overViewPage}>Se dit resultat</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}" onClick={this.overViewPage}>Se dit resultat</button>
 
         </div>
         <div className="comfortscore-content comfortscore-hidden">

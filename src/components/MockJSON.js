@@ -9,7 +9,7 @@ export const MockJSON = {
       "value": Math.floor(Math.random() * 100)
       },
     {
-      "name": "Temperatur",
+      "name": "Temp",
       "value": Math.floor(Math.random() * 100)
       },
     {
@@ -21,7 +21,7 @@ export const MockJSON = {
       "value": Math.floor(Math.random() * 100)
       },
     {
-      "name": "Dagslys",
+      "name": "Lys",
       "value": Math.floor(Math.random() * 100)
       }
     ],
@@ -39,7 +39,7 @@ export const MockJSON = {
       title: "Sol celler",
       done: false,
       willDo: false,
-      targets: ["Temperatur", "Dagslys"],
+      targets: ["Temp", "Lys"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
@@ -47,7 +47,7 @@ export const MockJSON = {
       title: "Renovation af loft",
       done: false,
       willDo: false,
-      targets: ["Temperatur"],
+      targets: ["Temp"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
@@ -55,7 +55,7 @@ export const MockJSON = {
       title: "Udskiftning af vinduer med 3 lags termoruder",
       done: false,
       willDo: false,
-      targets: ["Temperatur", "Dagslys", "Støj"],
+      targets: ["Temp", "Lys", "Støj"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
@@ -63,7 +63,7 @@ export const MockJSON = {
       title: "Sol celler",
       done: false,
       willDo: false,
-      targets: ["Dagslys", "Støj"],
+      targets: ["Lys", "Støj"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       },
     {
@@ -71,7 +71,7 @@ export const MockJSON = {
       title: "Renovation af loft",
       done: false,
       willDo: false,
-      targets: ["Temperatur"],
+      targets: ["Temp"],
       description: "Udskiftning af vinduer giver et mindre støj nieavu samt en bedre temperatur da det holder på varmen."
       }
     ]

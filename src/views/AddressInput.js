@@ -70,7 +70,7 @@ class AddressInput extends Component {
             "value": resp.draft * 10
             },
           {
-            "name": "Temperatur",
+            "name": "Temp",
             "value": resp.temperature * 10
             },
           {
@@ -82,7 +82,7 @@ class AddressInput extends Component {
             "value": resp.noise * 10
             },
           {
-            "name": "Dagslys",
+            "name": "Lys",
             "value": resp.light * 10
             }
           ]

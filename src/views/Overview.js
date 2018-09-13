@@ -20,6 +20,9 @@ class Overview extends Component {
 
     this.updateScore = this.updateScore.bind(this);
     this.improvementsPage = this.improvementsPage.bind(this);
+
+    // Track load event
+    Tracking.trackEvent('load', 'overview', false);
   }
 
   updateScore(newVal, key) {
@@ -54,9 +57,6 @@ class Overview extends Component {
             <Redirect to='/'  />
         )
     }
-
-    // Track load event
-    Tracking.trackEvent('load', 'overview', false);
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">

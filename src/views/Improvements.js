@@ -37,6 +37,9 @@ class Improvements extends Component {
     this.clear = this.clear.bind(this);
     this.goBack = this.goBack.bind(this);
     this.resultPage = this.resultPage.bind(this);
+
+    // Track load event
+    Tracking.trackEvent('load', 'improvements', false);
   };
 
   done() {
@@ -154,9 +157,6 @@ class Improvements extends Component {
             <Redirect to='/'  />
         )
     }
-
-    // Track load event
-    Tracking.trackEvent('load', 'improvements', false);
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">

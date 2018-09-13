@@ -17,6 +17,9 @@ class AddressInput extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.overViewPage = this.overViewPage.bind(this);
+
+    // Track load event
+    Tracking.trackEvent('load', 'initial address', true);
   }
 
   handleChange(event) {
@@ -111,8 +114,6 @@ class AddressInput extends Component {
   render() {
     var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
 
-    Tracking.trackEvent('load', 'initial address', true);
-    
     return (
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top">

@@ -29,6 +29,9 @@ class Result extends Component {
     }
 
     this.goBack = this.goBack.bind(this);
+
+    // Track load event
+    Tracking.trackEvent('load', 'result', false);
   }
   next() {
     this.slider.slickNext();
@@ -68,9 +71,6 @@ class Result extends Component {
             <Redirect to='/'  />
         )
     }
-
-    // Track load event
-    Tracking.trackEvent('load', 'result', false);
 
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">

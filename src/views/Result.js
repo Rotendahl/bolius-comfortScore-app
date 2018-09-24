@@ -99,6 +99,11 @@ class Result extends Component {
           </div>
           <div className="comfortscore-list">
             <h2 className="comfortscore-title-centered">Dine tiltag</h2>
+            {this.state.willDos.length <= 0 &&
+                <div align="center">
+                    <p>Du har ikke valgt nogle af vores løsninger for at forbedre komforten hjemme hos dig.</p>
+                    <p>Hvis dette er en fejl, så gå et trin tilbage og vælg blandt vores forslag.</p>
+                </div>}
             <div className="comfortscore-card-list">
               {this.state.willDos.map((card, index) =>
                 <Card title={card.title} description={card.description}

@@ -64,7 +64,8 @@ class Result extends Component {
 
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
-      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address;
+      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address,
+      rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
 
     if (this.state.address === undefined || this.state.address === '') {
         return (
@@ -92,7 +93,7 @@ class Result extends Component {
               <div className="comfortscore-abstract">
                 <h3>Sådan er testen lavet:</h3>
                 <TextRow text={'Du får en indikation baseret på huse, der minder om dit. Resultatet er baseret på en undersøgelse om komfort og energirenovering blandt boligejere, offentlige BBR-oplysninger samt energimærkningsrapporter fra EBAS.'}/>
-                <img className="comfortscore-partner-logo" alt="EBAS logo" src="/assets/ebas_logo.png"/>
+                <img className="comfortscore-partner-logo" alt="EBAS logo" src={rootDir + '/assets/ebas_logo.png'} />
               </div>
             </div>
           </div>

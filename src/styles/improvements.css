@@ -99,3 +99,11 @@
     font-family: 'nationalebold', sans-serif;
     margin: 1em 0;
 }
+
+.comfortscore-container .comfortscore-partner-logo {
+	width: auto;
+}
+
+.comfortscore-abstract h3 {
+	margin: 0 0 0.2rem;
+}

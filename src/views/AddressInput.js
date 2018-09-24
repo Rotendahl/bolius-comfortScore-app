@@ -117,7 +117,7 @@ class AddressInput extends Component {
     return (
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top">
-          <h2><strong>Test</strong>: Kan dit indeklima blive bedre?</h2>
+          <h2><strong>Test</strong>: Hvor god er komforten i dit hus?</h2>
           <div className="comfortscore-autocomplete-container">
             <input type="text" className="comfortscore-dawa-autocomplete-input" id="dawa-autocomplete-input"
             value={this.state.address} onChange={this.handleChange} placeholder="Indtast din adresse"/>

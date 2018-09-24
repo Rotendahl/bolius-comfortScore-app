@@ -77,7 +77,7 @@ class Result extends Component {
         <input type="hidden" id="comfortscorewidget-app-data" value="" />
 
         <div className="comfortscore-top comfortscore-activated">
-          <h2><strong>Resume</strong> for {this.state.address}</h2>
+          <h2><strong>Forslag</strong> til {this.state.address}</h2>
         </div>
         <div className="comfortscore-content">
           <div className="comfortscore-twocol">
@@ -90,7 +90,9 @@ class Result extends Component {
             </div>
             <div className="comfortscore-col">
               <div className="comfortscore-abstract">
-                <TextRow text={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}/>
+                <h3>Sådan er testen lavet:</h3>
+                <TextRow text={'Du får en indikation baseret på huse, der minder om dit. Resultatet er baseret på en undersøgelse om komfort og energirenovering blandt boligejere, offentlige BBR-oplysninger samt energimærkningsrapporter fra EBAS.'}/>
+                <img className="comfortscore-partner-logo" alt="EBAS logo" src="/assets/ebas_logo.png"/>
               </div>
             </div>
           </div>
@@ -108,14 +110,15 @@ class Result extends Component {
           <h2 className="comfortscore-title-centered">Gem dit resultat</h2>
           <div className="comfortscore-twocol">
             <div className="comfortscore-col comfortscore-box">
-              <h3>Vil du gemme dit resultat på Mit Bolius</h3>
-              <div className="comfortscore-text">
-                <p>Du bliver bedt om at logge på aller oprette profil for at gemme resultatet</p>
+              <h3>Gem i Mit Bolius</h3>
+              <div className="comfortscore-notice">
+                <p>Du bliver bedt om at logge på eller oprette profil for at gemme resultatet.</p>
+                <p>Når du gemmer resultatet på Mit Bolius, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
               </div>
               <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
             </div>
             <div className="comfortscore-col comfortscore-box">
-              <h3>Vil du få tilsendt dit resultat på mail?</h3>
+              <h3>Få det tilsendt i en e-mail</h3>
               <div className="comfortscore-field-wrap">
                 <form>
                     <input type="email" className="comfortscore-email-field" required="required" placeholder="Indtast din e-mailadresse"/>
@@ -124,7 +127,7 @@ class Result extends Component {
               <div className="comfortscore-notice">
                 <p>Når du modtager resultatet på mail, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
               </div>
-              <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig en PDF</button>
+              <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig e-mail</button>
             </div>
           </div>
         </div>

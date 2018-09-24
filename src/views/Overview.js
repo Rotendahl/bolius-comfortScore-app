@@ -72,9 +72,7 @@ class Overview extends Component {
                   <span className="comfortscore-label">Din nuværende komfortscore</span></p>
               </div>
               <div className="comfortscore-map"><img alt="house" src={img}/></div>
-              <div className="comfortscore-instruction"><TextRow text = {'Andre der bor i et hus, der minder om dette, har \
-              vurderet komforten på de nedenstående parametre sådan her - juster på\
-              parametrene, hvis du ikke er enig i komfortvurderingerne'}/></div>
+              <div className="comfortscore-instruction"><TextRow text = {'Resultatet viser, hvordan andre i lignende huse oplever komforten. Juster de små smileyer, så det passer til din oplevelse – så får du en ny score og forslag til, hvordan du kan forbedre komforten hjemme hos dig.'}/></div>
             </div>
             <div className="comfortscore-col comfortscore-sliders">
               {this.state.sliders.map(
@@ -92,7 +90,7 @@ class Overview extends Component {
           </div>
         </div>
         <div className="comfortscore-action">
-          <p className="comfortscore-label-btn">Se hvad du kan gøre ved dit hus for at forbedre din komfortscore?</p>
+          <p className="comfortscore-label-btn">Er du klar til at få forslag til forbedringer af dit hus?</p>
           <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'overview', noninteractive: false}" onClick={this.improvementsPage}>Ja, inspirer mig</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>

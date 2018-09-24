@@ -161,7 +161,7 @@ class Improvements extends Component {
     return(
       <div id="comfortscorewidget-container-setup" className="comfortscore-container">
         <div className="comfortscore-top comfortscore-activated">
-          <h2><strong>Forslag</strong> for {this.state.address}</h2>
+          <h2><strong>Forslag</strong> til {this.state.address}</h2>
         </div>
         <div className="comfortscore-content">
           <div className="comfortscore-twocol">
@@ -174,8 +174,7 @@ class Improvements extends Component {
             </div>
             <div className="comfortscore-col">
               <div className="comfortscore-instruction">
-                <TextRow text={'Vi har fundet 9 tiltag, der kan forbedre komforten i dit\
-                  hus. Du kan nu vælge ud de tiltag, du vil gå videre med.'}
+                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
                 />
               </div>
               <div className="comfortscore-swiper">
@@ -194,7 +193,7 @@ class Improvements extends Component {
         <div className="comfortscore-action">
           <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Ja, vis resume</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Vis liste</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

@@ -22,12 +22,12 @@ class ScoreStatus extends Component {
         {this.props.animate ?
           <p className="comfortscore-potential heartbeat">
             <span className="comfortscore-score">{Math.floor(this.props.potential) + 1}%</span>
-            <span className="comfortscore-label">Din potentiele komfortscore</span>
+            <span className="comfortscore-label">Din potentielle komfortscore</span>
           </p>
         :
           <p className="comfortscore-potential">
             <span className="comfortscore-score">{Math.floor(this.props.potential) + 1}%</span>
-            <span className="comfortscore-label">Din potentiele komfortscore</span>
+            <span className="comfortscore-label">Din potentielle komfortscore</span>
           </p>
         }
       </div>

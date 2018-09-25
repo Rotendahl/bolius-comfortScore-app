@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import '../styles/improvements.css'
 import '../styles/dawa.css'
 
-import { MockJSON } from '../components/MockJSON.js'
 import { Tracking } from '../components/Tracking.js'
 
 class AddressInput extends Component {
@@ -56,7 +55,7 @@ class AddressInput extends Component {
   overViewPage() {
     var xhttp = new XMLHttpRequest();
     var finalAddress = this.state.finalAddress;
-    var newState = MockJSON;
+    var newState = {};
     var that = this;
     var goNext = that.props.history.push;
 
@@ -92,7 +91,7 @@ class AddressInput extends Component {
           ]
 
         newState.sliders.map((slider => newState.currentScore += slider.value /
-          600 *
+          500 *
           100))
 
         // Save new state in store

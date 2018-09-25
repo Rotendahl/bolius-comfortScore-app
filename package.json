@@ -2,7 +2,6 @@
   "name": "komfort_score",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://bolius.dk/typo3conf/ext/bolius_embedded/Resources/Public/Apps/BoliusComfortscoreApp",
   "dependencies": {
     "animated": "^0.2.2",
     "axios": "^0.18.0",

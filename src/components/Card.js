@@ -31,7 +31,7 @@ class Card extends Component {
               )}
             </div>
             <h3>{this.props.title}</h3>
-            <div className="comfortscore-text"><p>{this.props.description}</p></div>
+            <div className="comfortscore-text"><p>{this.props.description}</p><p><a  target="_blank" href={this.props.read_more}>Læs mere</a></p></div>
           </div>
           <div className="comfortscore-swiper-actions">
               <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>

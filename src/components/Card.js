@@ -30,7 +30,7 @@ class Card extends Component {
                 </div>
               )}
             </div>
-            <h3>{this.props.title} : {this.props.prop / 100}%</h3>
+            <h3>{this.props.title}</h3>
             <div className="comfortscore-text"><p>{this.props.description}</p></div>
           </div>
           <div className="comfortscore-swiper-actions">
@@ -51,7 +51,7 @@ class Card extends Component {
               </div>
             )}
           </div>
-          <h3>{this.props.title} : {this.props.prop}</h3>
+          <h3>{this.props.title}</h3>
           <div className="comfortscore-text"><p>{this.props.description}</p></div>
         </div>
       )

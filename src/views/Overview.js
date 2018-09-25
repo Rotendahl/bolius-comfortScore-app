@@ -39,7 +39,7 @@ class Overview extends Component {
     improvementsPage() {
         var goNext = this.props.history.push,
           newState = this.state;
-
+        var that = this;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -67,6 +67,8 @@ class Overview extends Component {
                     cards.push(card)
                 }
                 newState.cards = cards
+                newState.activeSlide = 0
+                that.props.store.currentState = newState
                 goNext("/Improvements");
             }
         }

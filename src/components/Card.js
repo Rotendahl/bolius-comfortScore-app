@@ -20,17 +20,17 @@ class Card extends Component {
 
     if(this.props.showButtons) {
       return (
-        <div className="comfortscore-slide-container"> 
+        <div className="comfortscore-slide-container">
           <div className={statusClass}>
             <div className="comfortscore-param-icons">
-              {this.props.targets.map(target =>
-                <div className="comfortscore-param">
+              {this.props.targets.map((target, i) =>
+                <div key={i} className="comfortscore-param">
                   <img alt="param" src={rootDir + '/assets/param-icons/' + target + '.png'}/>
                   <p className="comfortscore-label">{target}</p>
                 </div>
               )}
             </div>
-            <h3>{this.props.title}</h3>          
+            <h3>{this.props.title}</h3>
             <div className="comfortscore-text"><p>{this.props.description}</p></div>
           </div>
           <div className="comfortscore-swiper-actions">
@@ -51,12 +51,12 @@ class Card extends Component {
               </div>
             )}
           </div>
-          <h3>{this.props.title}</h3>          
+          <h3>{this.props.title}</h3>
           <div className="comfortscore-text"><p>{this.props.description}</p></div>
         </div>
       )
     }
-    
+
   }
 }
 

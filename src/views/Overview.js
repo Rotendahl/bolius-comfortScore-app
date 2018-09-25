@@ -36,13 +36,47 @@ class Overview extends Component {
     );
   }
 
-  improvementsPage() {
-    var goNext = this.props.history.push,
-      newState = this.state;
-    this.props.store.currentState = newState;
+    improvementsPage() {
+        var goNext = this.props.history.push,
+          newState = this.state;
 
-    goNext("/Improvements");
-  }
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (xhttp.readyState === 4 && xhttp.status === 200) {
+                var resp = JSON.parse(xhttp.responseText);
+                console.log(resp)
+                var cards = []
+                for (var i = 0; i < resp.length; i++) {
+                    var improv = resp[i]
+                    var card = {
+                          key: parseInt(resp[i]['SEEB'].split("-").join(""), 10),
+                          title: resp[i]['title'],
+                          done: false,
+                          willDo: false,
+                          description: resp[i]['describtion']
+                        }
+                    var targets = []
+                    // fix key mashup
+                    resp[i].light ? targets.push('Lys') :  1 + 1;
+                    resp[i].noise ? targets.push('Støj') :  1 + 1;
+                    resp[i].moisture ? targets.push('Fugt') :  1 + 1;
+                    resp[i].temperature ? targets.push('Temperatur') :  1 + 1;
+
+                    card.targets = targets
+                    cards.push(card)
+                }
+                newState.cards = cards
+                goNext("/Improvements");
+            }
+        }
+        xhttp.open(
+          "GET",
+          "https://ai01.boliusaws.dk/predictImprovements/" +
+            encodeURI(this.state.address),
+          true
+        );
+        xhttp.send();
+    }
 
   render() {
     var img =

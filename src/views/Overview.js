@@ -61,7 +61,8 @@ class Overview extends Component {
                     resp[i].light ? targets.push('Lys') :  1 + 1;
                     resp[i].noise ? targets.push('Støj') :  1 + 1;
                     resp[i].moisture ? targets.push('Fugt') :  1 + 1;
-                    resp[i].temperature ? targets.push('Temperatur') :  1 + 1;
+                    resp[i].temperature ? targets.push('Temp') :  1 + 1;
+
                     card.targets = targets
                     cards.push(card)
                 }

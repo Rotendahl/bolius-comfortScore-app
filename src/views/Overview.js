@@ -25,11 +25,11 @@ class Overview extends Component {
 
   updateScore(newVal, key) {
     var sliders = this.state.sliders;
-    var oldVal = (sliders[parseInt(key, 10)].value / 600) * 100;
+    var oldVal = (sliders[parseInt(key, 10)].value / 500) * 100;
     sliders[parseInt(key, 10)].value = newVal;
     this.setState(
       state => ({
-        currentScore: state.currentScore + (newVal / 600) * 100 - oldVal,
+        currentScore: state.currentScore + (newVal / 500) * 100 - oldVal,
         sliders: sliders
       }),
       function() {}
@@ -39,7 +39,6 @@ class Overview extends Component {
   improvementsPage() {
     var goNext = this.props.history.push,
       newState = this.state;
-
     this.props.store.currentState = newState;
 
     goNext("/Improvements");

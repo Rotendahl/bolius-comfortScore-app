@@ -53,7 +53,8 @@ class Overview extends Component {
                           title: resp[i]['title'],
                           done: false,
                           willDo: false,
-                          description: resp[i]['describtion']
+                          description: resp[i]['describtion'],
+                          prop: parseInt(resp[i]['propability'] * 10000, 10)
                         }
                     var targets = []
                     // fix key mashup

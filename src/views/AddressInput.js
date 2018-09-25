@@ -25,7 +25,7 @@ class AddressInput extends Component {
     var dawaAutocomplete2 = require("dawa-autocomplete2");
     var inputElm = document.getElementById("dawa-autocomplete-input");
     var that = this;
-    var component = dawaAutocomplete2.dawaAutocomplete(inputElm, {
+    dawaAutocomplete2.dawaAutocomplete(inputElm, {
       select: function(selected) {
         target = selected;
 

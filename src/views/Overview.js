@@ -4,7 +4,6 @@ import { Redirect } from "react-router";
 import "../styles/overview.css";
 import Slider from "../components/slider.js";
 import TextRow from "../components/TextRow.js";
-import { MockJSON } from "../components/MockJSON.js";
 
 import Improvements from "./Improvements.js";
 import { Tracking } from "../components/Tracking.js";
@@ -54,7 +53,8 @@ class Overview extends Component {
                           done: false,
                           willDo: false,
                           description: resp[i]['describtion'],
-                          prop: parseInt(resp[i]['propability'] * 10000, 10)
+                          prop: parseInt(resp[i]['propability'] * 10000, 10),
+                          link: resp[i]['read_more']
                         }
                     var targets = []
                     // fix key mashup
@@ -62,7 +62,6 @@ class Overview extends Component {
                     resp[i].noise ? targets.push('Støj') :  1 + 1;
                     resp[i].moisture ? targets.push('Fugt') :  1 + 1;
                     resp[i].temperature ? targets.push('Temperatur') :  1 + 1;
-
                     card.targets = targets
                     cards.push(card)
                 }

@@ -50,7 +50,7 @@ class Improvements extends Component {
         this.setState((prevState, props) => ({
           cards: cards,
           animate: true,
-          potentialScore: this.state.potentialScore + ( dontSet ? 0 : this.state.unit )
+          potentialScore: this.state.potentialScore
         }), function() {
             this.next();
         })
@@ -171,19 +171,19 @@ class Improvements extends Component {
               />
             </div>
             <div className="comfortscore-col">
-              <div className="comfortscore-instruction">
-                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
-                />
-              </div>
               <div className="comfortscore-swiper">
                 <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
-                    <Card title={card.title} description={card.description} key={card.key} prop={card.prop}
-                    done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets}
+                    <Card title={card.title} description={card.description} key={card.key} prop={card.prop} read_more={card.link}
+                    done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets} index={index} total={this.state.cards.length}
                     setDone={this.done} setWillDo={this.willDo} setClear={this.clear} showButtons={true}
                     />)
                   }
                 </Slider>
+              </div>
+              <div className="comfortscore-instruction">
+                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
+                />
               </div>
             </div>
           </div>

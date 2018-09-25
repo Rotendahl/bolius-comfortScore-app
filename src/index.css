@@ -44,7 +44,7 @@
 }
 
 .comfortscore-top {
-    background: #8fccbe;    
+    background: #8fccbe;
     padding: 1em;
     border: 3px solid white;
     border-radius: 38.5px;
@@ -176,7 +176,7 @@
     bottom: 83%;
     opacity: 0;
     transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);    
+    transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .comfortscore-bubble::before {

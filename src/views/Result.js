@@ -48,6 +48,10 @@ class Result extends Component {
       document.getElementById('comfortscorewidget-app-data').value = value;
   }
 
+  componentDidMount() {
+      window.scrollTo({ top: 0, behaviour: 'smooth'} );
+  }
+
   render() {
     var settings = {
       slidesToShow: 1,

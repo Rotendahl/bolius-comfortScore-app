@@ -115,6 +115,8 @@ class Improvements extends Component {
           animate: true
         });
         elem.classList.add('heartbeat');
+
+        window.scrollTo({ top: 0, behaviour: 'smooth'} );
     }, 500);
   }
   previous() {
@@ -135,6 +137,11 @@ class Improvements extends Component {
      this.props.store.currentState = newState;
 
      goNext('/Result');
+  }
+
+
+  componentDidMount() {
+      window.scrollTo({ top: 0, behaviour: 'smooth'} );
   }
 
   render() {

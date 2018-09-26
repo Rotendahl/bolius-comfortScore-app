@@ -63,12 +63,12 @@ class Overview extends Component {
                     resp[i].moisture ? targets.push('Fugt') :  1 + 1;
                     resp[i].temperature ? targets.push('Temp') :  1 + 1;
 
-                    card.targets = targets
-                    cards.push(card)
+                    card.targets = targets;
+                    cards.push(card);
                 }
-                newState.cards = cards
-                newState.activeSlide = 0
-                that.props.store.currentState = newState
+                newState.cards = cards;
+                newState.activeSlide = 0;
+                that.props.store.currentState = newState;
                 goNext("/Improvements");
             }
         }

@@ -1,6 +1,5 @@
 .comfortscore-container * {
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
 .comfortscore-container img {
@@ -223,6 +222,11 @@
     line-height: 1.2;
 }
 
+.comfortscore-text a {
+    color: black;
+    text-decoration: underline;
+}
+
 .comfortscore-instruction p {
     font-size: 15px;
     font-family: 'nationalemedium', sans-serif;
@@ -238,4 +242,8 @@
 
 .comfortscore-hidden {
     display: none;
+}
+
+.comfortscore-teaser {
+    margin: 0;
 }

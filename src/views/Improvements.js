@@ -117,7 +117,7 @@ class Improvements extends Component {
         });
         elem.classList.add('heartbeat');
 
-        ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
+        that.moveToTop();
     }, 500);
   }
   previous() {
@@ -140,9 +140,19 @@ class Improvements extends Component {
      goNext('/Result');
   }
 
+  moveToTop() {
+      // Get current y position, find change relative to container-setup and scroll
+      if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
+        document.getElementById('comfortscorewidget-container-setup') !== null) {
+            var offsetY = window.pageYOffset || document.documentElement.scrollTop,
+                  newY = offsetY + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+            window.scrollTo(0, newY);
+        }
+  }
 
   componentDidMount() {
-      ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
+      // On load scroll to top
+      this.moveToTop();
   }
 
   render() {
@@ -152,6 +162,7 @@ class Improvements extends Component {
       speed: 500,
       dots: false,
       arrows: false,
+      adaptiveHeight: true,
       className: "slider",
       beforeChange: (current, next) => this.setState({
         activeSlide: next
@@ -180,7 +191,7 @@ class Improvements extends Component {
             </div>
             <div className="comfortscore-col">
               <div className="comfortscore-instruction">
-                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
+                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Husk: Du kan altid gå tilbage og justere dine valg.'}
                 />
               </div>
               <div className="comfortscore-swiper">

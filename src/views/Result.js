@@ -50,7 +50,13 @@ class Result extends Component {
   }
 
   componentDidMount() {
-      ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
+      // On load get current y position, find change relative to container-setup and scroll
+      if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
+        document.getElementById('comfortscorewidget-container-setup') !== null) {
+            var offsetY = window.pageYOffset || document.documentElement.scrollTop,
+                  newY = offsetY + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+            window.scrollTo(0, newY);
+        }      
   }
 
   render() {

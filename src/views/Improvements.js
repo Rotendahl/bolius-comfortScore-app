@@ -171,6 +171,10 @@ class Improvements extends Component {
               />
             </div>
             <div className="comfortscore-col">
+              <div className="comfortscore-instruction">
+                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
+                />
+              </div>
               <div className="comfortscore-swiper">
                 <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
@@ -180,11 +184,7 @@ class Improvements extends Component {
                     />)
                   }
                 </Slider>
-              </div>
-              <div className="comfortscore-instruction">
-                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
-                />
-              </div>
+              </div>              
             </div>
           </div>
         </div>

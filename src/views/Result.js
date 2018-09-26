@@ -50,13 +50,15 @@ class Result extends Component {
   }
 
   componentDidMount() {
-      // On load get current y position, find change relative to container-setup and scroll
+      // On load get current y position and menu height, find change relative to container-setup and scroll
       if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
         document.getElementById('comfortscorewidget-container-setup') !== null) {
             var offsetY = window.pageYOffset || document.documentElement.scrollTop,
-                  newY = offsetY + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+                navigationMenu = document.getElementById('s-header'),
+                menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
             window.scrollTo(0, newY);
-        }      
+        }
   }
 
   render() {

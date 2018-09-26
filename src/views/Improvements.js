@@ -44,14 +44,14 @@ class Improvements extends Component {
   done() {
     var cards = this.state.cards
     if (!cards[this.state.activeSlide].done) {
-        var dontSet = cards[this.state.activeSlide].willDo || cards[this.state.activeSlide].done;
+        var dontSet = !cards[this.state.activeSlide].willDo;
         cards[this.state.activeSlide].done = true
         cards[this.state.activeSlide].willDo = false
         cards[this.state.activeSlide].clear = false
         this.setState((prevState, props) => ({
           cards: cards,
           animate: true,
-          potentialScore: this.state.potentialScore
+          potentialScore: this.state.potentialScore - ( dontSet ? 0 : this.state.unit )
         }), function() {
             this.next();
         })
@@ -64,7 +64,7 @@ class Improvements extends Component {
   willDo() {
     var cards = this.state.cards;
     if (!cards[this.state.activeSlide].willDo) {
-        var dontSet = cards[this.state.activeSlide].willDo || cards[this.state.activeSlide].done;
+        var dontSet = false;
         cards[this.state.activeSlide].done = false
         cards[this.state.activeSlide].willDo = true
         cards[this.state.activeSlide].clear = false
@@ -84,7 +84,7 @@ class Improvements extends Component {
   clear() {
     var cards = this.state.cards
     if (!cards[this.state.activeSlide].clear) {
-        var dontSet = cards[this.state.activeSlide].clear || ( !cards[this.state.activeSlide].willDo && !cards[this.state.activeSlide].done );
+        var dontSet = cards[this.state.activeSlide].clear || cards[this.state.activeSlide].done;
         cards[this.state.activeSlide].done = false
         cards[this.state.activeSlide].willDo = false
         cards[this.state.activeSlide].clear = true
@@ -141,11 +141,13 @@ class Improvements extends Component {
   }
 
   moveToTop() {
-      // Get current y position, find change relative to container-setup and scroll
+      // Get current y position and menu height, find change relative to container-setup and scroll
       if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
         document.getElementById('comfortscorewidget-container-setup') !== null) {
             var offsetY = window.pageYOffset || document.documentElement.scrollTop,
-                  newY = offsetY + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+                navigationMenu = document.getElementById('s-header'),
+                menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
             window.scrollTo(0, newY);
         }
   }

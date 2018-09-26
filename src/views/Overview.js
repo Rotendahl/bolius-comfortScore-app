@@ -43,7 +43,7 @@ class Overview extends Component {
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 var resp = JSON.parse(xhttp.responseText);
-                console.log(resp)
+                //console.log(resp)
                 var cards = []
                 for (var i = 0; i < resp.length; i++) {
                     var improv = resp[i]
@@ -52,6 +52,7 @@ class Overview extends Component {
                           title: resp[i]['title'],
                           done: false,
                           willDo: false,
+                          clear: false,
                           description: resp[i]['describtion'],
                           prop: parseInt(resp[i]['propability'] * 10000, 10),
                           link: resp[i]['read_more']

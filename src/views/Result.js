@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import { Redirect } from 'react-router';
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
@@ -49,7 +50,7 @@ class Result extends Component {
   }
 
   componentDidMount() {
-      window.scrollTo({ top: 0, behaviour: 'smooth'} );
+      ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
   }
 
   render() {

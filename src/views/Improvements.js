@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactDom from 'react-dom';
 import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
@@ -116,7 +117,7 @@ class Improvements extends Component {
         });
         elem.classList.add('heartbeat');
 
-        window.scrollTo({ top: 0, behaviour: 'smooth'} );
+        ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
     }, 500);
   }
   previous() {
@@ -141,7 +142,7 @@ class Improvements extends Component {
 
 
   componentDidMount() {
-      window.scrollTo({ top: 0, behaviour: 'smooth'} );
+      ReactDom.findDOMNode(document.getElementById('comfortscorewidget-container-setup')).scrollIntoView();
   }
 
   render() {
@@ -191,7 +192,7 @@ class Improvements extends Component {
                     />)
                   }
                 </Slider>
-              </div>              
+              </div>
             </div>
           </div>
         </div>

@@ -239,3 +239,7 @@
 .comfortscore-hidden {
     display: none;
 }
+
+.comfortscore-teaser {
+    margin: 0;
+}

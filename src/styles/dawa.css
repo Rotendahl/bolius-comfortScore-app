@@ -38,6 +38,7 @@ input.comfortscore-email-field {
     z-index: 2;
     margin: 0;
     vertical-align: initial;
+    font-weight: 400;
 }
 .comfortscore-dawa-autocomplete-input:focus,
 .comfortscore-email-field:focus {

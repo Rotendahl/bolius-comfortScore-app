@@ -84,7 +84,7 @@ class Improvements extends Component {
   clear() {
     var cards = this.state.cards
     if (!cards[this.state.activeSlide].clear) {
-        var dontSet = cards[this.state.activeSlide].clear || cards[this.state.activeSlide].done;
+        var dontSet = !cards[this.state.activeSlide].willDo;
         cards[this.state.activeSlide].done = false
         cards[this.state.activeSlide].willDo = false
         cards[this.state.activeSlide].clear = true

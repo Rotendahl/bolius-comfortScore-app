@@ -70,23 +70,28 @@ class AddressInput extends Component {
         newState.sliders = [
           {
             name: "Træk",
-            value: resp.draft * 10
+            value: resp.draft * 10,
+            initial_value: resp.draft * 10
           },
           {
             name: "Temp",
-            value: resp.temperature * 10
+            value: resp.temperature * 10,
+            initial_value: resp.temperature * 10
           },
           {
             name: "Fugt",
-            value: resp.moisture * 10
+            value: resp.moisture * 10,
+            initial_value: resp.moisture * 10
           },
           {
             name: "Støj",
-            value: resp.noise * 10
+            value: resp.noise * 10,
+            initial_value: resp.noise * 10
           },
           {
             name: "Lys",
-            value: resp.light * 10
+            value: resp.light * 10,
+            initial_value: resp.light * 10
           }
         ];
 

@@ -137,8 +137,41 @@ class Improvements extends Component {
 
      this.props.store.currentState = newState;
 
-     goNext('/Result');
-  }
+     var data = JSON.stringify({
+        "cards": this.state.cards,
+        "address": this.state.address,
+        "original_params": {
+            "draft": this.state.sliders[0].initial_value,
+            "temperature": this.state.sliders[1].initial_value,
+            "moisture": this.state.sliders[2].initial_value,
+            "noise": this.state.sliders[3].initial_value,
+            "light": this.state.sliders[4].initial_value
+        },
+        "changed_params": {
+            "draft": this.state.sliders[0].value,
+            "temperature": this.state.sliders[1].value,
+            "moisture": this.state.sliders[2].value,
+            "noise": this.state.sliders[3].value,
+            "light": this.state.sliders[4].value
+        }
+    });
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            console.log(this.responseText);
+            goNext('/Result');
+        }
+    });
+
+    xhr.open("POST", "https://ai01.boliusaws.dk/addSession/");
+
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+
+    }
 
   moveToTop() {
       // Get current y position and menu height, find change relative to container-setup and scroll

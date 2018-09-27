@@ -19,7 +19,7 @@ class Overview extends Component {
     this.improvementsPage = this.improvementsPage.bind(this);
 
     // Track load event
-    Tracking.trackEvent("load", "overview", false);
+    Tracking.trackEvent("load", "overview", false)
   }
 
   updateScore(newVal, key) {

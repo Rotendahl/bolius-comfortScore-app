@@ -245,7 +245,7 @@ class Improvements extends Component {
         <div className="comfortscore-action">
           <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Vis liste</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Vis resultat</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

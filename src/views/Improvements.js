@@ -165,7 +165,7 @@ class Improvements extends Component {
         }
     });
 
-    xhr.open("POST", "https://ai02.boliusaws.dk/addSession/");
+    xhr.open("POST", "https://ai01.boliusaws.dk/addSession/");
 
     xhr.setRequestHeader("content-type", "application/json");
 

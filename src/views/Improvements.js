@@ -160,7 +160,7 @@ class Improvements extends Component {
 
     xhr.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            console.log(this.responseText);
+            // console.log(this.responseText);
             goNext('/Result');
         }
     });

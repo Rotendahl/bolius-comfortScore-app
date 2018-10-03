@@ -44,29 +44,31 @@ class Overview extends Component {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 var resp = JSON.parse(xhttp.responseText);
                 //console.log(resp)
+                var komfort_props = resp.komfort
                 var cards = []
-                for (var i = 0; i < resp.length; i++) {
-                    var improv = resp[i]
+                for (var i = 0; i < komfort_props.length; i++) {
+                    var improv = komfort_props[i]
                     var card = {
-                          key: parseInt(resp[i]['SEEB'].split("-").join(""), 10),
-                          title: resp[i]['title'],
+                          key: parseInt(komfort_props[i]['SEEB'].split("-").join(""), 10),
+                          title: komfort_props[i]['title'],
                           done: false,
                           willDo: false,
                           clear: false,
-                          description: resp[i]['describtion'],
-                          prop: parseInt(resp[i]['propability'] * 10000, 10),
-                          link: resp[i]['read_more']
+                          description: komfort_props[i]['describtion'],
+                          prop: parseInt(komfort_props[i]['propability'] * 10000, 10),
+                          link: komfort_props[i]['read_more']
                         }
                     var targets = []
                     // fix key mashup
-                    resp[i].light ? targets.push('Lys') :  1 + 1;
-                    resp[i].noise ? targets.push('Støj') :  1 + 1;
-                    resp[i].moisture ? targets.push('Fugt') :  1 + 1;
-                    resp[i].temperature ? targets.push('Temp') :  1 + 1;
+                    komfort_props[i].light ? targets.push('Lys') :  1 + 1;
+                    komfort_props[i].noise ? targets.push('Støj') :  1 + 1;
+                    komfort_props[i].moisture ? targets.push('Fugt') :  1 + 1;
+                    komfort_props[i].temperature ? targets.push('Temp') :  1 + 1;
 
                     card.targets = targets;
                     cards.push(card);
                 }
+                newState.install = resp.installation;
                 newState.cards = cards;
                 newState.activeSlide = 0;
                 that.props.store.currentState = newState;
@@ -75,7 +77,7 @@ class Overview extends Component {
         }
         xhttp.open(
           "GET",
-          "https://ai01.boliusaws.dk/predictImprovements/" +
+          "https://ai02.boliusaws.dk/predictImprovements/" +
             encodeURI(this.state.address),
           true
         );

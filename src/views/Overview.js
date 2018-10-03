@@ -5,7 +5,6 @@ import "../styles/overview.css";
 import Slider from "../components/slider.js";
 import TextRow from "../components/TextRow.js";
 
-import Improvements from "./Improvements.js";
 import { Tracking } from "../components/Tracking.js";
 
 class Overview extends Component {
@@ -47,7 +46,6 @@ class Overview extends Component {
                 var komfort_props = resp.komfort
                 var cards = []
                 for (var i = 0; i < komfort_props.length; i++) {
-                    var improv = komfort_props[i]
                     var card = {
                           key: parseInt(komfort_props[i]['SEEB'].split("-").join(""), 10),
                           title: komfort_props[i]['title'],
@@ -60,7 +58,7 @@ class Overview extends Component {
                         }
                     var targets = []
                     // fix key mashup
-                    komfort_props[i].light ? targets.push('Lys') :  1 + 1;
+                    komfort_props[i].light ? targets.push('Lys') : 1 + 1 ;
                     komfort_props[i].noise ? targets.push('Støj') :  1 + 1;
                     komfort_props[i].moisture ? targets.push('Fugt') :  1 + 1;
                     komfort_props[i].temperature ? targets.push('Temp') :  1 + 1;

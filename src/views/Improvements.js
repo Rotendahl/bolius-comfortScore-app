@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import { Redirect } from 'react-router';
 import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
@@ -180,7 +179,7 @@ class Improvements extends Component {
             var offsetY = window.pageYOffset || document.documentElement.scrollTop,
                 navigationMenu = document.getElementById('s-header'),
                 menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
-                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y, 10);
             window.scrollTo(0, newY);
         }
   }

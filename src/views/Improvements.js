@@ -229,7 +229,7 @@ class Improvements extends Component {
                 />
               </div>
               <div className="comfortscore-swiper">
-                <Slider ref={c => (this.slider = c)} {...settings}>
+                  <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
                     <Card title={card.title} description={card.description} key={card.key} prop={card.prop} read_more={card.link}
                     done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets} index={index} total={this.state.cards.length}

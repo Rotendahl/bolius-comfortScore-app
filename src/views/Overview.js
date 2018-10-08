@@ -52,7 +52,7 @@ class Overview extends Component {
                           done: false,
                           willDo: false,
                           clear: false,
-                          description: komfort_props[i]['describtion'],
+                          description: komfort_props[i]['description'],
                           prop: parseInt(komfort_props[i]['propability'] * 10000, 10),
                           link: komfort_props[i]['read_more']
                         }

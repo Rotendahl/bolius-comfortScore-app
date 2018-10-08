@@ -164,7 +164,7 @@ class Improvements extends Component {
         }
     });
 
-    xhr.open("POST", "https://ai02.boliusaws.dk/addSession/");
+    xhr.open("POST", "https://ml.bolius.dk/comfortscore/v1/addSession/");
 
     xhr.setRequestHeader("content-type", "application/json");
 

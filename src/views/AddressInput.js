@@ -110,7 +110,7 @@ class AddressInput extends Component {
 
     xhttp.open(
       "GET",
-      "https://ai02.boliusaws.dk/predictParams/" +
+      "https://ml.bolius.dk/comfortscore/v1/predictParams/" +
         encodeURI(this.state.finalAddress),
       true
     );

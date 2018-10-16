@@ -55,7 +55,10 @@ class AddressInput extends Component {
 
   overViewPage() {
     var xhttp = new XMLHttpRequest();
-    var finalAddress = this.state.finalAddress;
+    var finalAddress = this.state.finalAddress === '' ? this.state.address : this.state.finalAddress;
+    if(finalAddress === ""){
+        return
+    }
     var newState = {};
     var that = this;
     var goNext = that.props.history.push;

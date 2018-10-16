@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactDom from 'react-dom';
 import { Redirect } from 'react-router';
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
@@ -56,24 +55,12 @@ class Result extends Component {
             var offsetY = window.pageYOffset || document.documentElement.scrollTop,
                 navigationMenu = document.getElementById('s-header'),
                 menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
-                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y);
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y, 10);
             window.scrollTo(0, newY);
         }
   }
 
   render() {
-    var settings = {
-      slidesToShow: 1,
-      infinite: false,
-      speed: 500,
-      dots: false,
-      arrows: false,
-      className: "slider",
-      beforeChange: (current, next) => this.setState({
-        activeSlide: next
-      })
-    };
-
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address,

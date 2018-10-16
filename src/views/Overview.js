@@ -58,10 +58,10 @@ class Overview extends Component {
                         }
                     var targets = []
                     // fix key mashup
-                    komfort_props[i].light ? targets.push('Lys') : 1 + 1 ;
-                    komfort_props[i].noise ? targets.push('Støj') :  1 + 1;
-                    komfort_props[i].moisture ? targets.push('Fugt') :  1 + 1;
-                    komfort_props[i].temperature ? targets.push('Temp') :  1 + 1;
+                    if(komfort_props[i].light){targets.push('Lys')}    
+                    if(komfort_props[i].noise){targets.push('Støj')}
+                    if(komfort_props[i].moisture){targets.push('Fugt')}
+                    if(komfort_props[i].temperature){targets.push('Temp')}
 
                     card.targets = targets;
                     cards.push(card);

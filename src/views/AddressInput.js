@@ -87,6 +87,7 @@ class AddressInput extends Component {
         console.log(paramResp, imgResp)
         if(paramResp.status !== 200 || paramResp.data.hasOwnProperty("error")){
           this.setState({err_modal: true})
+          return
         }
         var newState = {
           currentScore : 0,

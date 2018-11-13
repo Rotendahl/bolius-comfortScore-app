@@ -10,7 +10,6 @@ import { Tracking } from "../components/Tracking.js";
 class Overview extends Component {
   constructor(props) {
     super(props);
-
     var state = this.props.store.currentState;
     this.state = state;
 
@@ -58,7 +57,7 @@ class Overview extends Component {
                         }
                     var targets = []
                     // fix key mashup
-                    if(komfort_props[i].light){targets.push('Lys')}    
+                    if(komfort_props[i].light){targets.push('Lys')}
                     if(komfort_props[i].noise){targets.push('Støj')}
                     if(komfort_props[i].moisture){targets.push('Fugt')}
                     if(komfort_props[i].temperature){targets.push('Temp')}
@@ -83,11 +82,6 @@ class Overview extends Component {
     }
 
   render() {
-    var img =
-      "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
-      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" +
-      this.state.address;
-
     if (this.state.address === undefined || this.state.address === "") {
       return <Redirect to="/" />;
     }
@@ -116,7 +110,7 @@ class Overview extends Component {
                 </p>
               </div>
               <div className="comfortscore-map">
-                <img alt="house" src={img} />
+                <img alt="house" src={this.state.img} />
               </div>
               <div className="comfortscore-instruction">
                 <TextRow

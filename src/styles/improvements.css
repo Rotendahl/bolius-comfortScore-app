@@ -119,3 +119,9 @@
 .comfortscore-text .comfortscore-card-counter {
 	font-size: 12px;
 }
+
+.modal-content  {
+    -webkit-border-radius: 100px !important;
+    -moz-border-radius: 100px !important;
+    border-radius: 100px !important;
+}

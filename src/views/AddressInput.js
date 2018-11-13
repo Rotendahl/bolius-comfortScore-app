@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import "../styles/improvements.css";
 import "../styles/dawa.css";
-
+import axios from 'axios';
 import { Tracking } from "../components/Tracking.js";
+import { Alert, Modal, ModalHeader, ModalBody, ModalFooter, Button }
+    from 'reactstrap';
 
 class AddressInput extends Component {
   constructor(props) {
@@ -10,14 +12,24 @@ class AddressInput extends Component {
 
     this.state = {
       address: "",
-      finalAddress: ""
+      finalAddress: "",
+      err_modal: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.overViewPage = this.overViewPage.bind(this);
+    this.toggle = this.toggle.bind(this);
 
     // Track load event
     Tracking.trackEvent("load", "initial address", true);
+  }
+
+  toggle() {
+    this.setState({
+      err_modal: !this.state.err_modal,
+      address: "",
+      finalAddress: ""
+    });
   }
 
   handleChange(event) {
@@ -54,108 +66,145 @@ class AddressInput extends Component {
   }
 
   overViewPage() {
-    var xhttp = new XMLHttpRequest();
-    var finalAddress = this.state.finalAddress === '' ? this.state.address : this.state.finalAddress;
-    if(finalAddress === ""){
-        return
-    }
-    var newState = {};
+    var finalAddress = this.state.finalAddress === '' ?
+      this.state.address :
+      this.state.finalAddress;
+
+    if(finalAddress === ""){ return }
+
     var that = this;
     var goNext = that.props.history.push;
+    const apiUrl = "https://ml.bolius.dk/comfortscore/v1/"
+    const encodedAddres = encodeURI(this.state.finalAddress)
+    const imgRequest ="https://maps.googleapis.com/maps/api/streetview/metadata"
+      + "?key=AIzaSyA2MsGE3Crx2Gww33ol1gLw1OSk2bW8HK4&location="
+      +  this.state.finalAddress
 
-    xhttp.onreadystatechange = function() {
-      if (xhttp.readyState === 4 && xhttp.status === 200) {
-        var resp = JSON.parse(xhttp.responseText);
-
-        // Clear currentScore before proceeding
-        newState.currentScore = 0;
-
-        newState.sliders = [
-          {
-            name: "Træk",
-            value: resp.draft * 10,
-            initial_value: resp.draft * 10
-          },
-          {
-            name: "Temp",
-            value: resp.temperature * 10,
-            initial_value: resp.temperature * 10
-          },
-          {
-            name: "Fugt",
-            value: resp.moisture * 10,
-            initial_value: resp.moisture * 10
-          },
-          {
-            name: "Støj",
-            value: resp.noise * 10,
-            initial_value: resp.noise * 10
-          },
-          {
-            name: "Lys",
-            value: resp.light * 10,
-            initial_value: resp.light * 10
-          }
-        ];
-
+    Promise.all([
+      axios.get(`${apiUrl}predictParams/${encodedAddres}`),
+      axios.get(imgRequest)
+    ]).then(([paramResp, imgResp]) => {
+        console.log(paramResp, imgResp)
+        if(paramResp.status !== 200 || paramResp.data.hasOwnProperty("error")){
+          this.setState({err_modal: true})
+        }
+        var newState = {
+          currentScore : 0,
+          sliders : [
+            {
+              name: "Træk",
+              value: paramResp.data.draft * 10,
+              initial_value: paramResp.data.draft * 10
+            },
+            {
+              name: "Temp",
+              value: paramResp.data.temperature * 10,
+              initial_value: paramResp.data.temperature * 10
+            },
+            {
+              name: "Fugt",
+              value: paramResp.data.moisture * 10,
+              initial_value: paramResp.data.moisture * 10
+            },
+            {
+              name: "Støj",
+              value: paramResp.data.noise * 10,
+              initial_value: paramResp.data.noise * 10
+            },
+            {
+              name: "Lys",
+              value: paramResp.data.light * 10,
+              initial_value: paramResp.data.light * 10
+            }
+          ]
+        };
         newState.sliders.map(
           slider => (newState.currentScore += (slider.value / 500) * 100)
         );
+        const googleImageUrl = "https://maps.googleapis.com/maps/api/"
+          + "streetview?parameters&size=880x542&"
+          + "key=AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location="
+          + encodedAddres
+
+        newState.img = imgResp.data.status === "OK" ? googleImageUrl :
+          process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY
+          + '/assets/no_house.jpg';
 
         // Save new state in store
         newState.address = finalAddress;
-        that.props.store.address = finalAddress;
-        that.props.store.currentState = newState;
-
+        this.props.store.address = finalAddress;
+        this.props.store.currentState = newState;
         goNext("/Overview");
-      }
-    };
-
-    xhttp.open(
-      "GET",
-      "https://ml.bolius.dk/comfortscore/v1/predictParams/" +
-        encodeURI(this.state.finalAddress),
-      true
-    );
-    xhttp.send();
+    }).catch(err => {
+      this.setState({err_modal: true})
+    })
   }
 
-  render() {
-    var rootDir = process.env.REACT_APP_COMFORTSCORE_ROOT_DIRECTORY;
-
-    return (
-      <div
-        id="comfortscorewidget-container-setup"
-        className="comfortscore-container"
-      >
-        <div className="comfortscore-top">
-          <h2>
-            <strong>Test</strong>: Hvor god er komforten i dit hus?
-          </h2>
-          <div className="comfortscore-autocomplete-container">
-            <input
-              type="text"
-              className="comfortscore-dawa-autocomplete-input"
-              id="dawa-autocomplete-input"
-              value={this.state.address}
-              onChange={this.handleChange}
-              placeholder="Indtast din adresse"
-            />
-          </div>
-          <button
-            className="comfortscore-btn comfortscore-btn-success"
-            data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
-            onClick={this.overViewPage}
+  render() {return (<div>
+    <Modal isOpen={this.state.err_modal} toggle={this.toggle}>
+      <ModalHeader toggle={this.toggle} style={{
+        border: "2px solid white",
+        backgroundColor: "#93CBBD",
+        borderRadius: "30px",
+        textAlign: "center",
+        zIndex: "1"
+      }}>
+        <span className="text-danger text-center">Fejl: </span>
+        Mangelfuld data fra BBR
+      </ModalHeader>
+      <ModalBody style={{
+          backgroundColor:"#EBF5F5",
+          width: "100%",
+          margin:"auto",
+          marginTop:"-10px",
+          borderRadius: "20px",
+          paddingTop: "20px"
+      }}>
+        BBR registret indeholder ikke nok data om huset til at lave
+        forudsigelser.
+        <ModalFooter>
+          <Button
+            color="info"
+            onClick={() => {window.open("https://bbr.dk/ret")}}
           >
-            Se dit resultat
-          </button>
+            Ret BBR data
+          </Button>
+          <Button color="secondary" onClick={this.toggle}>
+            Prøv anden adresse
+          </Button>
+        </ModalFooter>
+      </ModalBody>
+    </Modal>
+    <div id="comfortscorewidget-container-setup"
+      className="comfortscore-container"
+    >
+      <div className="comfortscore-top">
+        <h2>
+          <strong>Test</strong>: Hvor god er komforten i dit hus?
+        </h2>
+        <div className="comfortscore-autocomplete-container">
+          <input
+            type="text"
+            className="comfortscore-dawa-autocomplete-input"
+            id="dawa-autocomplete-input"
+            value={this.state.address}
+            onChange={this.handleChange}
+            placeholder="Indtast din adresse"
+          />
         </div>
-        <div className="comfortscore-content comfortscore-hidden">
-          <p className="comfortscore-teaser" />
-        </div>
+        <button
+          className="comfortscore-btn comfortscore-btn-success"
+          data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
+          onClick={this.overViewPage}
+        >
+          Se dit resultat
+        </button>
       </div>
-    );
-  }
+      <div className="comfortscore-content comfortscore-hidden">
+        <p className="comfortscore-teaser" />
+      </div>
+    </div>
+  </div>);}
 }
 
 export default AddressInput;

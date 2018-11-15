@@ -13,7 +13,7 @@ class AddressInput extends Component {
     this.state = {
       address: "",
       finalAddress: "",
-      err_modal: true
+      err_modal: false
     };
 
     this.handleChange = this.handleChange.bind(this);

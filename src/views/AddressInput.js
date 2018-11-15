@@ -3,8 +3,7 @@ import "../styles/improvements.css";
 import "../styles/dawa.css";
 import axios from 'axios';
 import { Tracking } from "../components/Tracking.js";
-import { Alert, Modal, ModalHeader, ModalBody, ModalFooter, Button }
-    from 'reactstrap';
+import {Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 
 class AddressInput extends Component {
   constructor(props) {

@@ -3,7 +3,8 @@ import "../styles/improvements.css";
 import "../styles/dawa.css";
 import axios from 'axios';
 import { Tracking } from "../components/Tracking.js";
-import {Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
+import Modal from 'react-responsive-modal';
+
 
 class AddressInput extends Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class AddressInput extends Component {
     this.state = {
       address: "",
       finalAddress: "",
-      err_modal: false
+      err_modal: true
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -71,8 +72,6 @@ class AddressInput extends Component {
 
     if(finalAddress === ""){ return }
 
-    var that = this;
-    var goNext = that.props.history.push;
     const apiUrl = "https://ml.bolius.dk/comfortscore/v1/"
     const encodedAddres = encodeURI(this.state.finalAddress)
     const imgRequest ="https://maps.googleapis.com/maps/api/streetview/metadata"
@@ -134,46 +133,67 @@ class AddressInput extends Component {
         newState.address = finalAddress;
         this.props.store.address = finalAddress;
         this.props.store.currentState = newState;
-        goNext("/Overview");
+
+        this.props.history.push("/Overview");
     }).catch(err => {
       this.setState({err_modal: true})
     })
   }
 
   render() {return (<div>
-    <Modal isOpen={this.state.err_modal} toggle={this.toggle}>
-      <ModalHeader toggle={this.toggle} style={{
+    <Modal
+      showCloseIcon={false}
+      open={this.state.err_modal}
+      closeOnEsc onClose={this.toggle}
+      closeOnOverlayClick={true}
+      styles={{modal: {
+        borderRadius: "30px",
+        padding: "0",
+        backgroundColor: "#404040",
+        textAlign: "center",
+        position: "relative",
+      }}}
+    >
+      <div><div style={{
         border: "2px solid white",
+        height: "3em",
         backgroundColor: "#93CBBD",
         borderRadius: "30px",
         textAlign: "center",
+        position: "relative",
         zIndex: "1"
       }}>
+      <br/>
         <span className="text-danger text-center">Fejl: </span>
         Mangelfuld data fra BBR
-      </ModalHeader>
-      <ModalBody style={{
+      </div>
+      <div style={{
           backgroundColor:"#EBF5F5",
           width: "100%",
           margin:"auto",
           marginTop:"-10px",
           borderRadius: "20px",
-          paddingTop: "20px"
+          paddingTop: "20px",
+          zIndex: "0"
       }}>
         BBR registret indeholder ikke nok data om huset til at lave
         forudsigelser.
-        <ModalFooter>
-          <Button
-            color="info"
+        <div style={{padding:"10px"}}>
+          <div style={{verticalAlign: "middle", display:"inline-block"}}>
+            <button  className="comfortscore-btn"
+            style={{marginRight:"20px"}}
             onClick={() => {window.open("https://bbr.dk/ret")}}
           >
             Ret BBR data
-          </Button>
-          <Button color="secondary" onClick={this.toggle}>
-            Prøv anden adresse
-          </Button>
-        </ModalFooter>
-      </ModalBody>
+          </button></div>
+          <div style={{verticalAlign: "middle", display:"inline-block"}}>
+            <button className="comfortscore-btn" onClick={this.toggle}>
+              Prøv anden adresse
+            </button>
+          </div>
+        </div>
+        </div>
+      </div>
     </Modal>
     <div id="comfortscorewidget-container-setup"
       className="comfortscore-container"

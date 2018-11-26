@@ -40,7 +40,6 @@ class AddressInput extends Component {
     dawaAutocomplete2.dawaAutocomplete(inputElm, {
       select: function(selected) {
         target = selected;
-
         // Update selected address somewhere else than for input field value
         that.updateFinalAddress(selected.tekst);
 
@@ -51,6 +50,7 @@ class AddressInput extends Component {
         for (var i = 0; i < elements.length; i++) {
           elements[i].innerHTML = "";
         }
+        that.overViewPage();
       }
     });
 
@@ -203,6 +203,7 @@ class AddressInput extends Component {
           <strong>Test</strong>: Hvor god er komforten i dit hus?
         </h2>
         <div className="comfortscore-autocomplete-container">
+        <form onSubmit={(e) => {e.preventDefault(); this.overViewPage()}}>
           <input
             type="text"
             className="comfortscore-dawa-autocomplete-input"
@@ -211,6 +212,7 @@ class AddressInput extends Component {
             onChange={this.handleChange}
             placeholder="Indtast din adresse"
           />
+        </form>
         </div>
         <button
           className="comfortscore-btn comfortscore-btn-success"

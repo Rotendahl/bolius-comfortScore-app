@@ -72,7 +72,7 @@ class AddressInput extends Component {
 
     if(finalAddress === ""){ return }
 
-    const apiUrl = "https://ml.bolius.dk/comfortscore/v1/"
+    const apiUrl = "https://ml.bolius.dk/comfortscore/v2/"
     const encodedAddres = encodeURI(this.state.finalAddress)
     const imgRequest ="https://maps.googleapis.com/maps/api/streetview/metadata"
       + "?key=AIzaSyA2MsGE3Crx2Gww33ol1gLw1OSk2bW8HK4&location="

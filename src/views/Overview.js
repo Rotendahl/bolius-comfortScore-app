@@ -74,7 +74,7 @@ class Overview extends Component {
         }
         xhttp.open(
           "GET",
-          "https://ml.bolius.dk/comfortscore/v1/predictImprovements/" +
+          "https://ml.bolius.dk/comfortscore/v2/predictImprovements/" +
             encodeURI(this.state.address),
           true
         );

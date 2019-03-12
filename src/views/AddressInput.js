@@ -133,8 +133,13 @@ class AddressInput extends Component {
         newState.address = finalAddress;
         this.props.store.address = finalAddress;
         this.props.store.currentState = newState;
+        if(newState.after2010){
+          this.props.history.push("/after2010");
+        }
+        else {
+          this.props.history.push("/Overview");
+        }
 
-        this.props.history.push("/Overview");
     }).catch(err => {
       this.setState({err_modal: true})
     })
@@ -199,28 +204,36 @@ class AddressInput extends Component {
       className="comfortscore-container"
     >
       <div className="comfortscore-top">
-        <h2>
-          <strong>Test</strong>: Hvor god er komforten i dit hus?
-        </h2>
-        <div className="comfortscore-autocomplete-container">
-        <form onSubmit={(e) => {e.preventDefault(); this.overViewPage()}}>
-          <input
-            type="text"
-            className="comfortscore-dawa-autocomplete-input"
-            id="dawa-autocomplete-input"
-            value={this.state.address}
-            onChange={this.handleChange}
-            placeholder="Indtast din adresse"
-          />
-        </form>
+          <h2><strong>Test</strong>: Hvor god er komforten i dit hus?</h2>
+        <div style={{width: "100%"}}>
+          <div className="comfortscore-autocomplete-container"
+              style={{width:"60%",  display: "inline-block",
+              verticalAlign: "middle"}}>
+          <form onSubmit={(e) => {e.preventDefault(); this.overViewPage()}}>
+            <input
+              type="text"
+              className="comfortscore-dawa-autocomplete-input"
+              id="dawa-autocomplete-input"
+              value={this.state.address}
+              onChange={this.handleChange}
+              placeholder="Indtast din adresse"
+            />
+          </form>
+          </div>
+          <div style={{marginLeft: "5%", width: "30%", display: "inline-block"}}>
+            <button
+              style={{textAlign: "center", verticalAlign: "middle"}}
+              className="comfortscore-btn comfortscore-btn-success"
+              data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
+              onClick={this.overViewPage}
+            >
+              Se dit resultat
+            </button>
+          </div>
         </div>
-        <button
-          className="comfortscore-btn comfortscore-btn-success"
-          data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
-          onClick={this.overViewPage}
-        >
-          Se dit resultat
-        </button>
+        <div className="row">
+          <div style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
+        </div>
       </div>
       <div className="comfortscore-content comfortscore-hidden">
         <p className="comfortscore-teaser" />

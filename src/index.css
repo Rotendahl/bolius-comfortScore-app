@@ -144,11 +144,12 @@
     order: 3;
 }
 
-@media (min-width: 480px) {
+/* DELTE this? */
+/* @media (min-width: 480px) {
     .comfortscore-btn-success {
         max-width: 31%;
     }
-}
+} */
 
 .comfortscore-action .comfortscore-btn-success {
     margin-left: 1em;

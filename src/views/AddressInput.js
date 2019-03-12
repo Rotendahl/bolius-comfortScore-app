@@ -232,7 +232,7 @@ class AddressInput extends Component {
           </div>
         </div>
         <div className="row">
-          <div style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
+          <div className="comfort-text" style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
         </div>
       </div>
       <div className="comfortscore-content comfortscore-hidden">

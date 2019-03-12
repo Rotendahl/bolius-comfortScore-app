@@ -4,15 +4,12 @@ import { Redirect } from "react-router";
 import "../styles/overview.css";
 import Slider from "../components/slider.js";
 import TextRow from "../components/TextRow.js";
-import { MockJSON } from "../components/MockJSON.js";
 
-import Improvements from "./Improvements.js";
 import { Tracking } from "../components/Tracking.js";
 
 class Overview extends Component {
   constructor(props) {
     super(props);
-
     var state = this.props.store.currentState;
     this.state = state;
 
@@ -20,7 +17,7 @@ class Overview extends Component {
     this.improvementsPage = this.improvementsPage.bind(this);
 
     // Track load event
-    Tracking.trackEvent("load", "overview", false);
+    Tracking.trackEvent("load", "overview", false)
   }
 
   updateScore(newVal, key) {
@@ -39,40 +36,45 @@ class Overview extends Component {
     improvementsPage() {
         var goNext = this.props.history.push,
           newState = this.state;
-
+        var that = this;
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (xhttp.readyState === 4 && xhttp.status === 200) {
                 var resp = JSON.parse(xhttp.responseText);
-                console.log(resp)
+                //console.log(resp)
+                var komfort_props = resp.komfort
                 var cards = []
-                for (var i = 0; i < resp.length; i++) {
-                    var improv = resp[i]
+                for (var i = 0; i < komfort_props.length; i++) {
                     var card = {
-                          key: parseInt(resp[i]['SEEB'].split("-").join(""), 10),
-                          title: resp[i]['title'],
+                          key: parseInt(komfort_props[i]['SEEB'].split("-").join(""), 10),
+                          title: komfort_props[i]['title'],
                           done: false,
                           willDo: false,
-                          description: resp[i]['describtion'],
-                          prop: parseInt(resp[i]['propability'] * 10000, 10)
+                          clear: false,
+                          description: komfort_props[i]['description'],
+                          prop: parseInt(komfort_props[i]['propability'] * 10000, 10),
+                          link: komfort_props[i]['read_more']
                         }
                     var targets = []
                     // fix key mashup
-                    resp[i].light ? targets.push('Lys') :  1 + 1;
-                    resp[i].noise ? targets.push('Støj') :  1 + 1;
-                    resp[i].moisture ? targets.push('Fugt') :  1 + 1;
-                    resp[i].temperature ? targets.push('Temperatur') :  1 + 1;
+                    if(komfort_props[i].light){targets.push('Lys')}
+                    if(komfort_props[i].noise){targets.push('Støj')}
+                    if(komfort_props[i].moisture){targets.push('Fugt')}
+                    if(komfort_props[i].temperature){targets.push('Temp')}
 
-                    card.targets = targets
-                    cards.push(card)
+                    card.targets = targets;
+                    cards.push(card);
                 }
-                newState.cards = cards
+                newState.install = resp.installation;
+                newState.cards = cards;
+                newState.activeSlide = 0;
+                that.props.store.currentState = newState;
                 goNext("/Improvements");
             }
         }
         xhttp.open(
           "GET",
-          "https://ai01.boliusaws.dk/predictImprovements/" +
+          "https://ml.bolius.dk/comfortscore/v2/predictImprovements/" +
             encodeURI(this.state.address),
           true
         );
@@ -80,11 +82,6 @@ class Overview extends Component {
     }
 
   render() {
-    var img =
-      "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
-      "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" +
-      this.state.address;
-
     if (this.state.address === undefined || this.state.address === "") {
       return <Redirect to="/" />;
     }
@@ -113,7 +110,7 @@ class Overview extends Component {
                 </p>
               </div>
               <div className="comfortscore-map">
-                <img alt="house" src={img} />
+                <img alt="house" src={this.state.img} />
               </div>
               <div className="comfortscore-instruction">
                 <TextRow

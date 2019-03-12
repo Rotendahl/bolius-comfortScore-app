@@ -1,6 +1,5 @@
 .comfortscore-container * {
     box-sizing: border-box;
-    font-family: sans-serif;
 }
 
 .comfortscore-container img {
@@ -44,7 +43,7 @@
 }
 
 .comfortscore-top {
-    background: #8fccbe;    
+    background: #8fccbe;
     padding: 1em;
     border: 3px solid white;
     border-radius: 38.5px;
@@ -145,11 +144,12 @@
     order: 3;
 }
 
-@media (min-width: 480px) {
+/* DELTE this? */
+/* @media (min-width: 480px) {
     .comfortscore-btn-success {
         max-width: 31%;
     }
-}
+} */
 
 .comfortscore-action .comfortscore-btn-success {
     margin-left: 1em;
@@ -176,7 +176,7 @@
     bottom: 83%;
     opacity: 0;
     transform: scale(0);
-    transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);    
+    transition: all 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940);
 }
 
 .comfortscore-bubble::before {
@@ -223,6 +223,11 @@
     line-height: 1.2;
 }
 
+.comfortscore-text a {
+    color: black;
+    text-decoration: underline;
+}
+
 .comfortscore-instruction p {
     font-size: 15px;
     font-family: 'nationalemedium', sans-serif;
@@ -238,4 +243,8 @@
 
 .comfortscore-hidden {
     display: none;
+}
+
+.comfortscore-teaser {
+    margin: 0;
 }

@@ -10,15 +10,21 @@
         margin-bottom: 0;
     }
 }
-@media (min-width: 600px) {
+@media (min-width: 700px) {
     .comfortscore-autocomplete-container {
-        width: 74%;
+        width: 77%;
         margin-bottom: 0;
     }
 }
 @media (min-width: 800px) {
     .comfortscore-autocomplete-container {
-        width: 78%;
+        width: 79%;
+        margin-bottom: 0;
+    }
+}
+@media (min-width: 900px) {
+    .comfortscore-autocomplete-container {
+        width: 82%;
         margin-bottom: 0;
     }
 }
@@ -38,6 +44,7 @@ input.comfortscore-email-field {
     z-index: 2;
     margin: 0;
     vertical-align: initial;
+    font-weight: 400;
 }
 .comfortscore-dawa-autocomplete-input:focus,
 .comfortscore-email-field:focus {

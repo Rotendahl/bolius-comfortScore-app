@@ -30,8 +30,9 @@ class Card extends Component {
                 </div>
               )}
             </div>
-            <h3>{this.props.title} : {this.props.prop / 100}%</h3>
-            <div className="comfortscore-text"><p>{this.props.description}</p></div>
+            <h3>{this.props.title}</h3>
+            <div className="comfortscore-text"><p>{this.props.description}</p><p><a target="_blank" href={this.props.read_more}>Læs mere</a></p>
+            <p className="comfortscore-card-counter">{this.props.index + 1} af {this.props.total}</p></div>
           </div>
           <div className="comfortscore-swiper-actions">
               <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>
@@ -51,7 +52,7 @@ class Card extends Component {
               </div>
             )}
           </div>
-          <h3>{this.props.title} : {this.props.prop}</h3>
+          <h3>{this.props.title}</h3>
           <div className="comfortscore-text"><p>{this.props.description}</p></div>
         </div>
       )

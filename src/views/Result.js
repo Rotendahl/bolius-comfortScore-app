@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import Slider from "react-slick";
 import ScoreStatus from '../components/ScoreStatus.js'
 import Card from '../components/Card.js'
 import TextRow from '../components/TextRow.js'
@@ -49,19 +48,19 @@ class Result extends Component {
       document.getElementById('comfortscorewidget-app-data').value = value;
   }
 
-  render() {
-    var settings = {
-      slidesToShow: 1,
-      infinite: false,
-      speed: 500,
-      dots: false,
-      arrows: false,
-      className: "slider",
-      beforeChange: (current, next) => this.setState({
-        activeSlide: next
-      })
-    };
+  componentDidMount() {
+      // On load get current y position and menu height, find change relative to container-setup and scroll
+      if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
+        document.getElementById('comfortscorewidget-container-setup') !== null) {
+            var offsetY = window.pageYOffset || document.documentElement.scrollTop,
+                navigationMenu = document.getElementById('s-header'),
+                menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y, 10);
+            window.scrollTo(0, newY);
+        }
+  }
 
+  render() {
     var img =
       "https://maps.googleapis.com/maps/api/streetview?parameters&size=880x542&key=" +
       "AIzaSyBy3Ect_uyKDDhuRCQvUC0n7KQa5mbbiZg&location=" + this.state.address,
@@ -115,15 +114,23 @@ class Result extends Component {
           </div>
           <h2 className="comfortscore-title-centered">Gem dit resultat</h2>
           <div className="comfortscore-twocol">
-            <div className="comfortscore-col comfortscore-box">
+            <div className="comfortscore-col">
+             <div className="comfortscore-box">
               <h3>Gem i Mit Bolius</h3>
               <div className="comfortscore-notice">
                 <p>Du bliver bedt om at logge på eller oprette profil for at gemme resultatet.</p>
                 <p>Når du gemmer resultatet på Mit Bolius, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
               </div>
-              <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
+              <div style={{textAlign: "right"}}>
+                <button className="comfortscore-btn" id="comfortscorewidget-save-btn" onClick={this.btnClick}>Gem i Mit Bolius</button>
+              </div>
+             </div>
+                <div style={{textAlign:"right"}}>
+                <a href="https://www.bolius.dk/cookiepolitik-og-retningslinjer-paa-bolius-platforme/">Regler og rettigheder</a>
+                </div>
             </div>
-            <div className="comfortscore-col comfortscore-box">
+            <div className="comfortscore-col">
+              <div className="comfortscore-box">
               <h3>Få det tilsendt i en e-mail</h3>
               <div className="comfortscore-field-wrap">
                 <form>
@@ -133,11 +140,17 @@ class Result extends Component {
               <div className="comfortscore-notice">
                 <p>Når du modtager resultatet på mail, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
               </div>
-              <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig e-mail</button>
+              <div style={{textAlign: "right"}}>
+                <button className="comfortscore-btn" id="comfortscorewidget-send-btn" onClick={this.btnClick}>Send mig e-mail</button>
+              </div>
             </div>
+                <div style={{textAlign:"right"}}>
+                <a href="https://www.bolius.dk/cookiepolitik-og-retningslinjer-paa-bolius-platforme/">Regler og rettigheder</a>
+                </div>
           </div>
         </div>
       </div>
+</div>
     )
   }
 }

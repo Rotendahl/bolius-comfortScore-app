@@ -16,17 +16,17 @@ class ScoreStatus extends Component {
     return(
       <div className={scoreClass}>
         <p className="comfortscore-current">
-          <span className="comfortscore-score">{Math.floor(this.props.current) + 1}%</span>
+          <span className="comfortscore-score">{Math.floor(this.props.current)}%</span>
           <span className="comfortscore-label">Din nuværende komfortscore</span>
         </p>
         {this.props.animate ?
           <p className="comfortscore-potential heartbeat">
-            <span className="comfortscore-score">{Math.floor(this.props.potential) + 1}%</span>
+            <span className="comfortscore-score">{Math.floor(this.props.potential)}%</span>
             <span className="comfortscore-label">Din potentielle komfortscore</span>
           </p>
         :
           <p className="comfortscore-potential">
-            <span className="comfortscore-score">{Math.floor(this.props.potential) + 1}%</span>
+            <span className="comfortscore-score">{Math.floor(this.props.potential)}%</span>
             <span className="comfortscore-label">Din potentielle komfortscore</span>
           </p>
         }

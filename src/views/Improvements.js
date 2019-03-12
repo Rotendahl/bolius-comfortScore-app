@@ -43,14 +43,14 @@ class Improvements extends Component {
   done() {
     var cards = this.state.cards
     if (!cards[this.state.activeSlide].done) {
-        var dontSet = cards[this.state.activeSlide].willDo || cards[this.state.activeSlide].done;
+        var dontSet = !cards[this.state.activeSlide].willDo;
         cards[this.state.activeSlide].done = true
         cards[this.state.activeSlide].willDo = false
         cards[this.state.activeSlide].clear = false
         this.setState((prevState, props) => ({
           cards: cards,
           animate: true,
-          potentialScore: this.state.potentialScore + ( dontSet ? 0 : this.state.unit )
+          potentialScore: this.state.potentialScore - ( dontSet ? 0 : this.state.unit )
         }), function() {
             this.next();
         })
@@ -63,7 +63,7 @@ class Improvements extends Component {
   willDo() {
     var cards = this.state.cards;
     if (!cards[this.state.activeSlide].willDo) {
-        var dontSet = cards[this.state.activeSlide].willDo || cards[this.state.activeSlide].done;
+        var dontSet = false;
         cards[this.state.activeSlide].done = false
         cards[this.state.activeSlide].willDo = true
         cards[this.state.activeSlide].clear = false
@@ -83,7 +83,7 @@ class Improvements extends Component {
   clear() {
     var cards = this.state.cards
     if (!cards[this.state.activeSlide].clear) {
-        var dontSet = cards[this.state.activeSlide].clear || ( !cards[this.state.activeSlide].willDo && !cards[this.state.activeSlide].done );
+        var dontSet = !cards[this.state.activeSlide].willDo;
         cards[this.state.activeSlide].done = false
         cards[this.state.activeSlide].willDo = false
         cards[this.state.activeSlide].clear = true
@@ -115,6 +115,8 @@ class Improvements extends Component {
           animate: true
         });
         elem.classList.add('heartbeat');
+
+        that.moveToTop();
     }, 500);
   }
   previous() {
@@ -134,7 +136,57 @@ class Improvements extends Component {
 
      this.props.store.currentState = newState;
 
-     goNext('/Result');
+     var data = JSON.stringify({
+        "cards": this.state.cards,
+        "address": this.state.address,
+        "original_params": {
+            "draft": this.state.sliders[0].initial_value,
+            "temperature": this.state.sliders[1].initial_value,
+            "moisture": this.state.sliders[2].initial_value,
+            "noise": this.state.sliders[3].initial_value,
+            "light": this.state.sliders[4].initial_value
+        },
+        "changed_params": {
+            "draft": this.state.sliders[0].value,
+            "temperature": this.state.sliders[1].value,
+            "moisture": this.state.sliders[2].value,
+            "noise": this.state.sliders[3].value,
+            "light": this.state.sliders[4].value
+        }
+    });
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.addEventListener("readystatechange", function () {
+        if (this.readyState === this.DONE) {
+            // console.log(this.responseText);
+            goNext('/Result');
+        }
+    });
+
+    xhr.open("POST", "https://ml.bolius.dk/comfortscore/v2/addSession/");
+
+    xhr.setRequestHeader("content-type", "application/json");
+
+    xhr.send(data);
+
+    }
+
+  moveToTop() {
+      // Get current y position and menu height, find change relative to container-setup and scroll
+      if (document.getElementById('comfortscorewidget-container-setup') !== undefined &&
+        document.getElementById('comfortscorewidget-container-setup') !== null) {
+            var offsetY = window.pageYOffset || document.documentElement.scrollTop,
+                navigationMenu = document.getElementById('s-header'),
+                menuHeight = navigationMenu !== undefined && navigationMenu !== null ? navigationMenu.clientHeight : 0,
+                newY = offsetY - menuHeight + parseInt(document.getElementById('comfortscorewidget-container-setup').getBoundingClientRect().y, 10);
+            window.scrollTo(0, newY);
+        }
+  }
+
+  componentDidMount() {
+      // On load scroll to top
+      this.moveToTop();
   }
 
   render() {
@@ -144,6 +196,7 @@ class Improvements extends Component {
       speed: 500,
       dots: false,
       arrows: false,
+      adaptiveHeight: true,
       className: "slider",
       beforeChange: (current, next) => this.setState({
         activeSlide: next
@@ -172,14 +225,14 @@ class Improvements extends Component {
             </div>
             <div className="comfortscore-col">
               <div className="comfortscore-instruction">
-                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Vælg dem, du er interesseret i at gå videre med og se, hvordan det forbedrer din komfortscore. Husk: Du kan altid gå tilbage og justere dine valg.'}
+                <TextRow text={'Følgende løsninger kan forbedre komforten hjemme hos dig. Husk: Du kan altid gå tilbage og justere dine valg.'}
                 />
               </div>
               <div className="comfortscore-swiper">
-                <Slider ref={c => (this.slider = c)} {...settings}>
+                  <Slider ref={c => (this.slider = c)} {...settings}>
                   {this.state.cards.map((card, index) =>
-                    <Card title={card.title} description={card.description} key={card.key} prop={card.prop}
-                    done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets}
+                    <Card title={card.title} description={card.description} key={card.key} prop={card.prop} read_more={card.link}
+                    done={card.done} willDo={card.willDo} clear={card.clear} targets={card.targets} index={index} total={this.state.cards.length}
                     setDone={this.done} setWillDo={this.willDo} setClear={this.clear} showButtons={true}
                     />)
                   }
@@ -191,7 +244,7 @@ class Improvements extends Component {
         <div className="comfortscore-action">
           <button className="comfortscore-btn comfortscore-btn-back" onClick={this.goBack}>Tilbage</button>
           <p className="comfortscore-label-btn">Se din liste med forbedringstiltag og hvordan du kan gemme den til senere</p>
-          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Vis liste</button>
+          <button className="comfortscore-btn comfortscore-btn-success" data-src="{action: 'load', eventLabel: 'improvements', noninteractive: false}" onClick={this.resultPage}>Vis resultat</button>
           {/* TODO Add class animate to show bubble and remove it after 2s. Should be shown with delay after the first bubble */}
           <p className="comfortscore-bubble">Klik på knappen for at gå videre. Du kan altid komme tilbage</p>
         </div>

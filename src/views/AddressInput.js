@@ -133,7 +133,7 @@ class AddressInput extends Component {
         newState.address = finalAddress;
         this.props.store.address = finalAddress;
         this.props.store.currentState = newState;
-        if(newState.after2010){
+        if(paramResp.data.after2010){
           this.props.history.push("/after2010");
         }
         else {

@@ -70,13 +70,12 @@ class AddressInput extends Component {
       this.state.address :
       this.state.finalAddress;
 
-    if(finalAddress === ""){ return }
 
     const apiUrl = "https://ml.bolius.dk/comfortscore/v2/"
-    const encodedAddres = encodeURI(this.state.finalAddress)
+    const encodedAddres = encodeURI(finalAddress)
     const imgRequest ="https://maps.googleapis.com/maps/api/streetview/metadata"
       + "?key=AIzaSyA2MsGE3Crx2Gww33ol1gLw1OSk2bW8HK4&location="
-      +  this.state.finalAddress
+      +  finalAddress
 
     Promise.all([
       axios.get(`${apiUrl}predictParams/${encodedAddres}`),
@@ -225,7 +224,7 @@ class AddressInput extends Component {
               style={{textAlign: "center", verticalAlign: "middle"}}
               className="comfortscore-btn comfortscore-btn-success"
               data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
-              onClick={this.overViewPage}
+              onClick={(e) => {e.preventDefault(); this.overViewPage()}}
             >
               Se dit resultat
             </button>

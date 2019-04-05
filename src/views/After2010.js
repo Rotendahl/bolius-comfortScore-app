@@ -30,8 +30,9 @@ class After2010 extends Component {
         </div>
         <div className="comfortscore-content">
           <div>
-              Testen viser ikke resultater for huse bygget efter 2010. Hvis du
+              <div className="comfort-text"> Testen viser ikke resultater for huse bygget efter 2010. Hvis du
               oplever problemer med komforten, kan du måske hente hjælp her:
+              </div>
 
             <ul style={{listStyleType: "none", "marginLeft": "-30px"}}>
               <li><a href="https://www.bolius.dk/varmeproblemer-i-hvert-femte-nye-hus-28159/">

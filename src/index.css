@@ -11,6 +11,11 @@
     max-width: 940px;
 }
 
+.comfort-text{
+    font-weight: normal;
+    font-family: 'nationalemedium', sans-serif;
+}
+
 .comfortscore-btn {
     display: inline-block;
     padding: 0 0.75em;

@@ -70,13 +70,12 @@ class AddressInput extends Component {
       this.state.address :
       this.state.finalAddress;
 
-    if(finalAddress === ""){ return }
 
     const apiUrl = "https://ml.bolius.dk/comfortscore/v2/"
-    const encodedAddres = encodeURI(this.state.finalAddress)
+    const encodedAddres = encodeURI(finalAddress)
     const imgRequest ="https://maps.googleapis.com/maps/api/streetview/metadata"
       + "?key=AIzaSyA2MsGE3Crx2Gww33ol1gLw1OSk2bW8HK4&location="
-      +  this.state.finalAddress
+      +  finalAddress
 
     Promise.all([
       axios.get(`${apiUrl}predictParams/${encodedAddres}`),
@@ -133,7 +132,7 @@ class AddressInput extends Component {
         newState.address = finalAddress;
         this.props.store.address = finalAddress;
         this.props.store.currentState = newState;
-        if(newState.after2010){
+        if(paramResp.data.after2010){
           this.props.history.push("/after2010");
         }
         else {
@@ -225,14 +224,14 @@ class AddressInput extends Component {
               style={{textAlign: "center", verticalAlign: "middle"}}
               className="comfortscore-btn comfortscore-btn-success"
               data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
-              onClick={this.overViewPage}
+              onClick={(e) => {e.preventDefault(); this.overViewPage()}}
             >
               Se dit resultat
             </button>
           </div>
         </div>
         <div className="row">
-          <div style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
+          <div className="comfort-text" style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
         </div>
       </div>
       <div className="comfortscore-content comfortscore-hidden">

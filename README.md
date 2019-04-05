@@ -1,16 +1,4 @@
-## Local Bolius information
-
-Two hidden files, .env.local and .env.production, are included in this repo.
-
-**Important: Do NOT put information that should not be accessible on Github in these files. They are here to provide you with an easy setup when you pull the repo for the first time and want to work on the app.**
-
-If you need to add secret or private information in the files please create a placeholder setting and save it with
-a safe setting. Then inform your colleagues how to use it with secret settings. Or you may omit the placeholder
-and inform people before they start working on the app.
-
-The files include a setting for the local assets directory which should always be set to "." for local development unless
-you are hosting the files away from the root folder on a local webserver.
-In production you should always set the directory to the path where this app is found.
+## Bolius Komfortscore widget
 
 ## React - official readme
 

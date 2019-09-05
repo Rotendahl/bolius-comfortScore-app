@@ -10,5 +10,5 @@ ReactDOM.render((
   <Router hashType="noslash">
     <App store={store} />
   </Router>
-), document.getElementById('root'));
+), document.getElementById('comfortscorewidget'));
 registerServiceWorker();

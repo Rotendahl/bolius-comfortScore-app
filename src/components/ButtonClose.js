@@ -16,7 +16,7 @@ class ButtonClose extends Component {
 
   render() {
     return(
-        <button className="comfortscore-btn comfortscore-btn-close" onClick={this.startOver}>Luk</button>
+        <button className="btn btn-primary comfortscore-btn comfortscore-btn-close" onClick={this.startOver}>Luk</button>
     )
   }
 }

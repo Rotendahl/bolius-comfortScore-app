@@ -1,8 +1,8 @@
 import React, {
   Component
 } from 'react';
-import '../styles/slider.css'
-import '../styles/sliderImages.css'
+//import '../styles/slider.css'
+//import '../styles/sliderImages.css'
 
 class Slider extends Component {
   constructor(props) {

@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import '../styles/card.css'
+//import '../styles/card.css'
 
 
 class Card extends Component {
@@ -35,9 +35,9 @@ class Card extends Component {
             <p className="comfortscore-card-counter">{this.props.index + 1} af {this.props.total}</p></div>
           </div>
           <div className="comfortscore-swiper-actions">
-              <button onClick={this.props.setDone} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-yellow">Har gjort</button>
-              <button onClick={this.props.setWillDo} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-green">Vil gøre</button>
-              <button onClick={this.props.setClear} className="comfortscore-btn comfortscore-btn-light comfortscore-btn-red">Nej, tak</button>
+              <button onClick={this.props.setDone} className="btn btn-secondary comfortscore-btn comfortscore-btn-light">Har gjort</button>
+              <button onClick={this.props.setWillDo} className="btn btn-secondary comfortscore-btn comfortscore-btn-light">Vil gøre</button>
+              <button onClick={this.props.setClear} className="btn btn-secondary comfortscore-btn comfortscore-btn-light">Nej, tak</button>
           </div>
         </div>
       )

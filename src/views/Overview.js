@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router";
 
-import "../styles/overview.css";
+//import "../styles/overview.css";
 import Slider from "../components/slider.js";
 import TextRow from "../components/TextRow.js";
 
@@ -92,13 +92,13 @@ class Overview extends Component {
         className="comfortscore-container"
       >
         <div className="comfortscore-top comfortscore-activated">
-          <h2>
-            <strong>Resultat</strong> for {this.state.address}
+          <h2 className="section-header">
+            Resultat for {this.state.address}
           </h2>
         </div>
         <div className="comfortscore-content">
-          <div className="comfortscore-twocol">
-            <div className="comfortscore-col">
+          <div className="row comfortscore-twocol">
+            <div className="col-sm-6 comfortscore-col">
               <div className="comfortscore-wrapper">
                 <p className="comfortscore-current">
                   <span className="comfortscore-score">
@@ -120,7 +120,7 @@ class Overview extends Component {
                 />
               </div>
             </div>
-            <div className="comfortscore-col comfortscore-sliders">
+            <div className="col-sm-6 comfortscore-col comfortscore-sliders">
               {this.state.sliders.map((slider, index) => (
                 <Slider
                   key={index}
@@ -143,7 +143,7 @@ class Overview extends Component {
             Er du klar til at få forslag til forbedringer af dit hus?
           </p>
           <button
-            className="comfortscore-btn comfortscore-btn-success"
+            className="btn btn-primary comfortscore-btn comfortscore-btn-success"
             data-src="{action: 'load', eventLabel: 'overview', noninteractive: false}"
             onClick={this.improvementsPage}
           >

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../styles/improvements.css";
-import "../styles/dawa.css";
+//import "../styles/improvements.css";
+//import "../styles/dawa.css";
 import axios from 'axios';
 import { Tracking } from "../components/Tracking.js";
 import Modal from 'react-responsive-modal';
@@ -151,18 +151,12 @@ class AddressInput extends Component {
       closeOnEsc onClose={this.toggle}
       closeOnOverlayClick={true}
       styles={{modal: {
-        borderRadius: "30px",
-        padding: "0",
-        backgroundColor: "#404040",
+        padding: "12px",
         textAlign: "center",
         position: "relative",
       }}}
     >
-      <div><div style={{
-        border: "2px solid white",
-        height: "3em",
-        backgroundColor: "#93CBBD",
-        borderRadius: "30px",
+      <div><h2 style={{
         textAlign: "center",
         position: "relative",
         zIndex: "1"
@@ -170,28 +164,24 @@ class AddressInput extends Component {
       <br/>
         <span className="text-danger text-center">Fejl: </span>
         Mangelfuld data fra BBR
-      </div>
+      </h2>
       <div style={{
-          backgroundColor:"#EBF5F5",
           width: "100%",
           margin:"auto",
-          marginTop:"-10px",
-          borderRadius: "20px",
-          paddingTop: "20px",
           zIndex: "0"
       }}>
-        BBR registret indeholder ikke nok data om huset til at lave
-        forudsigelser.
+        <p>BR registret indeholder ikke nok data om huset til at lave
+        forudsigelser.</p>
         <div style={{padding:"10px"}}>
           <div style={{verticalAlign: "middle", display:"inline-block"}}>
-            <button  className="comfortscore-btn"
+            <button  className="btn btn-primary comfortscore-btn"
             style={{marginRight:"20px"}}
             onClick={() => {window.open("https://bbr.dk/ret")}}
           >
             Ret BBR data
           </button></div>
           <div style={{verticalAlign: "middle", display:"inline-block"}}>
-            <button className="comfortscore-btn" onClick={this.toggle}>
+            <button className="btn btn-primary comfortscore-btn" onClick={this.toggle}>
               Prøv anden adresse
             </button>
           </div>
@@ -203,36 +193,27 @@ class AddressInput extends Component {
       className="comfortscore-container"
     >
       <div className="comfortscore-top">
-          <h2><strong>Test</strong>: Hvor god er komforten i dit hus?</h2>
-        <div style={{width: "100%"}}>
-          <div className="comfortscore-autocomplete-container"
-              style={{width:"60%",  display: "inline-block",
-              verticalAlign: "middle"}}>
-          <form onSubmit={(e) => {e.preventDefault(); this.overViewPage()}}>
-            <input
-              type="text"
-              className="comfortscore-dawa-autocomplete-input"
-              id="dawa-autocomplete-input"
-              value={this.state.address}
-              onChange={this.handleChange}
-              placeholder="Indtast din adresse"
-            />
-          </form>
+          <h2 className="section-header">Test: Hvor god er komforten i dit hus?</h2>
+          <div className="comfortscore-dawa">
+            <form onSubmit={(e) => {e.preventDefault(); this.overViewPage()}} className="form-inline">
+              <div className="comfortscore-autocomplete-container"><input
+                type="text"
+                className="form-control comfortscore-dawa-autocomplete-input"
+                id="dawa-autocomplete-input"
+                value={this.state.address}
+                onChange={this.handleChange}
+                placeholder="Indtast din adresse"
+              /></div>
+              <button
+                className="btn btn-primary comfortscore-btn comfortscore-btn-success"
+                data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
+                onClick={(e) => {e.preventDefault(); this.overViewPage()}}
+              >
+                Se dit resultat
+              </button>
+            </form>
           </div>
-          <div style={{marginLeft: "5%", width: "30%", display: "inline-block"}}>
-            <button
-              style={{textAlign: "center", verticalAlign: "middle"}}
-              className="comfortscore-btn comfortscore-btn-success"
-              data-src="{action: 'load', eventLabel: 'initial address', noninteractive: true}"
-              onClick={(e) => {e.preventDefault(); this.overViewPage()}}
-            >
-              Se dit resultat
-            </button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="comfort-text" style={{paddingLeft: "2%", marginTop: "2%"}}>Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</div>
-        </div>
+          <p className="small">Testen viser ikke resultater for huse bygget efter 2010 og er ikke egnet til sommerhuse og kolonihavehuse.</p>
       </div>
       <div className="comfortscore-content comfortscore-hidden">
         <p className="comfortscore-teaser" />

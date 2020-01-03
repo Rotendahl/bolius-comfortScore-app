@@ -119,7 +119,7 @@ class Result extends Component {
               <h3>Gem i Mit Bolius</h3>
               <div className="comfortscore-notice">
                 <p>Du bliver bedt om at logge på eller oprette profil for at gemme resultatet.</p>
-                <p>Når du gemmer resultatet på Mit Bolius, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
+                <p>Når du gemmer resultatet på Mit Bolius, tilmelder du dig samtidig nogle opfølgende mails, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde dem igen via afmeld-linket i bunden af nyhedsbrevet.</p>
                 <p><a href="https://www.bolius.dk/cookiepolitik-og-retningslinjer-paa-bolius-platforme/">Regler og rettigheder</a></p>
               </div>
               <div style={{textAlign: "right"}}>
@@ -136,7 +136,7 @@ class Result extends Component {
                 </form>
               </div>
               <div className="comfortscore-notice">
-                <p>Når du modtager resultatet på mail, tilmelder du dig samtidig vores nyhedsbrev, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde det igen via afmeld-linket i bunden af nyhedsbrevet.</p>
+                <p>Når du modtager resultatet på mail, tilmelder du dig samtidig nogle opfølgende mails, der inspirerer dig til at forbedre komforten gennem energirenovering. Du kan altid afmelde disse mails igen via afmeld-linket i bunden af nyhedsbrevet.</p>
                 <p><a href="https://www.bolius.dk/cookiepolitik-og-retningslinjer-paa-bolius-platforme/">Regler og rettigheder</a></p>
               </div>
               <div style={{textAlign: "right"}}>
